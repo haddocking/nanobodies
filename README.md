@@ -40,30 +40,15 @@ This repository contains the follwoing directories:
   - **nanobody_antigen_twohit_interface_haddock_docking.cfg**: example .cfg file for Two-Hit Interface docking.
   
 * **data**: all data required to reproduce the figures in the report.
-  - **alphafold2_monomer_immunebuilder_centroids_rmsd.tsv**
-  - **alphafold2_rmsd.tsv**
-  - **alphafold2multimer_complex_predictions_dockq_top1.tsv**
-  - **alphafold2multimer_complex_predictions_sr.tsv**
-  - **alphafold2multimer_immunebuilder_centroids_rmsd.tsv**
-  - **alphafold2multimer_monomer_immunebuilder_centroids_rmsd.tsv**
-  - **alphafold2multimer_rmsd.tsv**
-  - **alphafold3_complex_predictions_dockq_top1.tsv**
-  - **alphafold3_complex_predictions_sr.tsv**
-  - **alphafold3_rmsd.tsv**
-  - **alphahold2_monomer_immunebuilder_centroids_rmsd.tsv**
-  - **cdr3_rmsd_dockq.tsv**
-  - **clustered_paratope_interacting_residues.tsv**
-  - **epitope_rmsd_dockq.tsv**
-  - **fnat_diff_flexref.tsv**
-  - **haddock_docking_clustered_sr_per_scenario.tsv**
-  - **haddock_docking_mixed_paratope_restraints_sr.tsv**
-  - **haddock_docking_sr_allsurface.tsv**
-  - **haddock_docking_sr_per_scenario.tsv**
-  - **immunebuilder_rmsd.tsv**
-  - **nanonet_rmsd.tsv**
-  - **paratope_represented_dockq.tsv**
-  - **probability_regions_interaction.tsv**
-  - **raptorxsingle_rmsd.tsv**
-  - **unbound_antigens_rmsd.tsv**
-  - **voro_scoring_clusters_sr.tsv**
-  - **voro_scoring_models_sr.tsv**
+  - *_rmsd.tsv: RMSD of the different nanbody regions (FR, CDR1, CDR2, CDR3) for the different methods. If ending with _centroids_rmsd.tsv it only represents CDR3 RMSD from the centroids of the clustered ensembles of predictions. 
+  - *_complex_predictions_dockq_top1.tsv: DockQ values for top1 complex predictions from AlphaFold2-Multimer and AlphaFold3.
+  - *_complex_predictions_sr.tsv: docking success rates for different CAPRI classes and depending of topN ranked structures from AlphaFold2-Multimer and AlphaFold3 predictions. 
+  - cdr3_rmsd_dockq.tsv: minimum available CDR3 RMSD in the ensemble and maximum DockQ achieved in the top10 models for True Interface scenario, bound antigen EMRef stage.
+  - clustered_paratope_interacting_residues.tsv: paratope residues from each Paratope Dataset PDB and the cluster to which they belong.
+  - epitope_rmsd_dockq.tsv minimum epitope RMSD and maximum DockQ achieved in the top10 models for True Interface scenario, unbound antigen EMRef stage.
+  - fnat_diff_flexref.tsv: frequency of fnat improvements after flexible refinement classified in 0.05 width bins.
+  - haddock_docking_*.tsv: docking success rates for different CAPRI classes and depending of topN ranked models/clusters, for different information scenarios and/or pipeline stages.
+  - paratope_represented_dockq.tsv : % of represented paratope in the restraints and maximum DockQ achieved in the top10 models for Loose and Two-Hit Interface scenario, bound antigen EMRef stage.
+  - probability_regions_interaction.tsv : percent of kinked/extended structures with each nanobody region being present in the paratope.
+  - voro_scoring_*_sr.tsv: docking success rates for different information scenarios as a function of the topN models/clusters after VoroIF-GNN scoring the final HADDOCK-scored models.
+
