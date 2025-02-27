@@ -1,0 +1,1925 @@
+assign (resi 26 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 27 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 28 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 29 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 30 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 31 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 32 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 52 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 53 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 54 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 55 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 56 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 57 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 99 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 100 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 101 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 102 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 103 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 104 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 105 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 106 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 107 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 108 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 109 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
+assign (resi 110 and segid A)
+(
+       (resi 155 and segid B)
+        or
+       (resi 161 and segid B)
+        or
+       (resi 162 and segid B)
+        or
+       (resi 163 and segid B)
+        or
+       (resi 164 and segid B)
+        or
+       (resi 165 and segid B)
+        or
+       (resi 206 and segid B)
+        or
+       (resi 208 and segid B)
+        or
+       (resi 209 and segid B)
+        or
+       (resi 212 and segid B)
+        or
+       (resi 313 and segid B)
+        or
+       (resi 314 and segid B)
+        or
+       (resi 315 and segid B)
+        or
+       (resi 316 and segid B)
+        or
+       (resi 317 and segid B)
+        or
+       (resi 318 and segid B)
+        or
+       (resi 319 and segid B)
+        or
+       (resi 320 and segid B)
+        or
+       (resi 323 and segid B)
+        or
+       (resi 324 and segid B)
+        or
+       (resi 327 and segid B)
+        or
+       (resi 329 and segid B)
+        or
+       (resi 331 and segid B)
+        or
+       (resi 332 and segid B)
+        or
+       (resi 333 and segid B)
+        or
+       (resi 334 and segid B)
+        or
+       (resi 335 and segid B)
+        or
+       (resi 336 and segid B)
+        or
+       (resi 338 and segid B)
+        or
+       (resi 339 and segid B)
+        or
+       (resi 340 and segid B)
+        or
+       (resi 343 and segid B)
+        or
+       (resi 348 and segid B)
+        or
+       (resi 349 and segid B)
+        or
+       (resi 350 and segid B)
+        or
+       (resi 352 and segid B)
+        or
+       (resi 353 and segid B)
+) 2.0 2.0 0.0
+
