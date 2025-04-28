@@ -10,562 +10,395 @@ import matplotlib.pyplot as plt
 ##We read the data from the Flexible Refinement stage
 sr_data = pd.read_csv(Path("..", "data", "haddock_docking_sr_per_scenario.tsv"), sep = "\t")
 #and from the AlphaFold2-Multimer and AlphaFold3 runs
-alphafold_multimer = pd.read_csv(Path("..", "data/alphafold2multimer_complex_predictions_sr.tsv"), sep = "\t")
-alphafold3 = pd.read_csv(Path("..", "data/alphafold3_complex_predictions_sr.tsv"), sep = "\t")
-#get the percentage 
-alphafold_multimer = alphafold_multimer*100
-alphafold3 = alphafold3*100
+alphafold_multimer = pd.read_csv(Path("..", "data/alphafold2multimer_25_predictions_sr.tsv"), sep = "\t")
+# alphafold3
+# alphafold3_unseen = pd.read_csv(Path("..", "data/alphafold3_unseen_25_predictions_sr.tsv"), sep = "\t")
+alphafold3 = pd.read_csv(Path("..", "data/alphafold3_25_predictions_sr.tsv"), sep = "\t")
+print(f"number of alphafold3 nanobodies {alphafold3['pdb'].unique().shape[0]}")
+
+# print average dockq for af2m when rank == 1
+print(f"AF2M dockq rank 1 {alphafold_multimer[alphafold_multimer['rank'] == 1]['dockq'].mean():.3f}")
+# same for alphafold3
+print(f"AF3 dockq rank 1 {alphafold3[alphafold3['rank'] == 1]['dockq'].mean():.3f}")
 
 ##We separate the data by scenario and antigen
-true_bound = sr_data[(sr_data["scenario"]=="true")&(sr_data["antigen"]=="bound")]
-true_unbound = sr_data[(sr_data["scenario"]=="true")&(sr_data["antigen"]=="unbound")]
-loose_bound = sr_data[(sr_data["scenario"]=="loose")&(sr_data["antigen"]=="bound")]
-loose_unbound = sr_data[(sr_data["scenario"]=="loose")&(sr_data["antigen"]=="unbound")]
-twohit_bound = sr_data[(sr_data["scenario"]=="two-hit")&(sr_data["antigen"]=="bound")]
-twohit_unbound = sr_data[(sr_data["scenario"]=="two-hit")&(sr_data["antigen"]=="unbound")]
-
+true_bound = sr_data[(sr_data["scenario"]=="real")&(sr_data["struct"]=="b")]
+true_unbound = sr_data[(sr_data["scenario"]=="real")&(sr_data["struct"]=="u")]
+loose_bound = sr_data[(sr_data["scenario"]=="loose")&(sr_data["struct"]=="b")]
+loose_unbound = sr_data[(sr_data["scenario"]=="loose")&(sr_data["struct"]=="u")]
+twohit_bound = sr_data[(sr_data["scenario"]=="twohit")&(sr_data["struct"]=="b")]
+twohit_unbound = sr_data[(sr_data["scenario"]=="twohit")&(sr_data["struct"]=="u")]
 
 ###We represent in three different plots the values for top1, top10 and top200 for the four ensembles and bound/unbound antigen runs, showing acceptable/medium/high
 
-fig,axs = plt.subplots(3, figsize = (15, 15))
+fig,axs = plt.subplots(3,5, figsize = (15, 12), width_ratios=[3, 3, 3, 3, 2])
+# the fifth plot should be smaller
 
-xticks = [0.3, 0.7, 1.3, 1.7, 2.3, 2.7, 3.3, 3.7, 4.3, 4.7, 5.3, 5.7, 6.3, 6.7, 7.3, 7.7, 8.3, 8.7, 9.3, 9.7, 10.3, 10.7, 11.3, 11.7, 12.4, 12.8, 13.4, 13.8]
-xlabels = ["B T1", "U T1", "B T10", "U T10", "B T200", "U T200", "B T1", "U T1", "B T10", "U T10", "B T200", "U T200", "B T1", "U T1", "B T10", "U T10", "B T200", "U T200", "B T1", "U T1", "B T10", "U T10", "B T200", "U T200",
-"AFMu T1", "AF3 T1", "AFMu T10", "AF3 T10"]
+#xticks = [0.3, 0.7, 1.3, 1.7, 2.3, 2.7, 3.3, 3.7, 4.3, 4.7, 5.3, 5.7, 6.3, 6.7, 7.3, 7.7, 8.3, 8.7, 9.3, 9.7, 10.3, 10.7, 11.3, 11.7, 12.4, 12.8, 13.4, 13.8]
+xlabels = ["B T1", "B T10", "B T200", "U T1", "U T10", "U T200"]
+af3_xlabels = ["AFMu T1", "AFMu T10", "AF3 T1", "AF3 T10"]
 barwidth = 0.4
+ensembles = ["IB", "IBMo", "IBMu", "IBMoMu"]
+scenarios = ["real", "loose", "twohit"]
 
-###True interface
-axs[0].set_ylim(0, 100)
-axs[0].set_ylabel("SR (%)", size = 15)
-axs[0].set_xlim(0,14.2)
-#IB ensemble
-axs[0].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[0].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].axvline(x = 3, color = "black")
-#IB+AFMonomer
-axs[0].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[0].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_monom_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_monom_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_monom_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_monom_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_monom_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_monom_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_monom_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_monom_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_monom_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_monom_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_monom_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_monom_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].axvline(x = 6, color = "black")
-#IB+AFMultimer
-axs[0].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[0].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_multim_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_multim_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_multim_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_multim_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_multim_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_multim_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_multim_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_multim_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_multim_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_multim_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_multim_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_multim_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].axvline(x = 9, color = "black")
-#IB+AFMultimer+AFMonomer
-axs[0].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[0].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_monom_multim_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_monom_multim_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_monom_multim_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_monom_multim_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='high']['ib_monom_multim_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='high']['ib_monom_multim_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_monom_multim_top1'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_monom_multim_top1'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_monom_multim_top10'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_monom_multim_top10'].values[0], true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - true_bound[true_bound['CAPRI_class']=='medium']['ib_monom_multim_top200'].values[0], true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - true_unbound[true_unbound['CAPRI_class']=='medium']['ib_monom_multim_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[0].axvline(x = 12, color = "black")
+bars_b = [0.3, 1.3, 2.3]
+bars_u = [0.7, 1.7, 2.7]
+text_fontsize = 9
 
-#we plot above the bars the SR for acceptable
-axs[0].text(0.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(0.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(1.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(1.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(2.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(2.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(3.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(3.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(4.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(4.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(5.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]-3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 7, color = "white")
-axs[0].text(5.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(6.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(6.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(7.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(7.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(8.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]-3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 7, color = "white")
-axs[0].text(8.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(9.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(9.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(10.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]+3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(10.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[0].text(11.3, true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]-3, f"{true_bound[true_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 7, color = "white")
-axs[0].text(11.75, true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]+3, f"{true_unbound[true_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-
-axs[0].set_xticks([])
-
-axs[0].text(1.5, 110, "IB\nensemble", ha = "center", va = "center", rotation = 0, fontsize = 12)
-axs[0].text(4.5, 110, "IBMo\nensemble", ha = "center", va = "center", rotation = 0, fontsize = 12)
-axs[0].text(7.5, 110, "IBMu\nensemble", ha = "center", va = "center", rotation = 0, fontsize = 12)
-axs[0].text(10.5, 110, "IBMuMo\nensemble", ha = "center", va = "center", rotation = 0, fontsize = 12)
-axs[0].text(-1.5, 55, "True\nInterface", ha = "center", va = "center", fontsize = 12)
-
-###Loose interface
-axs[1].set_ylim(0, 100)
-axs[1].set_ylabel("SR (%)", size = 15)
-axs[1].set_xlim(0,14.2)
-#IB ensemble
-axs[1].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[1].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].axvline(x = 3, color = "black")
-#IB+AFMonomer
-axs[1].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[1].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_monom_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_monom_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_monom_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_monom_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_monom_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_monom_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_monom_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_monom_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_monom_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_monom_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_monom_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_monom_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].axvline(x = 6, color = "black")
-#IB+AFMultimer
-axs[1].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[1].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_multim_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_multim_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_multim_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_multim_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_multim_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_multim_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_multim_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_multim_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_multim_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_multim_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_multim_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_multim_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].axvline(x = 9, color = "black")
-#IB+AFMultimer+AFMonomer
-axs[1].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[1].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_monom_multim_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_monom_multim_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_monom_multim_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_monom_multim_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='high']['ib_monom_multim_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='high']['ib_monom_multim_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_monom_multim_top1'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_monom_multim_top1'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_monom_multim_top10'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_monom_multim_top10'].values[0], loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - loose_bound[loose_bound['CAPRI_class']=='medium']['ib_monom_multim_top200'].values[0], loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - loose_unbound[loose_unbound['CAPRI_class']=='medium']['ib_monom_multim_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[1].axvline(x = 12, color = "black")
-axs[1].set_xticks([])
-
-#we plot above the bars the SR for acceptable
-axs[1].text(0.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(0.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(1.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(1.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(2.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(2.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(3.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(3.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(4.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(4.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(5.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(5.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(6.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(6.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(7.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(7.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(8.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(8.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(9.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(9.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(10.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(10.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(11.3, loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]+3, f"{loose_bound[loose_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[1].text(11.75, loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]+3, f"{loose_unbound[loose_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-
-axs[1].text(-1.5, 55, "Loose\nInterface", ha = "center", va = "center", fontsize = 12)
-
-#Two-Hit Interface
-axs[2].set_ylim(0, 100)
-axs[2].set_ylabel("SR (%)", size = 15)
-axs[2].set_xlim(0,14.2)
-#IB ensemble
-axs[2].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[2].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].bar([0.3, 0.7, 1.3, 1.7, 2.3, 2.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].axvline(x = 3, color = "black")
-#IB+AFMonomer
-axs[2].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[2].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_monom_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_monom_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_monom_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_monom_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_monom_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_monom_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].bar([3.3, 3.7, 4.3, 4.7, 5.3, 5.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_monom_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_monom_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_monom_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_monom_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_monom_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_monom_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].axvline(x = 6, color = "black")
-#IB+AFMultimer
-axs[2].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[2].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_multim_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_multim_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_multim_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_multim_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_multim_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_multim_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].bar([6.3, 6.7, 7.3, 7.7, 8.3, 8.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_multim_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_multim_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_multim_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_multim_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_multim_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_multim_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].axvline(x = 9, color = "black")
-#IB+AFMultimer+AFMonomer
-axs[2].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs[2].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_monom_multim_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_monom_multim_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_monom_multim_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_monom_multim_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='high']['ib_monom_multim_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='high']['ib_monom_multim_top200'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].bar([9.3, 9.7, 10.3, 10.7, 11.3, 11.7], [twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_monom_multim_top1'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_monom_multim_top1'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_monom_multim_top10'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_monom_multim_top10'].values[0], twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - twohit_bound[twohit_bound['CAPRI_class']=='medium']['ib_monom_multim_top200'].values[0], twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0] - twohit_unbound[twohit_unbound['CAPRI_class']=='medium']['ib_monom_multim_top200'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs[2].axvline(x = 12, color = "black")
-
-#we plot above the bars the SR for acceptable
-axs[2].text(0.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(0.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(1.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(1.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(2.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(2.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(3.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(3.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(4.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(4.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(5.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(5.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(6.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(6.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(7.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(7.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(8.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(8.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(9.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(9.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top1'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(10.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(10.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top10'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(11.3, twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]+3, f"{twohit_bound[twohit_bound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-axs[2].text(11.75, twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]+3, f"{twohit_unbound[twohit_unbound['CAPRI_class']=='acceptable']['ib_monom_multim_top200'].values[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-
-axs[2].text(-1.5, 55, "Two-Hit\nInterface", ha = "center", va = "center", fontsize = 12)
-
-axs[2].set_xticks(xticks)
-axs[2].set_xticklabels(xlabels, rotation = 45, ha = "right", size = 12)
-
+# This full plot will go to the SI
+sr_data_flex = sr_data[sr_data["stage"]=="flex"]
+for i, ens in enumerate(ensembles):
+    for j, scen in enumerate(scenarios):
+        axs[j,i].set_ylim(0, 105)
+        if j != 2:
+            axs[j,i].set_xticks([])
+        if i != 0:
+            axs[j,i].set_yticks([])
+        else:
+            axs[j,i].set_ylabel("SR (%)", size = 15)
+        ranks = [1, 10, 200]
+        axs[j,i].bar(bars_b, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="b")]["acc_sr"].values[0]*100 for rank in ranks], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
+        axs[j,i].bar(bars_b, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="b")]["med_sr"].values[0]*100 for rank in ranks], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
+        axs[j,i].bar(bars_b, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="b")]["high_sr"].values[0]*100 for rank in ranks], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
+        axs[j,i].bar(bars_u, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="u")]["acc_sr"].values[0]*100 for rank in ranks], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
+        axs[j,i].bar(bars_u, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="u")]["med_sr"].values[0]*100 for rank in ranks], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
+        axs[j,i].bar(bars_u, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="u")]["high_sr"].values[0]*100 for rank in ranks], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
+        # let's label the acceptable SR
+        for b_idx, b in enumerate(bars_b):
+            b_value = sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==ranks[b_idx])&(sr_data_flex["struct"]=="b")]["acc_sr"].values[0]*100
+            u_value = sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==ranks[b_idx])&(sr_data_flex["struct"]=="u")]["acc_sr"].values[0]*100
+            axs[j,i].text(b, b_value , f"{b_value:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+            axs[j,i].text(bars_u[b_idx], u_value , f"{u_value:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+        
 
 #we create lists with the values of the bars
-af_multimer_rank1_list = [alphafold_multimer.iloc[0]['acceptable'], alphafold_multimer.iloc[0]['acceptable'] - alphafold_multimer.iloc[0]['high'], alphafold_multimer.iloc[0]['acceptable'] - alphafold_multimer.iloc[0]['medium']]
-af_multimer_rank10_list = [alphafold_multimer.iloc[2]['acceptable'],alphafold_multimer.iloc[2]['acceptable'] - alphafold_multimer.iloc[2]['high'],alphafold_multimer.iloc[2]['acceptable'] - alphafold_multimer.iloc[2]['medium']]
-af3_rank1_list = [alphafold3.iloc[0]['acceptable'], alphafold3.iloc[0]['acceptable'] - alphafold3.iloc[0]['high'], alphafold3.iloc[0]['acceptable'] - alphafold3.iloc[0]['medium']]
-af3_rank10_list = [alphafold3.iloc[2]['acceptable'], alphafold3.iloc[2]['acceptable'] - alphafold3.iloc[2]['high'], alphafold3.iloc[2]['acceptable'] - alphafold3.iloc[2]['medium']]
+lpdbs = alphafold_multimer["pdb"].unique().shape[0]
+af2m_t1_acc = alphafold_multimer[(alphafold_multimer["rank"]==1)&(alphafold_multimer["capri"]!="incorrect")]
+af2m_t1_med = alphafold_multimer[(alphafold_multimer["rank"]==1)&(alphafold_multimer["capri"]!="incorrect")&(alphafold_multimer["capri"]!="acceptable")]
+af2m_t1_high = alphafold_multimer[(alphafold_multimer["rank"]==1)&(alphafold_multimer["capri"]=="high")]
 
-#we add for all three plots the AFMultimer and AF3 results for top1 and top10
+af2m_t1_acc_sr = af2m_t1_acc["pdb"].unique().shape[0]/lpdbs*100
+af2m_t1_med_sr = af2m_t1_med["pdb"].unique().shape[0]/lpdbs*100
+af2m_t1_high_sr = af2m_t1_high["pdb"].unique().shape[0]/lpdbs*100
+af_multimer_rank1_list = [af2m_t1_acc_sr, af2m_t1_med_sr, af2m_t1_high_sr]
+
+af2m_t10_acc = alphafold_multimer[(alphafold_multimer["rank"]<11)&(alphafold_multimer["capri"]!="incorrect")]
+af2m_t10_med = alphafold_multimer[(alphafold_multimer["rank"]<11)&(alphafold_multimer["capri"]!="incorrect")&(alphafold_multimer["capri"]!="acceptable")]
+af2m_t10_high = alphafold_multimer[(alphafold_multimer["rank"]<11)&(alphafold_multimer["capri"]=="high")]
+
+af2m_t10_acc_sr = af2m_t10_acc["pdb"].unique().shape[0]/lpdbs*100
+af2m_t10_med_sr = af2m_t10_med["pdb"].unique().shape[0]/lpdbs*100
+af2m_t10_high_sr = af2m_t10_high["pdb"].unique().shape[0]/lpdbs*100
+af_multimer_rank10_list = [af2m_t10_acc_sr, af2m_t10_med_sr, af2m_t10_high_sr]
+
+# let's print all the af_multimer bars
+print(f"AF2M acc {af_multimer_rank1_list[0]:.2f} t10 {af_multimer_rank10_list[0]:.2f}")
+print(f"AF2M med {af_multimer_rank1_list[1]:.2f} t10 {af_multimer_rank10_list[1]:.2f}")
+print(f"AF2M high {af_multimer_rank1_list[2]:.2f} t10 {af_multimer_rank10_list[2]:.2f}")
+# now alphafold3
+lpdbs = alphafold3["pdb"].unique().shape[0]
+af3_t1_acc = alphafold3[(alphafold3["rank"]==1)&(alphafold3["capri"]!="incorrect")]
+af3_t1_med = alphafold3[(alphafold3["rank"]==1)&(alphafold3["capri"]!="incorrect")&(alphafold3["capri"]!="acceptable")]
+af3_t1_high = alphafold3[(alphafold3["rank"]==1)&(alphafold3["capri"]=="high")]
+
+
+af3_t1_acc_sr = round(af3_t1_acc["pdb"].unique().shape[0]/lpdbs*100, 2)
+af3_t1_med_sr = round(af3_t1_med["pdb"].unique().shape[0]/lpdbs*100, 2)
+af3_t1_high_sr = round(af3_t1_high["pdb"].unique().shape[0]/lpdbs*100, 2)
+af3_rank1_list = [af3_t1_acc_sr, af3_t1_med_sr, af3_t1_high_sr]
+
+af3_t10_acc = alphafold3[(alphafold3["rank"]<11)&(alphafold3["capri"]!="incorrect")]
+af3_t10_med = alphafold3[(alphafold3["rank"]<11)&(alphafold3["capri"]!="incorrect")&(alphafold3["capri"]!="acceptable")]
+af3_t10_high = alphafold3[(alphafold3["rank"]<11)&(alphafold3["capri"]=="high")]
+
+af3_t10_acc_sr = round(af3_t10_acc["pdb"].unique().shape[0]/lpdbs*100, 2)
+af3_t10_med_sr = round(af3_t10_med["pdb"].unique().shape[0]/lpdbs*100, 2)
+af3_t10_high_sr = round(af3_t10_high["pdb"].unique().shape[0]/lpdbs*100, 2)
+af3_rank10_list = [af3_t10_acc_sr, af3_t10_med_sr, af3_t10_high_sr]
+# same as before, let's print them
+print(f"AF3 acc {af3_rank1_list[0]:.1f} t10 {af3_rank10_list[0]:.1f}")
+print(f"AF3 med {af3_rank1_list[1]:.1f} t10 {af3_rank10_list[1]:.1f}")
+print(f"AF3 high {af3_rank1_list[2]:.1f} t10 {af3_rank10_list[2]:.1f}")
+
+# we add for all three plots the AFMultimer and AF3 results for top1 and top10
+bars_af2 = [0.4, 1.4]
+bars_af3 = [0.8, 1.8]
 for i in range(3):
-    axs[i].axvline(x=12, color = "black", linestyle = "--")
+    axs[i,4].set_ylim(0, 105)
+    axs[i,4].set_yticks([])
+    if i != 2:
+        axs[i,4].set_xticks([])
+    else:
+        axs[i,4].set_xticks(bars_af2 + bars_af3)
+        axs[i,4].set_xticklabels(af3_xlabels, rotation = 45, ha = "right", size = 12)
+    axs[i,4].bar(bars_af2, [af_multimer_rank1_list[0], af_multimer_rank10_list[0]], color = "khaki", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
+    axs[i,4].bar(bars_af2, [af_multimer_rank1_list[1], af_multimer_rank10_list[1]], color = "lightseagreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
+    axs[i,4].bar(bars_af2, [af_multimer_rank1_list[2], af_multimer_rank10_list[2]], color = "darkblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
 
-    axs[i].bar([12.4, 13.4], [af_multimer_rank1_list[0], af_multimer_rank10_list[0]], color = "darkblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
-    axs[i].bar([12.4, 13.4], [af_multimer_rank1_list[1], af_multimer_rank10_list[1]], color = "lightseagreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
-    axs[i].bar([12.4, 13.4], [af_multimer_rank1_list[2], af_multimer_rank10_list[2]], color = "khaki", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
+    axs[i,4].bar(bars_af3, [af3_rank1_list[0], af3_rank10_list[0]], color = "khaki", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
+    axs[i,4].bar(bars_af3, [af3_rank1_list[1], af3_rank10_list[1]], color = "lightseagreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
+    axs[i,4].bar(bars_af3, [af3_rank1_list[2], af3_rank10_list[2]], color = "darkblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
 
-    axs[i].bar([12.8, 13.8], [af3_rank1_list[0], af3_rank10_list[0]], color = "darkblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
-    axs[i].bar([12.8, 13.8], [af3_rank1_list[1], af3_rank10_list[1]], color = "lightseagreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
-    axs[i].bar([12.8, 13.8], [af3_rank1_list[2], af3_rank10_list[2]], color = "khaki", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
-                              
     #and we plot the sum above the bars
-    axs[i].text(12.35, af_multimer_rank1_list[0]+3, f"{af_multimer_rank1_list[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-    axs[i].text(12.8, af3_rank1_list[0]+3, f"{af3_rank1_list[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-    axs[i].text(13.35, af_multimer_rank10_list[0]+3, f"{af_multimer_rank10_list[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
-    axs[i].text(13.8, af3_rank10_list[0]+3, f"{af3_rank10_list[0]:.2f}", ha = "center", va = "center", rotation = 0, fontsize = 10)
+    axs[i,4].text(0.4, af_multimer_rank1_list[0], f"{af_multimer_rank1_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+    axs[i,4].text(0.8, af3_rank1_list[0], f"{af3_rank1_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+    axs[i,4].text(1.4, af_multimer_rank10_list[0], f"{af_multimer_rank10_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+    axs[i,4].text(1.8, af3_rank10_list[0], f"{af3_rank10_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+# 
+# 
+# remove spaces between subplots
+plt.subplots_adjust(wspace=0.1, hspace=0.1)
+# add a legend that takes labels from axs[2,2] and axs[2,4]
+handles, labels = axs[2,2].get_legend_handles_labels()
+handles_af, labels_af = axs[2,4].get_legend_handles_labels()
+# now use these handles to create a legend for the whole figure
+#
+axs[0,0].set_title("IB\nensemble", fontsize = 15)
+axs[0,1].set_title("IBMo\nensemble", fontsize = 15)
+axs[0,2].set_title("IBMu\nensemble", fontsize = 15)
+axs[0,3].set_title("IBMuMo\nensemble", fontsize = 15)
+axs[0,4].set_title("Alphafold\nend-to-end", fontsize = 15)
 
-plt.subplots_adjust(wspace=0, hspace=0)
-axs[2].legend(loc = "upper right", fontsize = 10, ncol = 3)
-handles, labels = axs[2].get_legend_handles_labels()
-axs[2].legend(handles[:3]+handles[-3:], labels[:3]+labels[-6:], loc = "lower center", fontsize = 15, ncol = 6, bbox_to_anchor=(0.5, -0.3))   
-plt.tight_layout()
-
-plt.savefig(Path("figures", "haddock_docking_flexref_sr_per_scenario.png"))
+axs[0,0].text(-1.5, 55, "True\nInterface", ha = "center", va = "center", fontsize = 15)
+axs[1,0].text(-1.5, 55, "Loose\nInterface", ha = "center", va = "center", fontsize = 15)
+axs[2,0].text(-1.5, 55, "Two-Hit\nInterface", ha = "center", va = "center", fontsize = 15)
 
 
+# add label b) to ax[0]
+axs[0,0].text(-1.5, 105, "a)", fontsize = 25)
 
-##FIGURE 3B
-##Bar plot showing the success rates (SRs) for the TopN clusters of ImmuneBuilder + AlphaFold2-Multimer (IBMu) ensemble docking for bound (B) and unbound (U) antigen runs.
+# do tight layout but leave white space at the bottom of the plot
+plt.tight_layout(h_pad=0.5, w_pad=-1.5)
+plt.subplots_adjust(bottom=0.11)
+plt.legend(handles[:3]+handles_af[:3], labels[:3]+labels_af[:3], loc = "lower center", fontsize = 15, ncol = 6, bbox_to_anchor=(-2.75, -0.43))
+plt.savefig(Path("figures", "haddock_docking_flexref_sr_per_scenario.png"), dpi=400)
+
+# now let's do the same but without the second and fourth ensemble
+fig,axs = plt.subplots(3,4, figsize = (12, 12), width_ratios=[3, 3, 4, 2])
+red_ensembles = ["IB", "IBMu"]
+for i, ens in enumerate(red_ensembles):
+    for j, scen in enumerate(scenarios):
+        axs[j,i].set_xlim(0, 3)
+        axs[j,i].set_ylim(0, 105)
+        if j != 2:
+            axs[j,i].set_xticks([])
+        else:
+            axs[j,i].set_xticks(bars_b + bars_u)
+            axs[j,i].set_xticklabels(xlabels, rotation = 45, ha = "right", size = 12)
+        if i != 0:
+            axs[j,i].set_yticks([])
+        else:
+            axs[j,i].set_ylabel("SR (%)", size = 15)
+        ranks = [1, 10, 200]
+        axs[j,i].bar(bars_b, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="b")]["acc_sr"].values[0]*100 for rank in ranks], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
+        axs[j,i].bar(bars_b, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="b")]["med_sr"].values[0]*100 for rank in ranks], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
+        axs[j,i].bar(bars_b, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="b")]["high_sr"].values[0]*100 for rank in ranks], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
+        axs[j,i].bar(bars_u, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="u")]["acc_sr"].values[0]*100 for rank in ranks], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
+        axs[j,i].bar(bars_u, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="u")]["med_sr"].values[0]*100 for rank in ranks], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
+        axs[j,i].bar(bars_u, [sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==rank)&(sr_data_flex["struct"]=="u")]["high_sr"].values[0]*100 for rank in ranks], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
+        # let's label the acceptable SR
+        for b_idx, b in enumerate(bars_b):
+            b_value = sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==ranks[b_idx])&(sr_data_flex["struct"]=="b")]["acc_sr"].values[0]*100
+            u_value = sr_data_flex[(sr_data_flex["ensemble"]==ens)&(sr_data_flex["scenario"]==scen)&(sr_data_flex["rank"]==ranks[b_idx])&(sr_data_flex["struct"]=="u")]["acc_sr"].values[0]*100
+            axs[j,i].text(b, b_value, f"{b_value:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+            axs[j,i].text(bars_u[b_idx], u_value, f"{u_value:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+        
+# we add for all three plots the AFMultimer and AF3 results for top1 and top10
+bars_af2 = [0.3, 1.3]
+bars_af3 = [0.7, 1.7]
+for i in range(3):
+    axs[i,3].set_xlim(0, 2)
+    axs[i,3].set_ylim(0, 105)
+    axs[i,3].set_yticks([])
+    if i != 2:
+        axs[i,3].set_xticks([])
+    else:
+        axs[i,3].set_xticks(bars_af2 + bars_af3)
+        axs[i,3].set_xticklabels(af3_xlabels, rotation = 45, ha = "right", size = 12)
+    axs[i,3].bar(bars_af2, [af_multimer_rank1_list[0], af_multimer_rank10_list[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
+    axs[i,3].bar(bars_af2, [af_multimer_rank1_list[1], af_multimer_rank10_list[1]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
+    axs[i,3].bar(bars_af2, [af_multimer_rank1_list[2], af_multimer_rank10_list[2]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
+
+    axs[i,3].bar(bars_af3, [af3_rank1_list[0], af3_rank10_list[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
+    axs[i,3].bar(bars_af3, [af3_rank1_list[1], af3_rank10_list[1]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
+    axs[i,3].bar(bars_af3, [af3_rank1_list[2], af3_rank10_list[2]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
+
+    #and we plot the sum above the bars
+    axs[i,3].text(0.3, af_multimer_rank1_list[0], f"{af_multimer_rank1_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+    axs[i,3].text(0.7, af3_rank1_list[0], f"{af3_rank1_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+    axs[i,3].text(1.3, af_multimer_rank10_list[0], f"{af_multimer_rank10_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+    axs[i,3].text(1.7, af3_rank10_list[0], f"{af3_rank10_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize, horizontalalignment='center', verticalalignment='center')
+
+# remove spaces between subplots
+plt.subplots_adjust(wspace=0.1, hspace=0.1)
+# add a legend that takes labels from axs[2,2] and axs[2,4]
+handles, labels = axs[2,0].get_legend_handles_labels()
+handles_af, labels_af = axs[2,2].get_legend_handles_labels()
+# now use these handles to create a legend for the whole figure
+#
+axs[0,0].set_title("IB\nensemble", fontsize = 15)
+axs[0,1].set_title("IBMu\nensemble", fontsize = 15)
+axs[0,2].set_title("IBMu ensemble\n(cluster-based)", fontsize = 15)
+axs[0,3].set_title("Alphafold\nend-to-end", fontsize = 15)
+
+axs[0,0].text(-1.5, 55, "True\nInterface", ha = "center", va = "center", fontsize = 15)
+axs[1,0].text(-1.5, 55, "Loose\nInterface", ha = "center", va = "center", fontsize = 15)
+axs[2,0].text(-1.5, 55, "Two-Hit\nInterface", ha = "center", va = "center", fontsize = 15)
 
 cluster_sr_data = pd.read_csv(Path("..", "data", "haddock_docking_clustered_sr_per_scenario.tsv"), sep = "\t")
+# 
+cluster_sr_data_ibmu = cluster_sr_data[cluster_sr_data["ensemble"]=="IBMu"]
+#
+scenarios = ["real", "loose", "twohit"]
+# n_array = [1, 2, 3, 4, 5, 10]
+n_array = [1,2,5,10]
+acc_labels = ["Acceptable", "Medium", "High"]
+acc_colors = ["lightblue", "lightgreen", "darkgreen"]
+scenarios_titles = ["True Interface", "Loose Interface", "Two-Hit Interface"]
+bound_bars = [0.3, 1.3, 2.3, 3.3]
+unb_bars = [el + 0.4 for el in bound_bars]
+ticks = [el for el in bound_bars] + [el + 0.4 for el in bound_bars]
+tick_labels = ["B T1", "B T2", "B T5", "B T10", "U T1", "U T2", "U T5", "U T10"]
+for i, scen in enumerate(scenarios):
+    # features of the plot
+    axs[i,2].set_ylim(0, 105)
+    axs[i,2].set_xlim(0, 4)
+    axs[i,2].set_yticks([])
+    #axs[i,2].set_xticklabels(tick_labels, size = 10, rotation = 45, ha = "right")
+    if i != 2:
+        axs[i,2].set_xticks([])
+    else:
+        axs[i,2].set_xticks(ticks)
+        axs[i,2].set_xticklabels(tick_labels, size = 12, rotation = 45, ha = "right")
 
-#we change the whole "sr" column to integers
-cluster_sr_data["sr"] = cluster_sr_data["sr"].apply(lambda x: float(x))
+    # we plot the bars
+    df_scen = cluster_sr_data_ibmu[cluster_sr_data_ibmu["scenario"]==scen]
+    df_scen_u = df_scen[df_scen["struct"]=="u"]
+    df_scen_b = df_scen[df_scen["struct"]=="b"]
+    for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
+        vals_bound = [df_scen_b[df_scen_b["rank"]==n][sr].values[0]*100 for n in n_array]
+        vals_unbound = [df_scen_u[df_scen_u["rank"]==n][sr].values[0]*100 for n in n_array]
+        axs[i,2].bar(bound_bars, vals_bound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[j])
+        axs[i,2].bar(unb_bars, vals_unbound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[j])
+        if j == 0: # acc
+            for bar_idx, n in enumerate(n_array):
+                value_bound = vals_bound[bar_idx]
+                value_unbound = vals_unbound[bar_idx]
+                axs[i,2].text(bound_bars[bar_idx], vals_bound[bar_idx], f"{value_bound:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize) 
+                axs[i,2].text(unb_bars[bar_idx], vals_unbound[bar_idx], f"{value_unbound:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
 
-#we divide by CAPRI class and restraint scenario
-true_bound_acceptable, true_bound_medium, true_bound_high = cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='acceptable')], cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='medium')], cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='high')]
-true_unbound_acceptable, true_unbound_medium, true_unbound_high = cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='acceptable')], cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='medium')], cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='high')]
-loose_bound_acceptable, loose_bound_medium, loose_bound_high = cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='acceptable')], cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='medium')], cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='high')]
-loose_unbound_acceptable, loose_unbound_medium, loose_unbound_high = cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='acceptable')], cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='medium')], cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='high')]
-two_hit_bound_acceptable, two_hit_bound_medium, two_hit_bound_high = cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='acceptable')], cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='medium')], cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='bound')&(cluster_sr_data['CAPRI_class']=='high')]
-two_hit_unbound_acceptable, two_hit_unbound_medium, two_hit_unbound_high = cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='acceptable')], cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='medium')], cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='unbound')&(cluster_sr_data['CAPRI_class']=='high')]
+## do tight layout but leave white space at the bottom of the plot
+plt.tight_layout(h_pad=0.5, w_pad=-1.5)
+plt.subplots_adjust(bottom=0.12)
+plt.legend(handles[:3], labels[:3], loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-2.2, -0.425))
+plt.savefig(Path("figures", "figure2.png"), dpi=400)
 
-true_bound= cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='bound')]
-true_unbound = cluster_sr_data[(cluster_sr_data['scenario']=='true')&(cluster_sr_data['antigen']=='unbound')]
-loose_bound = cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='bound')]
-loose_unbound = cluster_sr_data[(cluster_sr_data['scenario']=='loose')&(cluster_sr_data['antigen']=='unbound')]
-two_hit_bound = cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='bound')]
-two_hit_unbound = cluster_sr_data[(cluster_sr_data['scenario']=='two-hit')&(cluster_sr_data['antigen']=='unbound')]
+# given sr_data, extract the top10 SR for the mix-loose scenario
+mix_loose_sr_u = sr_data_flex[(sr_data_flex["scenario"]=="mix-loose")&(sr_data_flex["struct"]=="u")&(sr_data_flex["rank"]==10)]
+mix_loose_sr_b = sr_data_flex[(sr_data_flex["scenario"]=="mix-loose")&(sr_data_flex["struct"]=="b")&(sr_data_flex["rank"]==10)]
+print(f"Mix-loose T10 SR unbound: {mix_loose_sr_u['acc_sr'].values[0]*100:.2f}")
+print(f"Mix-loose T10 SR bound: {mix_loose_sr_b['acc_sr'].values[0]*100:.2f}")
+mix_twohit_sr_u = sr_data_flex[(sr_data_flex["scenario"]=="mix-twohit")&(sr_data_flex["struct"]=="u")&(sr_data_flex["rank"]==10)]
+mix_twohit_sr_b = sr_data_flex[(sr_data_flex["scenario"]=="mix-twohit")&(sr_data_flex["struct"]=="b")&(sr_data_flex["rank"]==10)]
+print(f"Mix-twohit T10 SR unbound: {mix_twohit_sr_u['acc_sr'].values[0]*100:.2f}")
+print(f"Mix-twohit T10 SR bound: {mix_twohit_sr_b['acc_sr'].values[0]*100:.2f}")
 
-#we plot the results
-fig,axs = plt.subplots(1,1, figsize = (15, 5))
-barwidth = 0.4
-ticks = [0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,5.2, 5.8, 6.2, 7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2, 14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2]
-tick_labels = ["T1 B", "T1 U", "T2 B", "T2 U", "T3 B", "T3 U", "T4 B", "T4 U", "T5 B", "T5 U", "T10 B", "T10 U", "T1 B", "T1 U", "T2 B", "T2 U", "T3 B", "T3 U", "T4 B", "T4 U", "T5 B", "T5 U", "T10 B", "T10 U", "T1 B", "T1 U", "T2 B", "T2 U", "T3 B", "T3 U", "T4 B", "T4 U", "T5 B", "T5 U", "T10 B", "T10 U"]
-
-#Real interface
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,5.2, 5.8, 6.2],[true_bound_acceptable[true_bound_acceptable['top']==1]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==1]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==2]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==2]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==3]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==3]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==4]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==4]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==5]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==5]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==10]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==10]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,5.2, 5.8, 6.2],[true_bound_acceptable[true_bound_acceptable['top']==1]['sr'].values[0] - true_bound_high[true_bound_high['top']==1]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==1]['sr'].values[0] - true_unbound_high[true_unbound_high['top']==1]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==2]['sr'].values[0] - true_bound_high[true_bound_high['top']==2]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==2]['sr'].values[0] - true_unbound_high[true_unbound_high['top']==2]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==3]['sr'].values[0] - true_bound_high[true_bound_high['top']==3]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==3]['sr'].values[0] - true_unbound_high[true_unbound_high['top']==3]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==4]['sr'].values[0] - true_bound_high[true_bound_high['top']==4]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==4]['sr'].values[0] - true_unbound_high[true_unbound_high['top']==4]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==5]['sr'].values[0] - true_bound_high[true_bound_high['top']==5]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==5]['sr'].values[0] - true_unbound_high[true_unbound_high['top']==5]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==10]['sr'].values[0] - true_bound_high[true_bound_high['top']==10]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==10]['sr'].values[0] - true_unbound_high[true_unbound_high['top']==10]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,5.2, 5.8, 6.2],[true_bound_acceptable[true_bound_acceptable['top']==1]['sr'].values[0] - true_bound_medium[true_bound_medium['top']==1]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==1]['sr'].values[0] - true_unbound_medium[true_unbound_medium['top']==1]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==2]['sr'].values[0] - true_bound_medium[true_bound_medium['top']==2]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==2]['sr'].values[0] - true_unbound_medium[true_unbound_medium['top']==2]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==3]['sr'].values[0] - true_bound_medium[true_bound_medium['top']==3]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==3]['sr'].values[0] - true_unbound_medium[true_unbound_medium['top']==3]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==4]['sr'].values[0] - true_bound_medium[true_bound_medium['top']==4]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==4]['sr'].values[0] - true_unbound_medium[true_unbound_medium['top']==4]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==5]['sr'].values[0] - true_bound_medium[true_bound_medium['top']==5]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==5]['sr'].values[0] - true_unbound_medium[true_unbound_medium['top']==5]['sr'].values[0], true_bound_acceptable[true_bound_acceptable['top']==10]['sr'].values[0] - true_bound_medium[true_bound_medium['top']==10]['sr'].values[0], true_unbound_acceptable[true_unbound_acceptable['top']==10]['sr'].values[0] - true_unbound_medium[true_unbound_medium['top']==10]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.axvline(7, color = "black")
-axs.bar([7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2], [loose_bound_acceptable[loose_bound_acceptable['top']==1]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==1]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==2]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==2]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==3]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==3]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==4]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==4]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==5]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==5]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==10]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==10]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs.bar([7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2], [loose_bound_acceptable[loose_bound_acceptable['top']==1]['sr'].values[0] - loose_bound_high[loose_bound_high['top']==1]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==1]['sr'].values[0] - loose_unbound_high[loose_unbound_high['top']==1]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==2]['sr'].values[0] - loose_bound_high[loose_bound_high['top']==2]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==2]['sr'].values[0] - loose_unbound_high[loose_unbound_high['top']==2]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==3]['sr'].values[0] - loose_bound_high[loose_bound_high['top']==3]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==3]['sr'].values[0] - loose_unbound_high[loose_unbound_high['top']==3]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==4]['sr'].values[0] - loose_bound_high[loose_bound_high['top']==4]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==4]['sr'].values[0] - loose_unbound_high[loose_unbound_high['top']==4]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==5]['sr'].values[0] - loose_bound_high[loose_bound_high['top']==5]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==5]['sr'].values[0] - loose_unbound_high[loose_unbound_high['top']==5]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==10]['sr'].values[0] - loose_bound_high[loose_bound_high['top']==10]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==10]['sr'].values[0] - loose_unbound_high[loose_unbound_high['top']==10]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs.bar([7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2], [loose_bound_acceptable[loose_bound_acceptable['top']==1]['sr'].values[0] - loose_bound_medium[loose_bound_medium['top']==1]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==1]['sr'].values[0] - loose_unbound_medium[loose_unbound_medium['top']==1]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==2]['sr'].values[0] - loose_bound_medium[loose_bound_medium['top']==2]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==2]['sr'].values[0] - loose_unbound_medium[loose_unbound_medium['top']==2]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==3]['sr'].values[0] - loose_bound_medium[loose_bound_medium['top']==3]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==3]['sr'].values[0] - loose_unbound_medium[loose_unbound_medium['top']==3]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==4]['sr'].values[0] - loose_bound_medium[loose_bound_medium['top']==4]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==4]['sr'].values[0] - loose_unbound_medium[loose_unbound_medium['top']==4]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==5]['sr'].values[0] - loose_bound_medium[loose_bound_medium['top']==5]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==5]['sr'].values[0] - loose_unbound_medium[loose_unbound_medium['top']==5]['sr'].values[0], loose_bound_acceptable[loose_bound_acceptable['top']==10]['sr'].values[0] - loose_bound_medium[loose_bound_medium['top']==10]['sr'].values[0], loose_unbound_acceptable[loose_unbound_acceptable['top']==10]['sr'].values[0] - loose_unbound_medium[loose_unbound_medium['top']==10]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.axvline(14, color = "black")
-axs.bar([14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2], [two_hit_bound_acceptable[two_hit_bound_acceptable['top']==1]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==1]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==2]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==2]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==3]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==3]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==4]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==4]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==5]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==5]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==10]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==10]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs.bar([14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2], [two_hit_bound_acceptable[two_hit_bound_acceptable['top']==1]['sr'].values[0] - two_hit_bound_high[two_hit_bound_high['top']==1]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==1]['sr'].values[0] - two_hit_unbound_high[two_hit_unbound_high['top']==1]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==2]['sr'].values[0] - two_hit_bound_high[two_hit_bound_high['top']==2]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==2]['sr'].values[0] - two_hit_unbound_high[two_hit_unbound_high['top']==2]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==3]['sr'].values[0] - two_hit_bound_high[two_hit_bound_high['top']==3]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==3]['sr'].values[0] - two_hit_unbound_high[two_hit_unbound_high['top']==3]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==4]['sr'].values[0] - two_hit_bound_high[two_hit_bound_high['top']==4]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==4]['sr'].values[0] - two_hit_unbound_high[two_hit_unbound_high['top']==4]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==5]['sr'].values[0] - two_hit_bound_high[two_hit_bound_high['top']==5]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==5]['sr'].values[0] - two_hit_unbound_high[two_hit_unbound_high['top']==5]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==10]['sr'].values[0] - two_hit_bound_high[two_hit_bound_high['top']==10]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==10]['sr'].values[0] - two_hit_unbound_high[two_hit_unbound_high['top']==10]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs.bar([14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2], [two_hit_bound_acceptable[two_hit_bound_acceptable['top']==1]['sr'].values[0] - two_hit_bound_medium[two_hit_bound_medium['top']==1]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==1]['sr'].values[0] - two_hit_unbound_medium[two_hit_unbound_medium['top']==1]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==2]['sr'].values[0] - two_hit_bound_medium[two_hit_bound_medium['top']==2]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==2]['sr'].values[0] - two_hit_unbound_medium[two_hit_unbound_medium['top']==2]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==3]['sr'].values[0] - two_hit_bound_medium[two_hit_bound_medium['top']==3]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==3]['sr'].values[0] - two_hit_unbound_medium[two_hit_unbound_medium['top']==3]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==4]['sr'].values[0] - two_hit_bound_medium[two_hit_bound_medium['top']==4]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==4]['sr'].values[0] - two_hit_unbound_medium[two_hit_unbound_medium['top']==4]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==5]['sr'].values[0] - two_hit_bound_medium[two_hit_bound_medium['top']==5]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==5]['sr'].values[0] - two_hit_unbound_medium[two_hit_unbound_medium['top']==5]['sr'].values[0], two_hit_bound_acceptable[two_hit_bound_acceptable['top']==10]['sr'].values[0] - two_hit_bound_medium[two_hit_bound_medium['top']==10]['sr'].values[0], two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==10]['sr'].values[0] - two_hit_unbound_medium[two_hit_unbound_medium['top']==10]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-
-axs.set_ylim(0, 100)
-axs.set_xticks(ticks)
-axs.set_xticklabels(tick_labels, size = 10, rotation = 45, ha = "right")
-
-#we plot just above the bars the SR values
-axs.text(0.8, true_bound_acceptable[true_bound_acceptable['top']==1]['sr'].values[0]+1, f"{true_bound_acceptable[true_bound_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(1.25, true_unbound_acceptable[true_unbound_acceptable['top']==1]['sr'].values[0]+1, f"{true_unbound_acceptable[true_unbound_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(1.8, true_bound_acceptable[true_bound_acceptable['top']==2]['sr'].values[0]+1, f"{true_bound_acceptable[true_bound_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(2.25, true_unbound_acceptable[true_unbound_acceptable['top']==2]['sr'].values[0]+1, f"{true_unbound_acceptable[true_unbound_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(2.8, true_bound_acceptable[true_bound_acceptable['top']==3]['sr'].values[0]+1, f"{true_bound_acceptable[true_bound_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(3.25, true_unbound_acceptable[true_unbound_acceptable['top']==3]['sr'].values[0]+1, f"{true_unbound_acceptable[true_unbound_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(3.8, true_bound_acceptable[true_bound_acceptable['top']==4]['sr'].values[0]-3, f"{true_bound_acceptable[true_bound_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 6, color = "white")
-axs.text(4.25, true_unbound_acceptable[true_unbound_acceptable['top']==4]['sr'].values[0]+1, f"{true_unbound_acceptable[true_unbound_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(4.8, true_bound_acceptable[true_bound_acceptable['top']==5]['sr'].values[0]-3, f"{true_bound_acceptable[true_bound_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 6, color = "white")
-axs.text(5.25, true_unbound_acceptable[true_unbound_acceptable['top']==5]['sr'].values[0]+1, f"{true_unbound_acceptable[true_unbound_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(5.8, true_bound_acceptable[true_bound_acceptable['top']==10]['sr'].values[0]-3, f"{true_bound_acceptable[true_bound_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 6, color = "white")
-axs.text(6.25, true_unbound_acceptable[true_unbound_acceptable['top']==10]['sr'].values[0]+1, f"{true_unbound_acceptable[true_unbound_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(7.8, loose_bound_acceptable[loose_bound_acceptable['top']==1]['sr'].values[0]+1, f"{loose_bound_acceptable[loose_bound_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(8.25, loose_unbound_acceptable[loose_unbound_acceptable['top']==1]['sr'].values[0]+1, f"{loose_unbound_acceptable[loose_unbound_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(8.8, loose_bound_acceptable[loose_bound_acceptable['top']==2]['sr'].values[0]+1, f"{loose_bound_acceptable[loose_bound_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(9.25, loose_unbound_acceptable[loose_unbound_acceptable['top']==2]['sr'].values[0]+1, f"{loose_unbound_acceptable[loose_unbound_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(9.8, loose_bound_acceptable[loose_bound_acceptable['top']==3]['sr'].values[0]+1, f"{loose_bound_acceptable[loose_bound_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(10.25, loose_unbound_acceptable[loose_unbound_acceptable['top']==3]['sr'].values[0]+1, f"{loose_unbound_acceptable[loose_unbound_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(10.8, loose_bound_acceptable[loose_bound_acceptable['top']==4]['sr'].values[0]+1, f"{loose_bound_acceptable[loose_bound_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(11.25, loose_unbound_acceptable[loose_unbound_acceptable['top']==4]['sr'].values[0]+1, f"{loose_unbound_acceptable[loose_unbound_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(11.8, loose_bound_acceptable[loose_bound_acceptable['top']==5]['sr'].values[0]+1, f"{loose_bound_acceptable[loose_bound_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(12.25, loose_unbound_acceptable[loose_unbound_acceptable['top']==5]['sr'].values[0]+1, f"{loose_unbound_acceptable[loose_unbound_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(12.8, loose_bound_acceptable[loose_bound_acceptable['top']==10]['sr'].values[0]+1, f"{loose_bound_acceptable[loose_bound_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(13.25, loose_unbound_acceptable[loose_unbound_acceptable['top']==10]['sr'].values[0]+1, f"{loose_unbound_acceptable[loose_unbound_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(14.8, two_hit_bound_acceptable[two_hit_bound_acceptable['top']==1]['sr'].values[0]+1, f"{two_hit_bound_acceptable[two_hit_bound_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(15.25, two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==1]['sr'].values[0]+1, f"{two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(15.8, two_hit_bound_acceptable[two_hit_bound_acceptable['top']==2]['sr'].values[0]+1, f"{two_hit_bound_acceptable[two_hit_bound_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(16.25, two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==2]['sr'].values[0]+1, f"{two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(16.8, two_hit_bound_acceptable[two_hit_bound_acceptable['top']==3]['sr'].values[0]+1, f"{two_hit_bound_acceptable[two_hit_bound_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(17.25, two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==3]['sr'].values[0]+1, f"{two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(17.8, two_hit_bound_acceptable[two_hit_bound_acceptable['top']==4]['sr'].values[0]+1, f"{two_hit_bound_acceptable[two_hit_bound_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(18.25, two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==4]['sr'].values[0]+1, f"{two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(18.8, two_hit_bound_acceptable[two_hit_bound_acceptable['top']==5]['sr'].values[0]+1, f"{two_hit_bound_acceptable[two_hit_bound_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(19.25, two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==5]['sr'].values[0]+1, f"{two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(19.8, two_hit_bound_acceptable[two_hit_bound_acceptable['top']==10]['sr'].values[0]+1, f"{two_hit_bound_acceptable[two_hit_bound_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(20.25, two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==10]['sr'].values[0]+1, f"{two_hit_unbound_acceptable[two_hit_unbound_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-
-axs.text(3, 105, "True Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(10.5, 105, "Loose Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(17.5, 105, "Two-Hit Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-
-#we plot a legend for the colors
-leg = axs.legend( loc = "upper right", ncol = 1, fontsize = 14)
-#we include only the first three elements of the legend
-handles = leg.legend_handles[:3]
-labels = ["Acceptable", "Medium", "High"]
-leg = axs.legend(handles, labels, loc = "upper right", ncol = 1, fontsize = 14)
-axs.set_ylabel("SR (%)", size = 15)
-
-plt.tight_layout()
-
-plt.savefig(Path("figures", "haddock_docking_clustered_sr.png"))
-
-
-
-
-##SUPPLEMENTARY FIGURE 2
-##Bar plots showing docking success rate (SR) for All Surface scenario as a function of the TopN ranked structures.
-
-all_surf_data = pd.read_csv(Path("..", "data", "haddock_docking_sr_allsurface.tsv"), sep = "\t")
-
-#we divide the data in each stage of the pipeline
-all_surf_data_02 = all_surf_data[all_surf_data["capri"]==2]
-all_surf_data_07 = all_surf_data[all_surf_data["capri"]==7]
-all_surf_data_09 = all_surf_data[all_surf_data["capri"]==9]
-
-#we plot the results
-fig,axs = plt.subplots(1,1, figsize = (12, 5))
-
-barwidth = 0.8
-
-ticks = [1,2,3,5,6,7,9,10,11]
-tick_labels = ["T1", "T10", "T200", "T1", "T10", "T200", "T1", "T10", "T200"]
-
-#02_rigidbody stage
-axs.bar([1,2,3], [all_surf_data_02[all_surf_data_02['top']==1]['acceptable_sr'].values[0], all_surf_data_02[all_surf_data_02['top']==10]['acceptable_sr'].values[0], all_surf_data_02[all_surf_data_02['top']==200]['acceptable_sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs.bar([1,2,3], [all_surf_data_02[all_surf_data_02['top']==1]['acceptable_sr'].values[0] - all_surf_data_02[all_surf_data_02['top']==1]['high_sr'].values[0], all_surf_data_02[all_surf_data_02['top']==10]['acceptable_sr'].values[0] - all_surf_data_02[all_surf_data_02['top']==10]['high_sr'].values[0], all_surf_data_02[all_surf_data_02['top']==200]['acceptable_sr'].values[0] - all_surf_data_02[all_surf_data_02['top']==200]['high_sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs.bar([1,2,3], [all_surf_data_02[all_surf_data_02['top']==1]['acceptable_sr'].values[0] - all_surf_data_02[all_surf_data_02['top']==1]['medium_sr'].values[0], all_surf_data_02[all_surf_data_02['top']==10]['acceptable_sr'].values[0] - all_surf_data_02[all_surf_data_02['top']==10]['medium_sr'].values[0], all_surf_data_02[all_surf_data_02['top']==200]['acceptable_sr'].values[0] - all_surf_data_02[all_surf_data_02['top']==200]['medium_sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.axvline(4, color = "black")
-#07_flexref stage
-axs.bar([5,6,7], [all_surf_data_07[all_surf_data_07['top']==1]['acceptable_sr'].values[0], all_surf_data_07[all_surf_data_07['top']==10]['acceptable_sr'].values[0], all_surf_data_07[all_surf_data_07['top']==200]['acceptable_sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs.bar([5,6,7], [all_surf_data_07[all_surf_data_07['top']==1]['acceptable_sr'].values[0] - all_surf_data_07[all_surf_data_07['top']==1]['high_sr'].values[0], all_surf_data_07[all_surf_data_07['top']==10]['acceptable_sr'].values[0] - all_surf_data_07[all_surf_data_07['top']==10]['high_sr'].values[0], all_surf_data_07[all_surf_data_07['top']==200]['acceptable_sr'].values[0] - all_surf_data_07[all_surf_data_07['top']==200]['high_sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs.bar([5,6,7], [all_surf_data_07[all_surf_data_07['top']==1]['acceptable_sr'].values[0] - all_surf_data_07[all_surf_data_07['top']==1]['medium_sr'].values[0], all_surf_data_07[all_surf_data_07['top']==10]['acceptable_sr'].values[0] - all_surf_data_07[all_surf_data_07['top']==10]['medium_sr'].values[0], all_surf_data_07[all_surf_data_07['top']==200]['acceptable_sr'].values[0] - all_surf_data_07[all_surf_data_07['top']==200]['medium_sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.axvline(8, color = "black")
-#09_emref stage
-axs.bar([9,10,11], [all_surf_data_09[all_surf_data_09['top']==1]['acceptable_sr'].values[0], all_surf_data_09[all_surf_data_09['top']==10]['acceptable_sr'].values[0], all_surf_data_09[all_surf_data_09['top']==200]['acceptable_sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High")
-axs.bar([9,10,11], [all_surf_data_09[all_surf_data_09['top']==1]['acceptable_sr'].values[0] - all_surf_data_09[all_surf_data_09['top']==1]['high_sr'].values[0], all_surf_data_09[all_surf_data_09['top']==10]['acceptable_sr'].values[0] - all_surf_data_09[all_surf_data_09['top']==10]['high_sr'].values[0], all_surf_data_09[all_surf_data_09['top']==200]['acceptable_sr'].values[0] - all_surf_data_09[all_surf_data_09['top']==200]['high_sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium")
-axs.bar([9,10,11], [all_surf_data_09[all_surf_data_09['top']==1]['acceptable_sr'].values[0] - all_surf_data_09[all_surf_data_09['top']==1]['medium_sr'].values[0], all_surf_data_09[all_surf_data_09['top']==10]['acceptable_sr'].values[0] - all_surf_data_09[all_surf_data_09['top']==10]['medium_sr'].values[0], all_surf_data_09[all_surf_data_09['top']==200]['acceptable_sr'].values[0] - all_surf_data_09[all_surf_data_09['top']==200]['medium_sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-
-axs.set_ylim(0, 100)
-axs.set_xticks(ticks)
-axs.set_xticklabels(tick_labels, size = 15)
-
-#we plot just above the bars the SR values
-axs.text(1, all_surf_data_02[all_surf_data_02['top']==1]['acceptable_sr'].values[0]+1, f"{all_surf_data_02[all_surf_data_02['top']==1]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(2, all_surf_data_02[all_surf_data_02['top']==10]['acceptable_sr'].values[0]+1, f"{all_surf_data_02[all_surf_data_02['top']==10]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(3, all_surf_data_02[all_surf_data_02['top']==200]['acceptable_sr'].values[0]+1, f"{all_surf_data_02[all_surf_data_02['top']==200]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(5, all_surf_data_07[all_surf_data_07['top']==1]['acceptable_sr'].values[0]+1, f"{all_surf_data_07[all_surf_data_07['top']==1]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(6, all_surf_data_07[all_surf_data_07['top']==10]['acceptable_sr'].values[0]+1, f"{all_surf_data_07[all_surf_data_07['top']==10]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(7, all_surf_data_07[all_surf_data_07['top']==200]['acceptable_sr'].values[0]+1, f"{all_surf_data_07[all_surf_data_07['top']==200]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(9, all_surf_data_09[all_surf_data_09['top']==1]['acceptable_sr'].values[0]+1, f"{all_surf_data_09[all_surf_data_09['top']==1]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(10, all_surf_data_09[all_surf_data_09['top']==10]['acceptable_sr'].values[0]+1, f"{all_surf_data_09[all_surf_data_09['top']==10]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
-axs.text(11, all_surf_data_09[all_surf_data_09['top']==200]['acceptable_sr'].values[0]+1, f"{all_surf_data_09[all_surf_data_09['top']==200]['acceptable_sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 10)
+#SUPPLEMENTARY FIGURE 2
+#Bar plots showing docking success rate (SR) for All Surface scenario as a function of the TopN ranked structures.
+fig,axs = plt.subplots(1,3, figsize = (12, 6), width_ratios=[3, 3, 3])
+all_surf_data = sr_data[sr_data["scenario"]=="surf"]
+# 
+barwidth = 0.7
+# 
+axs[0].set_xlim(0, 3)
+bound_bars = [0.5, 1.5, 2.5]
+n_array = [1,10,200]
+surf_rigid = all_surf_data[all_surf_data["stage"]=="rigid"]
+print(surf_rigid)
+for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
+    vals_bound = [surf_rigid[surf_rigid["rank"]==n][sr].values[0]*100 for n in n_array]
+    axs[0].bar(bound_bars, vals_bound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[j])
+    if j == 0: # acc
+        for bar_idx, n in enumerate(n_array):
+            value_bound = vals_bound[bar_idx]
+            axs[0].text(bound_bars[bar_idx], vals_bound[bar_idx], f"{value_bound:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = 12) 
+surf_flex = all_surf_data[all_surf_data["stage"]=="flex"]
+for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
+    vals_bound = [surf_flex[surf_flex["rank"]==n][sr].values[0]*100 for n in n_array]
+    axs[1].bar(bound_bars, vals_bound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[j])
+    if j == 0: # acc
+        for bar_idx, n in enumerate(n_array):
+            value_bound = vals_bound[bar_idx]
+            axs[1].text(bound_bars[bar_idx], vals_bound[bar_idx], f"{value_bound:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = 12) 
+surf_em = all_surf_data[all_surf_data["stage"]=="emref"]
+for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
+    vals_bound = [surf_em[surf_em["rank"]==n][sr].values[0]*100 for n in n_array]
+    axs[2].bar(bound_bars, vals_bound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[j])
+    if j == 0: # acc
+        for bar_idx, n in enumerate(n_array):
+            value_bound = vals_bound[bar_idx]
+            axs[2].text(bound_bars[bar_idx], vals_bound[bar_idx], f"{value_bound:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = 12) 
+for i in range(3):
+    axs[i].set_ylim(0, 100)
+    axs[i].set_xticks(bound_bars)
+    axs[i].set_xticklabels(["T1", "T10", "T200"], size = 15)
 
 #we plot the name of the stages
-axs.text(2, 106, "RigidBody\nstage", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(6, 106, "FlexRef\nstage", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(10, 106, "EMRef\nstage", ha = "center", va = "center", rotation = 0, fontsize = 15)
+axs[0].set_title("Rigidbody stage", fontsize = 15)
+axs[1].set_title("Flexref stage", fontsize = 15)
+axs[2].set_title("Emref stage", fontsize = 15)
+axs[0].set_ylabel("SR (%)", size = 15)
+# empty y tick labels on axs[1] and axs[2]
+axs[1].set_yticks([])
+axs[2].set_yticks([])
+axs[0].set_yticks([0, 20, 40, 60, 80, 100])
+axs[0].set_yticklabels([0, 20, 40, 60, 80, 100], size = 12)
 
-axs.set_ylabel("SR (%)", size = 15)
-leg = axs.legend(loc = "upper right", fontsize = 10)
-handles = leg.legend_handles[:3]
-labels = ["Acceptable", "Medium", "High"]
-leg = axs.legend(handles, labels, loc = "upper right", fontsize = 12)
-
+handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
+plt.subplots_adjust(bottom=0.14)
+plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.57, -0.18))
+plt.savefig(Path("figures", "haddock_docking_sr_allsurface.png"), dpi=400)
 
-plt.savefig(Path("figures", "haddock_docking_sr_allsurface.png"))
+# ##SUPPLEMENTARY FIGURE 3A
+# ##Bar plot comparing model docking success rates (SRs) for TopN structures after HADDOCK scoring (HS) and Voronoi scoring (VS) for different information scenarios.
 
-
-
-##SUPPLEMENTARY FIGURE 3A
-##Bar plot comparing model docking success rates (SRs) for TopN structures after HADDOCK scoring (HS) and Voronoi scoring (VS) for different information scenarios.
-
-sr_data = pd.read_csv(Path("..", "data", "voro_scoring_models_sr.tsv"), sep = "\t")
-
-true_haddock_acceptable, true_haddock_medium, true_haddock_high = sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='high')]
-true_voronoi_acceptable, true_voronoi_medium, true_voronoi_high = sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='high')]
-loose_haddock_acceptable, loose_haddock_medium, loose_haddock_high = sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='high')]
-loose_voronoi_acceptable, loose_voronoi_medium, loose_voronoi_high = sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='high')]
-twohit_haddock_acceptable, twohit_haddock_medium, twohit_haddock_high = sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='high')]
-twohit_voronoi_acceptable, twohit_voronoi_medium, twohit_voronoi_high = sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='high')]
-
-#we plot the results
-fig,axs = plt.subplots(1,1, figsize = (12, 5))
-
+fig,axs = plt.subplots(1,3, figsize = (12, 6), width_ratios=[3, 3, 3])
 barwidth = 0.4
+xlabels = ["VS T1", "VS T10", "VS T200", "HS T1", "HS T10", "HS T200"]
+sr_data_voro = sr_data[sr_data["stage"]=="emref-voro"]
+sr_data_haddock_emref = sr_data[(sr_data["stage"]=="emref")&(sr_data["ensemble"]=="IBMu")&(sr_data["struct"]=="u")]
 
-ticks = [0.8, 1.2, 1.8, 2.2, 2.8, 3.2,  4.8,5.2, 5.8, 6.2, 6.8, 7.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2]
-tick_labels = ["T1 HS", "T1 VS", "T10 HS", "T10 VS", "T200 HS", "T200 VS", "T1 HS", "T1 VS", "T10 HS", "T10 VS", "T200 HS", "T200 VS", "T1 HS", "T1 VS", "T10 HS", "T10 VS", "T200 HS", "T200 VS"]
-colors = ["blue", "orange", "blue", "orange", "blue", "orange"]
-
-#Real interface
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2], [true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==200]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==200]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2], [true_haddock_medium[true_haddock_medium['top']==1]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==1]['sr'].values[0], true_haddock_medium[true_haddock_medium['top']==10]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==10]['sr'].values[0], true_haddock_medium[true_haddock_medium['top']==200]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==200]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium", bottom = [true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==1]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==1]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==10]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==10]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==200]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==200]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==200]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==200]['sr'].values[0]])
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2], [true_haddock_high[true_haddock_high['top']==1]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==1]['sr'].values[0], true_haddock_high[true_haddock_high['top']==10]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==10]['sr'].values[0], true_haddock_high[true_haddock_high['top']==200]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==200]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High", bottom = [true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==1]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==1]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==10]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==10]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==200]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==200]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==200]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==200]['sr'].values[0]])
-axs.axvline(4, color = "black")
-axs.bar([4.8, 5.2, 5.8, 6.2, 6.8, 7.2], [loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==200]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==200]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.bar([4.8, 5.2, 5.8, 6.2, 6.8, 7.2], [loose_haddock_medium[loose_haddock_medium['top']==1]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==1]['sr'].values[0], loose_haddock_medium[loose_haddock_medium['top']==10]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==10]['sr'].values[0], loose_haddock_medium[loose_haddock_medium['top']==200]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==200]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium", bottom = [loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==1]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==1]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==10]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==10]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==200]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==200]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==200]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==200]['sr'].values[0]])
-axs.bar([4.8, 5.2, 5.8, 6.2, 6.8, 7.2], [loose_haddock_high[loose_haddock_high['top']==1]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==1]['sr'].values[0], loose_haddock_high[loose_haddock_high['top']==10]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==10]['sr'].values[0], loose_haddock_high[loose_haddock_high['top']==200]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==200]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High", bottom = [loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==1]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==1]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==10]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==10]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==200]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==200]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==200]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==200]['sr'].values[0]])
-axs.axvline(8, color = "black")
-axs.bar([8.8, 9.2, 9.8, 10.2, 10.8, 11.2], [twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==200]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==200]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.bar([8.8, 9.2, 9.8, 10.2, 10.8, 11.2], [twohit_haddock_medium[twohit_haddock_medium['top']==1]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==1]['sr'].values[0], twohit_haddock_medium[twohit_haddock_medium['top']==10]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==10]['sr'].values[0], twohit_haddock_medium[twohit_haddock_medium['top']==200]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==200]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium", bottom = [twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==1]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==1]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==10]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==10]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==200]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==200]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==200]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==200]['sr'].values[0]])
-axs.bar([8.8, 9.2, 9.8, 10.2, 10.8, 11.2], [twohit_haddock_high[twohit_haddock_high['top']==1]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==1]['sr'].values[0], twohit_haddock_high[twohit_haddock_high['top']==10]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==10]['sr'].values[0], twohit_haddock_high[twohit_haddock_high['top']==200]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==200]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High", bottom = [twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==1]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==1]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==10]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==10]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==200]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==200]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==200]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==200]['sr'].values[0]])
-
-axs.set_ylim(0, 100)
-axs.set_xticks(ticks)
-axs.set_xticklabels(tick_labels, size = 12, rotation = 30, ha = "right")
-
-#we plot just above the bars the SR values
-axs.text(0.8, true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(1.2, true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(1.8, true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(2.2, true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(2.8, true_haddock_acceptable[true_haddock_acceptable['top']==200]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==200]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(3.2, true_voronoi_acceptable[true_voronoi_acceptable['top']==200]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==200]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(4.8, loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(5.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(5.8, loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(6.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(6.8, loose_haddock_acceptable[loose_haddock_acceptable['top']==200]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==200]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(7.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==200]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==200]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(8.8, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(9.2, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(9.8, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(10.2, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(10.8, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==200]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==200]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-axs.text(11.2, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==200]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==200]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 8)
-
-axs.text(2, 106, "True Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(6, 106, "Loose Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(10, 106, "Two-Hit Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-
-axs.set_ylabel("SR (%)", size = 12)
-leg = axs.legend(loc = "upper right", fontsize = 10)
-handles = leg.legend_handles[:3]
-labels = ["Acceptable", "Medium", "High"]
-leg = axs.legend(handles, labels, loc = "upper right", fontsize = 12)
-
+for j, scen in enumerate(scenarios):
+    sr_data_voro_scen = sr_data_voro[sr_data_voro["scenario"]==scen]
+    sr_data_haddock_emref_scen = sr_data_haddock_emref[sr_data_haddock_emref["scenario"]==scen]
+    axs[j].set_title(scenarios_titles[j], fontsize = 15)
+    axs[j].set_xlim(0, 3)
+    axs[j].set_ylim(0, 105)
+    axs[j].set_xticks([])
+    axs[j].set_xticks(bars_b + bars_u)
+    axs[j].set_xticklabels(xlabels, rotation = 45, ha = "right", size = 12)
+    if j != 0:
+        axs[j].set_yticks([])
+    else:
+        axs[j].set_ylabel("SR (%)", size = 15)
+    ranks = [1, 10, 200]
+    for i, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
+        voro_acc = [sr_data_voro_scen[sr_data_voro_scen["rank"]==rank][sr].values[0]*100 for rank in ranks]
+        haddock_acc = [sr_data_haddock_emref_scen[sr_data_haddock_emref_scen["rank"]==rank][sr].values[0]*100 for rank in ranks]
+        print(f"voro {sr} ({scen}): {voro_acc}")
+        axs[j].bar(bars_b, voro_acc, color = acc_colors[i], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[i])
+        axs[j].bar(bars_u, haddock_acc, color = acc_colors[i], alpha = 1, edgecolor = "black", width=barwidth)
+        # let's label the acceptable SR
+        if i == 0: # acc
+            for bar_idx, rank in enumerate(ranks):
+                value_bound = voro_acc[bar_idx]
+                value_unbound = haddock_acc[bar_idx]
+                axs[j].text(bars_b[bar_idx], voro_acc[bar_idx], f"{value_bound:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize) 
+                axs[j].text(bars_u[bar_idx], haddock_acc[bar_idx], f"{value_unbound:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+    
+handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
-
-plt.savefig(Path("figures", "voro_scoring_models_sr.png"))
-
-
-##SUPPLEMENTARY FIGURE 3B
-##Bar plot comparing clustered docking success rates (SRs) for TopN structures after HADDOCK scoring (HS) and Voronoi scoring (VS) for different information scenarios.
-
-sr_data = pd.read_csv(Path("..", "data", "voro_scoring_clusters_sr.tsv"), sep = "\t")
-
-true_haddock_acceptable, true_haddock_medium, true_haddock_high = sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='high')]
-true_voronoi_acceptable, true_voronoi_medium, true_voronoi_high = sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='true')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='high')]
-loose_haddock_acceptable, loose_haddock_medium, loose_haddock_high = sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='high')]
-loose_voronoi_acceptable, loose_voronoi_medium, loose_voronoi_high = sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='loose')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='high')]
-twohit_haddock_acceptable, twohit_haddock_medium, twohit_haddock_high = sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='haddock')&(sr_data['CAPRI_class']=='high')]
-twohit_voronoi_acceptable, twohit_voronoi_medium, twohit_voronoi_high = sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='acceptable')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='medium')],sr_data[(sr_data['scenario']=='two-hit')&(sr_data['scoring']=='voro')&(sr_data['CAPRI_class']=='high')]
-
-
-#we plot the results
-fig,axs = plt.subplots(1,1, figsize = (15, 5))
-
-barwidth = 0.4
-
-ticks = [0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,5.2, 5.8, 6.2, 7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2, 14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2]
-tick_labels = ["T1 HS", "T1 VS", "T2 HS", "T2 VS", "T3 HS", "T3 VS", "T4 HS", "T4 VS", "T5 HS", "T5 VS", "T10 HS", "T10 VS", "T1 HS", "T1 VS", "T2 HS", "T2 VS", "T3 HS", "T3 VS", "T4 HS", "T4 VS", "T5 HS", "T5 VS", "T10 HS", "T10 VS", "T1 HS", "T1 VS", "T2 HS", "T2 VS", "T3 HS", "T3 VS", "T4 HS", "T4 VS", "T5 HS", "T5 VS", "T10 HS", "T10 VS"]
-
-#Real interface
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,  5.2, 5.8, 6.2], [true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==2]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==2]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==3]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==3]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==4]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==4]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==5]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==5]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,  5.2, 5.8, 6.2], [true_haddock_medium[true_haddock_medium['top']==1]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==1]['sr'].values[0], true_haddock_medium[true_haddock_medium['top']==2]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==2]['sr'].values[0], true_haddock_medium[true_haddock_medium['top']==3]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==3]['sr'].values[0], true_haddock_medium[true_haddock_medium['top']==4]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==4]['sr'].values[0], true_haddock_medium[true_haddock_medium['top']==5]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==5]['sr'].values[0], true_haddock_medium[true_haddock_medium['top']==10]['sr'].values[0], true_voronoi_medium[true_voronoi_medium['top']==10]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium", bottom = [true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==1]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==1]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==2]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==2]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==2]['sr'].values[0] - true_voronoi_medium[true_voronoi_medium['top']==2]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==3]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==3]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==3]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==3]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==4]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==4]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==4]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==4]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==5]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==5]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==5]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==5]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]- true_haddock_medium[true_haddock_medium['top']==10]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]- true_voronoi_medium[true_voronoi_medium['top']==10]['sr'].values[0]])
-axs.bar([0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8,  5.2, 5.8, 6.2], [true_haddock_high[true_haddock_high['top']==1]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==1]['sr'].values[0], true_haddock_high[true_haddock_high['top']==2]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==2]['sr'].values[0], true_haddock_high[true_haddock_high['top']==3]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==3]['sr'].values[0], true_haddock_high[true_haddock_high['top']==4]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==4]['sr'].values[0], true_haddock_high[true_haddock_high['top']==5]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==5]['sr'].values[0], true_haddock_high[true_haddock_high['top']==10]['sr'].values[0], true_voronoi_high[true_voronoi_high['top']==10]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High", bottom = [true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==1]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==1]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==2]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==2]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==2]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==2]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==3]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==3]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==3]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==3]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==4]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==4]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==4]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==4]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==5]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==5]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==5]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==5]['sr'].values[0], true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]- true_haddock_high[true_haddock_high['top']==10]['sr'].values[0], true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]- true_voronoi_high[true_voronoi_high['top']==10]['sr'].values[0]])
-axs.axvline(7, color = "black")
-axs.bar([7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2], [loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==2]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==2]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==3]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==3]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==4]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==4]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==5]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==5]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.bar([7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2], [loose_haddock_medium[loose_haddock_medium['top']==1]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==1]['sr'].values[0], loose_haddock_medium[loose_haddock_medium['top']==2]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==2]['sr'].values[0], loose_haddock_medium[loose_haddock_medium['top']==3]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==3]['sr'].values[0], loose_haddock_medium[loose_haddock_medium['top']==4]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==4]['sr'].values[0], loose_haddock_medium[loose_haddock_medium['top']==5]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==5]['sr'].values[0], loose_haddock_medium[loose_haddock_medium['top']==10]['sr'].values[0], loose_voronoi_medium[loose_voronoi_medium['top']==10]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium", bottom = [loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==1]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==1]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==2]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==2]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==2]['sr'].values[0] - loose_voronoi_medium[loose_voronoi_medium['top']==2]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==3]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==3]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==3]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==3]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==4]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==4]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==4]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==4]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==5]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==5]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==5]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==5]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]- loose_haddock_medium[loose_haddock_medium['top']==10]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]- loose_voronoi_medium[loose_voronoi_medium['top']==10]['sr'].values[0]])
-axs.bar([7.8, 8.2, 8.8, 9.2, 9.8, 10.2, 10.8, 11.2, 11.8, 12.2, 12.8, 13.2], [loose_haddock_high[loose_haddock_high['top']==1]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==1]['sr'].values[0], loose_haddock_high[loose_haddock_high['top']==2]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==2]['sr'].values[0], loose_haddock_high[loose_haddock_high['top']==3]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==3]['sr'].values[0], loose_haddock_high[loose_haddock_high['top']==4]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==4]['sr'].values[0], loose_haddock_high[loose_haddock_high['top']==5]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==5]['sr'].values[0], loose_haddock_high[loose_haddock_high['top']==10]['sr'].values[0], loose_voronoi_high[loose_voronoi_high['top']==10]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High", bottom = [loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==1]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==1]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==2]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==2]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==2]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==2]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==3]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==3]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==3]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==3]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==4]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==4]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==4]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==4]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==5]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==5]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==5]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==5]['sr'].values[0], loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]- loose_haddock_high[loose_haddock_high['top']==10]['sr'].values[0], loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]- loose_voronoi_high[loose_voronoi_high['top']==10]['sr'].values[0]])
-axs.axvline(14, color = "black")
-axs.bar([14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2], [twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==2]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==2]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==3]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==3]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==4]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==4]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==5]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==5]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "Acceptable")
-axs.bar([14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2], [twohit_haddock_medium[twohit_haddock_medium['top']==1]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==1]['sr'].values[0], twohit_haddock_medium[twohit_haddock_medium['top']==2]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==2]['sr'].values[0], twohit_haddock_medium[twohit_haddock_medium['top']==3]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==3]['sr'].values[0], twohit_haddock_medium[twohit_haddock_medium['top']==4]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==4]['sr'].values[0], twohit_haddock_medium[twohit_haddock_medium['top']==5]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==5]['sr'].values[0], twohit_haddock_medium[twohit_haddock_medium['top']==10]['sr'].values[0], twohit_voronoi_medium[twohit_voronoi_medium['top']==10]['sr'].values[0]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "Medium", bottom = [twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==1]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==1]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==2]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==2]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==2]['sr'].values[0] - twohit_voronoi_medium[twohit_voronoi_medium['top']==2]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==3]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==3]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==3]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==3]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==4]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==4]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==4]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==4]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==5]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==5]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==5]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==5]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]- twohit_haddock_medium[twohit_haddock_medium['top']==10]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]- twohit_voronoi_medium[twohit_voronoi_medium['top']==10]['sr'].values[0]])
-axs.bar([14.8, 15.2, 15.8, 16.2, 16.8, 17.2, 17.8, 18.2, 18.8, 19.2, 19.8, 20.2], [twohit_haddock_high[twohit_haddock_high['top']==1]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==1]['sr'].values[0], twohit_haddock_high[twohit_haddock_high['top']==2]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==2]['sr'].values[0], twohit_haddock_high[twohit_haddock_high['top']==3]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==3]['sr'].values[0], twohit_haddock_high[twohit_haddock_high['top']==4]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==4]['sr'].values[0], twohit_haddock_high[twohit_haddock_high['top']==5]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==5]['sr'].values[0], twohit_haddock_high[twohit_haddock_high['top']==10]['sr'].values[0], twohit_voronoi_high[twohit_voronoi_high['top']==10]['sr'].values[0]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "High", bottom = [twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==1]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==1]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==2]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==2]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==2]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==2]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==3]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==3]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==3]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==3]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==4]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==4]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==4]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==4]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==5]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==5]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==5]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==5]['sr'].values[0], twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]- twohit_haddock_high[twohit_haddock_high['top']==10]['sr'].values[0], twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]- twohit_voronoi_high[twohit_voronoi_high['top']==10]['sr'].values[0]])
-axs.set_ylim(0, 100)
-axs.set_xticks(ticks)
-axs.set_xticklabels(tick_labels, size = 10, rotation = 45, ha = "right")
-
-#we plot just above the bars the SR values
-axs.text(0.8, true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(1.25, true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(1.8, true_haddock_acceptable[true_haddock_acceptable['top']==2]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(2.25, true_voronoi_acceptable[true_voronoi_acceptable['top']==2]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(2.8, true_haddock_acceptable[true_haddock_acceptable['top']==3]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(3.25, true_voronoi_acceptable[true_voronoi_acceptable['top']==3]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(3.8, true_haddock_acceptable[true_haddock_acceptable['top']==4]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(4.25, true_voronoi_acceptable[true_voronoi_acceptable['top']==4]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(4.8, true_haddock_acceptable[true_haddock_acceptable['top']==5]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(5.25, true_voronoi_acceptable[true_voronoi_acceptable['top']==5]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(5.8, true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]+1, f"{true_haddock_acceptable[true_haddock_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(6.25, true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]+1, f"{true_voronoi_acceptable[true_voronoi_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(7.75, loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(8.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(8.75, loose_haddock_acceptable[loose_haddock_acceptable['top']==2]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(9.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==2]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(9.75, loose_haddock_acceptable[loose_haddock_acceptable['top']==3]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(10.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==3]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(10.75, loose_haddock_acceptable[loose_haddock_acceptable['top']==4]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(11.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==4]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(11.75, loose_haddock_acceptable[loose_haddock_acceptable['top']==5]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(12.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==5]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(12.75, loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]+1, f"{loose_haddock_acceptable[loose_haddock_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(13.2, loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]+1, f"{loose_voronoi_acceptable[loose_voronoi_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(14.75, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(15.2, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==1]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(15.75, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==2]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(16.25, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==2]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==2]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(16.8, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==3]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(17.25, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==3]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==3]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(17.75, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==4]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(18.2, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==4]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==4]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(18.75, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==5]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(19.2, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==5]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==5]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(19.75, twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]+1, f"{twohit_haddock_acceptable[twohit_haddock_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-axs.text(20.2, twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]+1, f"{twohit_voronoi_acceptable[twohit_voronoi_acceptable['top']==10]['sr'].values[0]:.2f}", ha = "center", va = "bottom", size = 7)
-
-axs.text(3, 105, "True Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(10.5, 105, "Loose Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-axs.text(17.5, 105, "Two-Hit Interface", ha = "center", va = "center", rotation = 0, fontsize = 15)
-
-axs.set_ylabel("SR (%)", size = 15)
-
-leg = axs.legend( loc = "upper right", ncol = 1, fontsize = 14)
-handles = leg.legend_handles[:3]
-labels = ["Acceptable", "Medium", "High"]
-leg = axs.legend(handles, labels, loc = "upper right", ncol = 1, fontsize = 14)
-
-
-
-plt.tight_layout()
-plt.savefig(Path("figures", "voro_scoring_clusters_sr.png"))
+plt.subplots_adjust(bottom=0.20)
+plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.57, -0.28)) 
+plt.savefig(Path("figures", "voro_scoring_models_sr.png"), dpi=400)

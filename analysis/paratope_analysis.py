@@ -35,13 +35,13 @@ fr3_probability_kinked, fr3_probability_extended = len([ fr3 for fr3 in probabil
 cdr3_probability_kinked, cdr3_probability_extended = len([ cdr3 for cdr3 in probability_regions_kinked["cdr3"] if cdr3 > 0]), len([ cdr3 for cdr3 in probability_regions_extended["cdr3"] if cdr3 > 0])
 fr4_probability_kinked, fr4_probability_extended = len([ fr4 for fr4 in probability_regions_kinked["fr4"] if fr4 > 0]), len([ fr4 for fr4 in probability_regions_extended["fr4"] if fr4 > 0])
 
-fr1_probability_kinked, fr1_probability_extended = fr1_probability_kinked/probability_regions_kinked.shape[0], fr1_probability_extended/probability_regions_extended.shape[0]
-cdr1_probability_kinked, cdr1_probability_extended = cdr1_probability_kinked/probability_regions_kinked.shape[0], cdr1_probability_extended/probability_regions_extended.shape[0]
-fr2_probability_kinked, fr2_probability_extended = fr2_probability_kinked/probability_regions_kinked.shape[0], fr2_probability_extended/probability_regions_extended.shape[0]
-cdr2_probability_kinked, cdr2_probability_extended = cdr2_probability_kinked/probability_regions_kinked.shape[0], cdr2_probability_extended/probability_regions_extended.shape[0]
-fr3_probability_kinked, fr3_probability_extended = fr3_probability_kinked/probability_regions_kinked.shape[0], fr3_probability_extended/probability_regions_extended.shape[0]
-cdr3_probability_kinked, cdr3_probability_extended = cdr3_probability_kinked/probability_regions_kinked.shape[0], cdr3_probability_extended/probability_regions_extended.shape[0]
-fr4_probability_kinked, fr4_probability_extended = fr4_probability_kinked/probability_regions_kinked.shape[0], fr4_probability_extended/probability_regions_extended.shape[0]
+fr1_probability_kinked, fr1_probability_extended = fr1_probability_kinked/probability_regions_kinked.shape[0]*100, fr1_probability_extended/probability_regions_extended.shape[0]*100
+cdr1_probability_kinked, cdr1_probability_extended = cdr1_probability_kinked/probability_regions_kinked.shape[0]*100, cdr1_probability_extended/probability_regions_extended.shape[0]*100
+fr2_probability_kinked, fr2_probability_extended = fr2_probability_kinked/probability_regions_kinked.shape[0]*100, fr2_probability_extended/probability_regions_extended.shape[0]*100
+cdr2_probability_kinked, cdr2_probability_extended = cdr2_probability_kinked/probability_regions_kinked.shape[0]*100, cdr2_probability_extended/probability_regions_extended.shape[0]*100
+fr3_probability_kinked, fr3_probability_extended = fr3_probability_kinked/probability_regions_kinked.shape[0]*100, fr3_probability_extended/probability_regions_extended.shape[0]*100
+cdr3_probability_kinked, cdr3_probability_extended = cdr3_probability_kinked/probability_regions_kinked.shape[0]*100, cdr3_probability_extended/probability_regions_extended.shape[0]*100
+fr4_probability_kinked, fr4_probability_extended = fr4_probability_kinked/probability_regions_kinked.shape[0]*100, fr4_probability_extended/probability_regions_extended.shape[0]*100
 
 barwidth = 0.4
 #We plot points for the probability of the regions interacting
@@ -54,7 +54,7 @@ ax.bar([1.7, 3.7, 5.7, 7.7, 9.7, 11.7, 13.7],
             color = "red", label="Extended", edgecolor = "black", linewidth = 2, width = barwidth)
 
 
-ax.set_ylabel("Percent of structures", size = 15)
+ax.set_ylabel("% of structures", size = 15)
 ax.set_xticks([1.5, 3.5, 5.5, 7.5, 9.5, 11.5, 13.5])
 ax.axvline(2.5, color="black", linestyle="--")
 ax.axvline(4.5, color="black", linestyle="--")
@@ -64,12 +64,12 @@ ax.axvline(10.5, color="black", linestyle="--")
 ax.axvline(12.5, color="black", linestyle="--")
 ax.set_xticklabels(["FR1", "CDR1", "FR2", "CDR2", "FR3", "CDR3", "FR4"], size = 15)
 #we set the y axis from 0 to 1
-ax.set_ylim(0, 1.1)
-
+ax.set_ylim(0, 105)
+# yticks with 12 fontsize
+ax.tick_params(axis='y', labelsize=12)
 
 #And we add a legend with the angle_classs
 leg = ax.legend(loc = "upper left", fontsize=15)
-
 
 ###Now we will perform a chi-squared test to see if the probability of the regions interacting is different between the angle_classes
 #We will perform a chi-squared test for each region
@@ -92,7 +92,6 @@ fr4_chi2, fr4_p, fr4_dof, fr4_exp = chi2_contingency(fr4_obs)
 
 ###Now we will plot * if p<0.05, ** if p<0.01 and *** if p<0.001
 ###We will plot it above the highest point of each region and in the middle of both classes
-
 if 0.01<fr1_p < 0.05:
     ax.text(1.5, max(fr1_probability_kinked, fr1_probability_extended) + 0.05, "*", ha="center", size=15)
 if 0.001<fr1_p < 0.01:
@@ -142,8 +141,8 @@ if 0.001<fr4_p < 0.01:
 if fr4_p < 0.001:
     ax.text(13.5, max(fr4_probability_kinked, fr4_probability_extended) + 0.05, "***", ha="center", size=15)
 
-
-plt.savefig(Path(".", "figures", "kinked_extended_paratope_region_freq.png"))
+plt.tight_layout()
+plt.savefig(Path(".", "figures", "kinked_extended_paratope_region_freq.png"), dpi=400)
 
 
 
@@ -187,15 +186,18 @@ for c in range(2):
     ax[c].axhline(y=treshold, color='k', linestyle='--', alpha=0.5)
 
     #we plot on the top left corner the percentage of pdbs in each cluster
-    ax[c].text(0.05, 0.90, f"{cluster_names[c]}: {cluster_df.shape[0]/interacting_regions_grouped.shape[0]*100:.2f}%", transform=ax[c].transAxes, size=20, ha='left', color=colors[c])
+    ax[c].text(0.05, 0.90, f"{cluster_names[c]}: {cluster_df.shape[0]/interacting_regions_grouped.shape[0]*100:.1f}%", transform=ax[c].transAxes, size=20, ha='left', color=colors[c])
 
     #if a residue frequency is above a certain treshold, we plot it
     for res, freq in residue_freq.items():
         if freq > treshold:
-            if res > 99:
-                ax[c].text(res, freq + 0.01, res, ha='center', va='bottom', color='black', size=8)
+            if res == 100 and c == 0:
+                ax[c].text(res+0.1, freq, res, ha='center', va='bottom', color='black', size=9)
             else:
-                ax[c].text(res, freq + 0.01, res, ha='center', va='bottom', color='black')
+                ax[c].text(res, freq, res, ha='center', va='bottom', color='black', size=9)
+            #     ax[c].text(res, freq + 0.01, res, ha='center', va='bottom', color='black', size=8)
+            # else:
+            #     ax[c].text(res, freq + 0.01, res, ha='center', va='bottom', color='black')
         
         if c == 1:
             # #we plot a star on the top of the bar if the residue is in the list (present in the restraints file)
@@ -207,8 +209,33 @@ ax[1].set_xticks([13, 29, 42, 54, 75.5, 98.5, 106])
 ax[1].set_xticklabels(["FR1", "CDR1", "FR2", "CDR2", "FR3", "CDR3", "FR4"], size=20)
 ax[0].axes.get_xaxis().set_visible(False)
 
+# add bars to clarify the RX regions
+RX_regions = {
+    "R1": [[1,3]],
+    "R2": [[26,29]],
+    "R3": [[30,33]],
+    "R4": [[35,39]],
+    "R5": [[44,47]],
+    "R6": [[50,52]],
+    "R7": [[53,55]],
+    "R8": [[56,58]],
+    "R9": [[59,61]],
+    "R10": [[103,108]],
+}
+
+# now add to the list the max of the frequencies across that interval
+print(residue_freq)
+for rx in RX_regions:
+    RX_regions[rx].append(max([residue_freq[res] for res in range(RX_regions[rx][0][0], RX_regions[rx][0][1]+1)]))
+
+# plt.savefig(Path(".", "figures", "paratope_representations_presentations.png"), dpi=400)
+
+for rx in RX_regions:
+    print("hline for ", rx, RX_regions[rx])
+    ax[1].hlines(RX_regions[rx][1] + 0.1, RX_regions[rx][0][0] - 0.5, RX_regions[rx][0][1] + 0.5, color='purple', linewidth=4)
+    ax[1].text(RX_regions[rx][0][0] + (RX_regions[rx][0][1] - RX_regions[rx][0][0])/2, RX_regions[rx][1] + 0.1, rx, ha='center', va='bottom', color='purple', size=15)
 plt.tight_layout()
-plt.savefig(Path(".", "figures", "paratope_representations_residue_freq.png"))
+plt.savefig(Path(".", "figures", "paratope_representations_residue_freq.png"), dpi=400)
 
 
 
