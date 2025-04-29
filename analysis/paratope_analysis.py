@@ -235,7 +235,7 @@ for rx in RX_regions:
     ax[1].hlines(RX_regions[rx][1] + 0.1, RX_regions[rx][0][0] - 0.5, RX_regions[rx][0][1] + 0.5, color='purple', linewidth=4)
     ax[1].text(RX_regions[rx][0][0] + (RX_regions[rx][0][1] - RX_regions[rx][0][0])/2, RX_regions[rx][1] + 0.1, rx, ha='center', va='bottom', color='purple', size=15)
 plt.tight_layout()
-plt.savefig(Path(".", "figures", "Figure5.png"), dpi=400)
+plt.savefig(Path(".", "figures", "figure5.png"), dpi=400)
 
 
 
