@@ -105,8 +105,8 @@ per_pdb_interacting_residues_df = pd.DataFrame(per_pdb_interacting_residues, col
 per_pdb_interacting_resnums_df = pd.DataFrame(per_pdb_interacting_resnums, columns=["pdb", "chain", "unique_interaction_resnums","interacting_resnums"])
 
 #We will save the dataframes
-per_pdb_interacting_residues_df.to_csv(Path("..", "data", "per_pdb_interacting_residues_unbiased_new.tsv"), sep="\t", index=False)
-per_pdb_interacting_resnums_df.to_csv(Path("..", "data", "per_pdb_interacting_resnums_unbiased_new.tsv"), sep="\t", index=False)
+per_pdb_interacting_residues_df.to_csv(Path("..", "data", "per_pdb_interacting_residues_unbiased.tsv"), sep="\t", index=False)
+per_pdb_interacting_resnums_df.to_csv(Path("..", "data", "per_pdb_interacting_resnums_unbiased.tsv"), sep="\t", index=False)
 
 nanobodies_angles = pd.read_csv(Path("..", "data", "nanobodies_torsion_angles.tsv"), sep="\t")
 

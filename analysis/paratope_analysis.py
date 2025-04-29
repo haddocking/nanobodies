@@ -237,8 +237,6 @@ for rx in RX_regions:
 plt.tight_layout()
 plt.savefig(Path(".", "figures", "figure5.png"), dpi=400)
 
-
-
 ##FIGURE not shown
 ##Bar plots showing the docking success rates for the IBMu ensemble applying the new paratope restraints.
 
