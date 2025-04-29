@@ -1,173 +1,992 @@
-ensemble	cdr3_rmsd	dockq
-ib	3.383	0.656
-ib_monom	2.766	0.605
-ib_multim	1.738	0.863
-ib_monom_multim	1.738	0.852
-ib	2.192	0.461
-ib_monom	2.192	0.708
-ib_multim	2.192	0.657
-ib_monom_multim	2.192	0.666
-ib	2.211	0.741
-ib_monom	2.337	0.798
-ib_multim	2.42	0.761
-ib_monom_multim	2.337	0.739
-ib	2.942	0.059
-ib_monom	2.943	0.677
-ib_multim	1.02	0.86
-ib_monom_multim	1.02	0.788
-ib	2.627	0.68
-ib_monom	2.655	0.328
-ib_multim	2.541	0.369
-ib_monom_multim	2.655	0.349
-ib	1.181	0.241
-ib_monom	2.249	0.241
-ib_multim	1.47	0.765
-ib_monom_multim	2.249	0.295
-ib	3.955	0.104
-ib_monom	1.936	0.621
-ib_multim	1.74	0.76
-ib_monom_multim	1.74	0.683
-ib	5.071	0.472
-ib_monom	1.595	0.799
-ib_multim	0.989	0.534
-ib_monom_multim	0.989	0.819
-ib	2.693	0.51
-ib_monom	2.693	0.524
-ib_multim	2.693	0.524
-ib_monom_multim	2.693	0.524
-ib	1.929	0.149
-ib_monom	1.929	0.202
-ib_multim	1.171	0.672
-ib_monom_multim	1.171	0.132
-ib	2.825	0.567
-ib_monom	1.35	0.675
-ib_multim	1.414	0.899
-ib_monom_multim	1.35	0.9
-ib	3.866	0.421
-ib_monom	3.994	0.456
-ib_multim	3.285	0.583
-ib_monom_multim	3.285	0.583
-ib	1.853	0.346
-ib_monom	1.475	0.664
-ib_multim	1.365	0.78
-ib_monom_multim	1.365	0.78
-ib	0.915	0.923
-ib_monom	1.066	0.904
-ib_multim	1.066	0.891
-ib_monom_multim	1.066	0.891
-ib	4.627	0.303
-ib_monom	2.962	0.061
-ib_multim	4.543	0.036
-ib_monom_multim	2.962	0.034
-ib	2.339	0.717
-ib_monom	2.65	0.464
-ib_multim	2.684	0.281
-ib_monom_multim	2.018	0.143
-ib	2.596	0.133
-ib_monom	2.596	0.391
-ib_multim	1.157	0.915
-ib_monom_multim	1.157	0.915
-ib	2.793	0.548
-ib_monom	1.749	0.605
-ib_multim	2.562	0.605
-ib_monom_multim	2.562	0.633
-ib	5.508	0.002
-ib_monom	5.508	0.497
-ib_multim	5.189	0.519
-ib_monom_multim	5.189	0.519
-ib	2.117	0.672
-ib_monom	2.117	0.184
-ib_multim	0.565	0.887
-ib_monom_multim	0.565	0.887
-ib	2.003	0.556
-ib_monom	2.088	0.573
-ib_multim	2.088	0.452
-ib_monom_multim	2.003	0.497
-ib	2.716	0.386
-ib_monom	2.584	0.379
-ib_multim	0.529	0.891
-ib_monom_multim	0.529	0.89
-ib	1.65	0.68
-ib_monom	2.374	0.711
-ib_multim	2.374	0.658
-ib_monom_multim	2.374	0.667
-ib	1.775	0.3
-ib_monom	2.455	0.555
-ib_multim	2.41	0.684
-ib_monom_multim	2.41	0.682
-ib	5.441	0.191
-ib_monom	1.081	0.905
-ib_multim	1.24	0.879
-ib_monom_multim	1.081	0.884
-ib	2.254	0.543
-ib_monom	1.051	0.869
-ib_multim	0.784	0.908
-ib_monom_multim	0.784	0.908
-ib	5.155	0.444
-ib_monom	5.3	0.412
-ib_multim	4.09	0.518
-ib_monom_multim	4.09	0.611
-ib	2.215	0.392
-ib_monom	1.301	0.153
-ib_multim	0.597	0.91
-ib_monom_multim	0.597	0.896
-ib	3.485	0.063
-ib_monom	3.485	0.063
-ib_multim	3.485	0.086
-ib_monom_multim	3.485	0.445
-ib	0.581	0.759
-ib_monom	1.309	0.668
-ib_multim	0.965	0.867
-ib_monom_multim	1.309	0.638
-ib	7.491	0.109
-ib_monom	7.214	0.562
-ib_multim	7.099	0.205
-ib_monom_multim	7.099	0.21
-ib	3.221	0.3
-ib_monom	3.221	0.216
-ib_multim	3.221	0.388
-ib_monom_multim	3.221	0.245
-ib	1.111	0.001
-ib_monom	1.283	0.856
-ib_multim	1.283	0.902
-ib_monom_multim	1.283	0.844
-ib	0.757	0.859
-ib_monom	1.75	0.814
-ib_multim	1.75	0.791
-ib_monom_multim	1.75	0.784
-ib	2.606	0.256
-ib_monom	2.606	0.251
-ib_multim	1.617	0.276
-ib_monom_multim	1.617	0.276
-ib	0.441	0.904
-ib_monom	0.85	0.915
-ib_multim	0.85	0.915
-ib_monom_multim	0.85	0.906
-ib	1.064	0.892
-ib_monom	1.157	0.884
-ib_multim	1.113	0.845
-ib_monom_multim	1.113	0.868
-ib	2.996	0.404
-ib_monom	1.532	0.455
-ib_multim	2.001	0.695
-ib_monom_multim	2.001	0.695
-ib	8.854	0.26
-ib_monom	4.197	0.692
-ib_multim	4.077	0.735
-ib_monom_multim	4.077	0.735
-ib	2.786	0.642
-ib_monom	2.795	0.641
-ib_multim	2.795	0.487
-ib_monom_multim	2.795	0.544
-ib	0.794	0.0
-ib_monom	0.946	0.802
-ib_multim	0.946	0.813
-ib_monom_multim	0.946	0.813
-ib	2.279	0.39
-ib_monom	0.938	0.841
-ib_multim	1.387	0.691
-ib_monom_multim	0.938	0.862
-ib	3.801	0.14
-ib_monom	3.643	0.14
-ib_multim	3.801	0.13
-ib_monom_multim	3.643	0.131
+pdb	ensemble	scenario	struct	min_cdr3_rmsd	max_dockq
+8cwuB	IBMo	twohit	b	2.655	0.334
+8cwuB	IBMo	twohit	u	2.655	0.25
+8cwuB	IBMo	loose	b	2.655	0.293
+8cwuB	IBMo	loose	u	2.655	0.192
+8cwuB	IBMo	real	b	2.655	0.508
+8cwuB	IBMo	real	u	2.655	0.262
+8cwuB	IB	twohit	b	2.627	0.639
+8cwuB	IB	twohit	u	2.627	0.572
+8cwuB	IB	loose	b	2.627	0.623
+8cwuB	IB	loose	u	2.627	0.561
+8cwuB	IB	real	b	2.627	0.67
+8cwuB	IB	real	u	2.627	0.623
+8cwuB	IBMoMu	twohit	b	2.655	0.348
+8cwuB	IBMoMu	twohit	u	2.655	0.261
+8cwuB	IBMoMu	loose	b	2.655	0.293
+8cwuB	IBMoMu	loose	u	2.655	0.266
+8cwuB	IBMoMu	real	b	2.655	0.469
+8cwuB	IBMoMu	real	u	2.655	0.235
+8cwuB	IBMu	twohit	b	2.541	0.37
+8cwuB	IBMu	twohit	u	2.541	0.251
+8cwuB	IBMu	loose	b	2.541	0.308
+8cwuB	IBMu	loose	u	2.541	0.297
+8cwuB	IBMu	real	b	2.541	0.37
+8cwuB	IBMu	real	u	2.541	0.294
+8cwuB	IBMu	surf	b	2.541	0.075
+7qneG	IBMo	twohit	b	0.85	0.055
+7qneG	IBMo	loose	b	0.85	0.857
+7qneG	IBMo	real	b	0.85	0.919
+7qneG	IB	twohit	b	0.441	0.103
+7qneG	IB	loose	b	0.441	0.909
+7qneG	IB	real	b	0.441	0.935
+7qneG	IBMoMu	twohit	b	0.85	0.056
+7qneG	IBMoMu	loose	b	0.85	0.733
+7qneG	IBMoMu	real	b	0.85	0.914
+7qneG	IBMu	twohit	b	2.106	0.042
+7qneG	IBMu	twohit	u	2.106	0.037
+7qneG	IBMu	loose	b	2.106	0.022
+7qneG	IBMu	loose	u	2.106	0.028
+7qneG	IBMu	real	b	2.106	0.378
+7qneG	IBMu	real	u	2.106	0.13
+7qneG	IBMu	surf	b	2.106	0.008
+7x2jB	IBMo	twohit	b	2.455	0.308
+7x2jB	IBMo	twohit	u	2.455	0.082
+7x2jB	IBMo	loose	b	2.455	0.149
+7x2jB	IBMo	loose	u	2.455	0.039
+7x2jB	IBMo	real	b	2.455	0.533
+7x2jB	IBMo	real	u	2.455	0.299
+7x2jB	IB	twohit	b	1.775	0.308
+7x2jB	IB	twohit	u	1.775	0.254
+7x2jB	IB	loose	b	1.775	0.258
+7x2jB	IB	loose	u	1.775	0.101
+7x2jB	IB	real	b	1.775	0.315
+7x2jB	IB	real	u	1.775	0.275
+7x2jB	IBMoMu	twohit	b	2.41	0.642
+7x2jB	IBMoMu	twohit	u	2.41	0.371
+7x2jB	IBMoMu	loose	b	2.41	0.524
+7x2jB	IBMoMu	loose	u	2.41	0.055
+7x2jB	IBMoMu	real	b	2.41	0.665
+7x2jB	IBMoMu	real	u	2.41	0.346
+7x2jB	IBMu	twohit	b	2.41	0.626
+7x2jB	IBMu	twohit	u	2.41	0.347
+7x2jB	IBMu	loose	b	2.41	0.587
+7x2jB	IBMu	loose	u	2.41	0.113
+7x2jB	IBMu	real	b	2.41	0.689
+7x2jB	IBMu	real	u	2.41	0.436
+7x2jB	IBMu	surf	b	2.41	0.085
+7wkiB	IBMo	twohit	b	3.221	0.192
+7wkiB	IBMo	twohit	u	3.221	0.191
+7wkiB	IBMo	loose	b	3.221	0.15
+7wkiB	IBMo	loose	u	3.221	0.103
+7wkiB	IBMo	real	b	3.221	0.208
+7wkiB	IBMo	real	u	3.221	0.185
+7wkiB	IB	twohit	b	3.221	0.215
+7wkiB	IB	twohit	u	3.221	0.153
+7wkiB	IB	loose	b	3.221	0.15
+7wkiB	IB	loose	u	3.221	0.103
+7wkiB	IB	real	b	3.221	0.185
+7wkiB	IB	real	u	3.221	0.168
+7wkiB	IBMoMu	twohit	b	3.221	0.171
+7wkiB	IBMoMu	twohit	u	3.221	0.171
+7wkiB	IBMoMu	loose	b	3.221	0.108
+7wkiB	IBMoMu	loose	u	3.221	0.094
+7wkiB	IBMoMu	real	b	3.221	0.199
+7wkiB	IBMoMu	real	u	3.221	0.129
+7wkiB	IBMu	twohit	b	3.221	0.211
+7wkiB	IBMu	twohit	u	3.221	0.174
+7wkiB	IBMu	loose	b	3.221	0.11
+7wkiB	IBMu	loose	u	3.221	0.155
+7wkiB	IBMu	real	b	3.221	0.192
+7wkiB	IBMu	real	u	3.221	0.14
+7wkiB	IBMu	surf	b	3.221	0.065
+8h3xA	IBMo	twohit	b	2.337	0.666
+8h3xA	IBMo	twohit	u	2.337	0.472
+8h3xA	IBMo	loose	b	2.337	0.155
+8h3xA	IBMo	loose	u	2.337	0.214
+8h3xA	IBMo	real	b	2.337	0.809
+8h3xA	IBMo	real	u	2.337	0.412
+8h3xA	IB	twohit	b	2.211	0.644
+8h3xA	IB	twohit	u	2.211	0.296
+8h3xA	IB	loose	b	2.211	0.449
+8h3xA	IB	loose	u	2.211	0.181
+8h3xA	IB	real	b	2.211	0.758
+8h3xA	IB	real	u	2.211	0.378
+8h3xA	IBMoMu	twohit	b	2.337	0.747
+8h3xA	IBMoMu	twohit	u	2.337	0.619
+8h3xA	IBMoMu	loose	b	2.337	0.649
+8h3xA	IBMoMu	loose	u	2.337	0.55
+8h3xA	IBMoMu	real	b	2.337	0.749
+8h3xA	IBMoMu	real	u	2.337	0.605
+8h3xA	IBMu	twohit	b	2.42	0.742
+8h3xA	IBMu	twohit	u	2.42	0.644
+8h3xA	IBMu	loose	b	2.42	0.636
+8h3xA	IBMu	loose	u	2.42	0.216
+8h3xA	IBMu	real	b	2.42	0.757
+8h3xA	IBMu	real	u	2.42	0.604
+8h3xA	IBMu	surf	b	2.42	0.04
+8dtuA	IBMo	twohit	b	5.3	0.065
+8dtuA	IBMo	twohit	u	5.3	0.29
+8dtuA	IBMo	loose	b	5.3	0.058
+8dtuA	IBMo	loose	u	5.3	0.32
+8dtuA	IBMo	real	b	5.3	0.315
+8dtuA	IBMo	real	u	5.3	0.301
+8dtuA	IB	twohit	b	5.155	0.06
+8dtuA	IB	twohit	u	5.155	0.093
+8dtuA	IB	loose	b	5.155	0.059
+8dtuA	IB	loose	u	5.155	0.093
+8dtuA	IB	real	b	5.155	0.425
+8dtuA	IB	real	u	5.155	0.178
+8dtuA	IBMoMu	twohit	b	4.09	0.07
+8dtuA	IBMoMu	twohit	u	4.09	0.323
+8dtuA	IBMoMu	loose	b	4.09	0.116
+8dtuA	IBMoMu	loose	u	4.09	0.301
+8dtuA	IBMoMu	real	b	4.09	0.592
+8dtuA	IBMoMu	real	u	4.09	0.321
+8dtuA	IBMu	twohit	b	4.09	0.077
+8dtuA	IBMu	twohit	u	4.09	0.288
+8dtuA	IBMu	loose	b	4.09	0.157
+8dtuA	IBMu	loose	u	4.09	0.366
+8dtuA	IBMu	real	b	4.09	0.503
+8dtuA	IBMu	real	u	4.09	0.317
+8dtuA	IBMu	surf	b	4.09	0.069
+8gz5B	IBMo	twohit	b	3.368	0.359
+8gz5B	IBMo	twohit	u	3.368	0.058
+8gz5B	IBMo	loose	b	3.368	0.421
+8gz5B	IBMo	loose	u	3.368	0.26
+8gz5B	IBMo	real	b	3.368	0.5
+8gz5B	IBMo	real	u	3.368	0.583
+8gz5B	IB	twohit	b	2.942	0.037
+8gz5B	IB	twohit	u	2.942	0.275
+8gz5B	IB	loose	b	2.942	0.037
+8gz5B	IB	loose	u	2.942	0.494
+8gz5B	IB	real	b	2.942	0.524
+8gz5B	IB	real	u	2.942	0.496
+8gz5B	IBMoMu	twohit	b	1.02	0.636
+8gz5B	IBMoMu	twohit	u	1.02	0.058
+8gz5B	IBMoMu	loose	b	1.02	0.839
+8gz5B	IBMoMu	loose	u	1.02	0.425
+8gz5B	IBMoMu	real	b	1.02	0.916
+8gz5B	IBMoMu	real	u	1.02	0.838
+8gz5B	IBMu	twohit	b	1.02	0.724
+8gz5B	IBMu	twohit	u	1.02	0.781
+8gz5B	IBMu	loose	b	1.02	0.785
+8gz5B	IBMu	loose	u	1.02	0.597
+8gz5B	IBMu	real	b	1.02	0.877
+8gz5B	IBMu	real	u	1.02	0.814
+8gz5B	IBMu	surf	b	1.02	0.702
+8en2D	IBMo	twohit	b	1.929	0.106
+8en2D	IBMo	twohit	u	1.929	0.206
+8en2D	IBMo	loose	b	1.929	0.083
+8en2D	IBMo	loose	u	1.929	0.158
+8en2D	IBMo	real	b	1.929	0.267
+8en2D	IBMo	real	u	1.929	0.249
+8en2D	IB	twohit	b	1.929	0.112
+8en2D	IB	twohit	u	1.929	0.123
+8en2D	IB	loose	b	1.929	0.127
+8en2D	IB	loose	u	1.929	0.128
+8en2D	IB	real	b	1.929	0.166
+8en2D	IB	real	u	1.929	0.247
+8en2D	IBMoMu	twohit	b	1.363	0.156
+8en2D	IBMoMu	twohit	u	1.363	0.384
+8en2D	IBMoMu	loose	b	1.363	0.121
+8en2D	IBMoMu	loose	u	1.363	0.072
+8en2D	IBMoMu	real	b	1.363	0.36
+8en2D	IBMoMu	real	u	1.363	0.105
+8en2D	IBMu	twohit	b	1.171	0.166
+8en2D	IBMu	twohit	u	1.171	0.217
+8en2D	IBMu	loose	b	1.171	0.145
+8en2D	IBMu	loose	u	1.171	0.063
+8en2D	IBMu	real	b	1.171	0.3
+8en2D	IBMu	real	u	1.171	0.587
+8en2D	IBMu	surf	b	1.171	0.299
+7q3qB	IBMo	twohit	b	2.584	0.037
+7q3qB	IBMo	twohit	u	2.584	0.046
+7q3qB	IBMo	loose	b	2.584	0.047
+7q3qB	IBMo	loose	u	2.584	0.075
+7q3qB	IBMo	real	b	2.584	0.37
+7q3qB	IBMo	real	u	2.584	0.492
+7q3qB	IB	twohit	b	2.716	0.068
+7q3qB	IB	twohit	u	2.716	0.036
+7q3qB	IB	loose	b	2.716	0.303
+7q3qB	IB	loose	u	2.716	0.17
+7q3qB	IB	real	b	2.716	0.367
+7q3qB	IB	real	u	2.716	0.425
+7q3qB	IBMoMu	twohit	b	0.529	0.046
+7q3qB	IBMoMu	twohit	u	0.529	0.625
+7q3qB	IBMoMu	loose	b	0.529	0.655
+7q3qB	IBMoMu	loose	u	0.529	0.786
+7q3qB	IBMoMu	real	b	0.529	0.931
+7q3qB	IBMoMu	real	u	0.529	0.886
+7q3qB	IBMu	twohit	b	0.529	0.81
+7q3qB	IBMu	twohit	u	0.529	0.069
+7q3qB	IBMu	loose	b	0.529	0.774
+7q3qB	IBMu	loose	u	0.529	0.583
+7q3qB	IBMu	real	b	0.529	0.922
+7q3qB	IBMu	real	u	0.529	0.87
+7q3qB	IBMu	surf	b	0.529	0.85
+7voaA	IBMo	twohit	b	1.936	0.259
+7voaA	IBMo	twohit	u	1.936	0.38
+7voaA	IBMo	loose	b	1.936	0.241
+7voaA	IBMo	loose	u	1.936	0.44
+7voaA	IBMo	real	b	1.936	0.277
+7voaA	IBMo	real	u	1.936	0.445
+7voaA	IB	twohit	b	3.955	0.236
+7voaA	IB	twohit	u	3.955	0.359
+7voaA	IB	loose	b	3.955	0.23
+7voaA	IB	loose	u	3.955	0.368
+7voaA	IB	real	b	3.955	0.037
+7voaA	IB	real	u	3.955	0.4
+7voaA	IBMoMu	twohit	b	1.74	0.701
+7voaA	IBMoMu	twohit	u	1.74	0.186
+7voaA	IBMoMu	loose	b	1.74	0.216
+7voaA	IBMoMu	loose	u	1.74	0.404
+7voaA	IBMoMu	real	b	1.74	0.285
+7voaA	IBMoMu	real	u	1.74	0.455
+7voaA	IBMu	twohit	b	1.74	0.618
+7voaA	IBMu	twohit	u	1.74	0.221
+7voaA	IBMu	loose	b	1.74	0.247
+7voaA	IBMu	loose	u	1.74	0.344
+7voaA	IBMu	real	b	1.74	0.513
+7voaA	IBMu	real	u	1.74	0.4
+7voaA	IBMu	surf	b	1.74	0.071
+7unzA	IBMo	twohit	b	2.962	0.076
+7unzA	IBMo	twohit	u	2.962	0.032
+7unzA	IBMo	loose	b	2.962	0.051
+7unzA	IBMo	loose	u	2.962	0.061
+7unzA	IBMo	real	b	2.962	0.055
+7unzA	IBMo	real	u	2.962	0.083
+7unzA	IB	twohit	b	4.627	0.073
+7unzA	IB	twohit	u	4.627	0.081
+7unzA	IB	loose	b	4.627	0.049
+7unzA	IB	loose	u	4.627	0.052
+7unzA	IB	real	b	4.627	0.308
+7unzA	IB	real	u	4.627	0.271
+7unzA	IBMoMu	twohit	b	2.962	0.034
+7unzA	IBMoMu	twohit	u	2.962	0.034
+7unzA	IBMoMu	loose	b	2.962	0.051
+7unzA	IBMoMu	loose	u	2.962	0.037
+7unzA	IBMoMu	real	b	2.962	0.258
+7unzA	IBMoMu	real	u	2.962	0.035
+7unzA	IBMu	twohit	b	4.543	0.063
+7unzA	IBMu	twohit	u	4.543	0.029
+7unzA	IBMu	loose	b	4.543	0.063
+7unzA	IBMu	loose	u	4.543	0.054
+7unzA	IBMu	real	b	4.543	0.036
+7unzA	IBMu	real	u	4.543	0.127
+7unzA	IBMu	surf	b	4.543	0.038
+7tgiB	IBMo	twohit	b	2.596	0.052
+7tgiB	IBMo	twohit	u	2.596	0.051
+7tgiB	IBMo	loose	b	2.596	0.152
+7tgiB	IBMo	loose	u	2.596	0.127
+7tgiB	IBMo	real	b	2.596	0.591
+7tgiB	IBMo	real	u	2.596	0.182
+7tgiB	IB	twohit	b	2.596	0.399
+7tgiB	IB	twohit	u	2.596	0.071
+7tgiB	IB	loose	b	2.596	0.094
+7tgiB	IB	loose	u	2.596	0.13
+7tgiB	IB	real	b	2.596	0.378
+7tgiB	IB	real	u	2.596	0.17
+7tgiB	IBMoMu	twohit	b	1.157	0.768
+7tgiB	IBMoMu	twohit	u	1.157	0.684
+7tgiB	IBMoMu	loose	b	1.157	0.741
+7tgiB	IBMoMu	loose	u	1.157	0.124
+7tgiB	IBMoMu	real	b	1.157	0.911
+7tgiB	IBMoMu	real	u	1.157	0.882
+7tgiB	IBMu	twohit	b	1.157	0.723
+7tgiB	IBMu	twohit	u	1.157	0.754
+7tgiB	IBMu	loose	b	1.157	0.741
+7tgiB	IBMu	loose	u	1.157	0.102
+7tgiB	IBMu	real	b	1.157	0.909
+7tgiB	IBMu	real	u	1.157	0.854
+7tgiB	IBMu	surf	b	1.157	0.109
+8h3yE	IBMo	twohit	b	1.957	0.206
+8h3yE	IBMo	twohit	u	1.957	0.401
+8h3yE	IBMo	loose	b	1.957	0.134
+8h3yE	IBMo	loose	u	1.957	0.134
+8h3yE	IBMo	real	b	1.957	0.195
+8h3yE	IBMo	real	u	1.957	0.371
+8h3yE	IB	twohit	b	2.117	0.61
+8h3yE	IB	twohit	u	2.117	0.43
+8h3yE	IB	loose	b	2.117	0.577
+8h3yE	IB	loose	u	2.117	0.379
+8h3yE	IB	real	b	2.117	0.666
+8h3yE	IB	real	u	2.117	0.408
+8h3yE	IBMoMu	twohit	b	0.565	0.889
+8h3yE	IBMoMu	twohit	u	0.565	0.592
+8h3yE	IBMoMu	loose	b	0.565	0.862
+8h3yE	IBMoMu	loose	u	0.565	0.585
+8h3yE	IBMoMu	real	b	0.565	0.885
+8h3yE	IBMoMu	real	u	0.565	0.624
+8h3yE	IBMu	twohit	b	0.565	0.888
+8h3yE	IBMu	twohit	u	0.565	0.635
+8h3yE	IBMu	loose	b	0.565	0.875
+8h3yE	IBMu	loose	u	0.565	0.615
+8h3yE	IBMu	real	b	0.565	0.893
+8h3yE	IBMu	real	u	0.565	0.635
+8h3yE	IBMu	surf	b	0.565	0.028
+8dquB	IBMo	twohit	b	1.301	0.145
+8dquB	IBMo	twohit	u	1.301	0.143
+8dquB	IBMo	loose	b	1.301	0.152
+8dquB	IBMo	loose	u	1.301	0.1
+8dquB	IBMo	real	b	1.301	0.16
+8dquB	IBMo	real	u	1.301	0.121
+8dquB	IB	twohit	b	2.215	0.13
+8dquB	IB	twohit	u	2.215	0.129
+8dquB	IB	loose	b	2.215	0.114
+8dquB	IB	loose	u	2.215	0.115
+8dquB	IB	real	b	2.215	0.388
+8dquB	IB	real	u	2.215	0.216
+8dquB	IBMoMu	twohit	b	0.597	0.894
+8dquB	IBMoMu	twohit	u	0.597	0.374
+8dquB	IBMoMu	loose	b	0.597	0.923
+8dquB	IBMoMu	loose	u	0.597	0.359
+8dquB	IBMoMu	real	b	0.597	0.913
+8dquB	IBMoMu	real	u	0.597	0.368
+8dquB	IBMu	twohit	b	0.597	0.866
+8dquB	IBMu	twohit	u	0.597	0.317
+8dquB	IBMu	loose	b	0.597	0.872
+8dquB	IBMu	loose	u	0.597	0.368
+8dquB	IBMu	real	b	0.597	0.921
+8dquB	IBMu	real	u	0.597	0.375
+8dquB	IBMu	surf	b	0.597	0.075
+7x2mB	IBMo	twohit	b	2.249	0.271
+7x2mB	IBMo	twohit	u	2.249	0.238
+7x2mB	IBMo	loose	b	2.249	0.373
+7x2mB	IBMo	loose	u	2.249	0.262
+7x2mB	IBMo	real	b	2.249	0.271
+7x2mB	IBMo	real	u	2.249	0.261
+7x2mB	IB	twohit	b	1.181	0.138
+7x2mB	IB	twohit	u	1.181	0.447
+7x2mB	IB	loose	b	1.181	0.252
+7x2mB	IB	loose	u	1.181	0.404
+7x2mB	IB	real	b	1.181	0.246
+7x2mB	IB	real	u	1.181	0.446
+7x2mB	IBMoMu	twohit	b	2.249	0.264
+7x2mB	IBMoMu	twohit	u	2.249	0.29
+7x2mB	IBMoMu	loose	b	2.249	0.359
+7x2mB	IBMoMu	loose	u	2.249	0.234
+7x2mB	IBMoMu	real	b	2.249	0.316
+7x2mB	IBMoMu	real	u	2.249	0.263
+7x2mB	IBMu	twohit	b	1.47	0.431
+7x2mB	IBMu	twohit	u	1.47	0.349
+7x2mB	IBMu	loose	b	1.47	0.522
+7x2mB	IBMu	loose	u	1.47	0.582
+7x2mB	IBMu	real	b	1.47	0.772
+7x2mB	IBMu	real	u	1.47	0.245
+7x2mB	IBMu	surf	b	1.47	0.04
+7x2lB	IBMo	twohit	b	1.051	0.74
+7x2lB	IBMo	twohit	u	1.051	0.435
+7x2lB	IBMo	loose	b	1.051	0.759
+7x2lB	IBMo	loose	u	1.051	0.618
+7x2lB	IBMo	real	b	1.051	0.858
+7x2lB	IBMo	real	u	1.051	0.708
+7x2lB	IB	twohit	b	2.254	0.15
+7x2lB	IB	twohit	u	2.254	0.359
+7x2lB	IB	loose	b	2.254	0.361
+7x2lB	IB	loose	u	2.254	0.363
+7x2lB	IB	real	b	2.254	0.449
+7x2lB	IB	real	u	2.254	0.386
+7x2lB	IBMoMu	twohit	b	0.784	0.897
+7x2lB	IBMoMu	twohit	u	0.784	0.349
+7x2lB	IBMoMu	loose	b	0.784	0.911
+7x2lB	IBMoMu	loose	u	0.784	0.615
+7x2lB	IBMoMu	real	b	0.784	0.844
+7x2lB	IBMoMu	real	u	0.784	0.721
+7x2lB	IBMu	twohit	b	0.784	0.897
+7x2lB	IBMu	twohit	u	0.784	0.349
+7x2lB	IBMu	loose	b	0.784	0.911
+7x2lB	IBMu	loose	u	0.784	0.615
+7x2lB	IBMu	real	b	0.784	0.844
+7x2lB	IBMu	real	u	0.784	0.721
+7x2lB	IBMu	surf	b	0.784	0.903
+7xqvB	IBMo	twohit	b	4.197	0.071
+7xqvB	IBMo	twohit	u	4.197	0.045
+7xqvB	IBMo	loose	b	4.197	0.069
+7xqvB	IBMo	loose	u	4.197	0.055
+7xqvB	IBMo	real	b	4.197	0.685
+7xqvB	IBMo	real	u	4.197	0.63
+7xqvB	IB	twohit	b	8.854	0.06
+7xqvB	IB	twohit	u	8.854	0.053
+7xqvB	IB	loose	b	8.854	0.002
+7xqvB	IB	loose	u	8.854	0.065
+7xqvB	IB	real	b	8.854	0.253
+7xqvB	IB	real	u	8.854	0.183
+7xqvB	IBMoMu	twohit	b	4.197	0.084
+7xqvB	IBMoMu	twohit	u	4.197	0.088
+7xqvB	IBMoMu	loose	b	4.197	0.081
+7xqvB	IBMoMu	loose	u	4.197	0.097
+7xqvB	IBMoMu	real	b	4.197	0.725
+7xqvB	IBMoMu	real	u	4.197	0.627
+7xqvB	IBMu	twohit	b	4.077	0.093
+7xqvB	IBMu	twohit	u	4.077	0.22
+7xqvB	IBMu	loose	b	4.077	0.093
+7xqvB	IBMu	loose	u	4.077	0.086
+7xqvB	IBMu	real	b	4.077	0.732
+7xqvB	IBMu	real	u	4.077	0.641
+7xqvB	IBMu	surf	b	4.077	0.103
+7th2C	IBMo	twohit	b	2.693	0.339
+7th2C	IBMo	twohit	u	2.693	0.199
+7th2C	IBMo	loose	b	2.693	0.177
+7th2C	IBMo	loose	u	2.693	0.153
+7th2C	IBMo	real	b	2.693	0.447
+7th2C	IBMo	real	u	2.693	0.362
+7th2C	IB	twohit	b	2.693	0.416
+7th2C	IB	twohit	u	2.693	0.225
+7th2C	IB	loose	b	2.693	0.133
+7th2C	IB	loose	u	2.693	0.153
+7th2C	IB	real	b	2.693	0.225
+7th2C	IB	real	u	2.693	0.147
+7th2C	IBMoMu	twohit	b	2.693	0.043
+7th2C	IBMoMu	twohit	u	2.693	0.14
+7th2C	IBMoMu	loose	b	2.693	0.199
+7th2C	IBMoMu	loose	u	2.693	0.153
+7th2C	IBMoMu	real	b	2.693	0.492
+7th2C	IBMoMu	real	u	2.693	0.363
+7th2C	IBMu	twohit	b	2.693	0.339
+7th2C	IBMu	twohit	u	2.693	0.199
+7th2C	IBMu	loose	b	2.693	0.135
+7th2C	IBMu	loose	u	2.693	0.153
+7th2C	IBMu	real	b	2.693	0.464
+7th2C	IBMu	real	u	2.693	0.362
+7th2C	IBMu	surf	b	2.693	0.066
+8dtnE	IBMo	twohit	b	5.508	0.131
+8dtnE	IBMo	twohit	u	5.508	0.177
+8dtnE	IBMo	loose	b	5.508	0.05
+8dtnE	IBMo	loose	u	5.508	0.119
+8dtnE	IBMo	real	b	5.508	0.476
+8dtnE	IBMo	real	u	5.508	0.268
+8dtnE	IB	twohit	b	5.508	0.084
+8dtnE	IB	twohit	u	5.508	0.05
+8dtnE	IB	loose	b	5.508	0.101
+8dtnE	IB	loose	u	5.508	0.145
+8dtnE	IB	real	b	5.508	0.002
+8dtnE	IB	real	u	5.508	0.249
+8dtnE	IBMoMu	twohit	b	5.189	0.085
+8dtnE	IBMoMu	twohit	u	5.189	0.177
+8dtnE	IBMoMu	loose	b	5.189	0.136
+8dtnE	IBMoMu	loose	u	5.189	0.08
+8dtnE	IBMoMu	real	b	5.189	0.468
+8dtnE	IBMoMu	real	u	5.189	0.311
+8dtnE	IBMu	twohit	b	5.189	0.07
+8dtnE	IBMu	twohit	u	5.189	0.135
+8dtnE	IBMu	loose	b	5.189	0.275
+8dtnE	IBMu	loose	u	5.189	0.145
+8dtnE	IBMu	real	b	5.189	0.513
+8dtnE	IBMu	real	u	5.189	0.236
+8dtnE	IBMu	surf	b	5.189	0.092
+7uiaB	IBMo	twohit	b	3.485	0.147
+7uiaB	IBMo	twohit	u	3.485	0.061
+7uiaB	IBMo	loose	b	3.485	0.076
+7uiaB	IBMo	loose	u	3.485	0.105
+7uiaB	IBMo	real	b	3.485	0.053
+7uiaB	IBMo	real	u	3.485	0.154
+7uiaB	IB	twohit	b	3.485	0.058
+7uiaB	IB	twohit	u	3.485	0.068
+7uiaB	IB	loose	b	3.485	0.075
+7uiaB	IB	loose	u	3.485	0.104
+7uiaB	IB	real	b	3.485	0.086
+7uiaB	IB	real	u	3.485	0.172
+7uiaB	IBMoMu	twohit	b	3.485	0.059
+7uiaB	IBMoMu	twohit	u	3.485	0.061
+7uiaB	IBMoMu	loose	b	3.485	0.105
+7uiaB	IBMoMu	loose	u	3.485	0.1
+7uiaB	IBMoMu	real	b	3.485	0.098
+7uiaB	IBMoMu	real	u	3.485	0.062
+7uiaB	IBMu	twohit	b	3.485	0.023
+7uiaB	IBMu	twohit	u	3.485	0.087
+7uiaB	IBMu	loose	b	3.485	0.066
+7uiaB	IBMu	loose	u	3.485	0.069
+7uiaB	IBMu	real	b	3.485	0.068
+7uiaB	IBMu	real	u	3.485	0.079
+7uiaB	IBMu	surf	b	3.485	0.067
+8en3C	IBMo	twohit	b	2.018	0.098
+8en3C	IBMo	twohit	u	2.018	0.076
+8en3C	IBMo	loose	b	2.018	0.131
+8en3C	IBMo	loose	u	2.018	0.147
+8en3C	IBMo	real	b	2.018	0.565
+8en3C	IBMo	real	u	2.018	0.216
+8en3C	IB	twohit	b	2.339	0.044
+8en3C	IB	twohit	u	2.339	0.138
+8en3C	IB	loose	b	2.339	0.035
+8en3C	IB	loose	u	2.339	0.22
+8en3C	IB	real	b	2.339	0.716
+8en3C	IB	real	u	2.339	0.443
+8en3C	IBMoMu	twohit	b	2.018	0.073
+8en3C	IBMoMu	twohit	u	2.018	0.079
+8en3C	IBMoMu	loose	b	2.018	0.119
+8en3C	IBMoMu	loose	u	2.018	0.157
+8en3C	IBMoMu	real	b	2.018	0.649
+8en3C	IBMoMu	real	u	2.018	0.358
+8en3C	IBMu	twohit	b	2.684	0.13
+8en3C	IBMu	twohit	u	2.684	0.112
+8en3C	IBMu	loose	b	2.684	0.112
+8en3C	IBMu	loose	u	2.684	0.097
+8en3C	IBMu	real	b	2.684	0.12
+8en3C	IBMu	real	u	2.684	0.311
+8en3C	IBMu	surf	b	2.684	0.13
+7ubxC	IBMo	twohit	b	1.595	0.076
+7ubxC	IBMo	twohit	u	1.595	0.076
+7ubxC	IBMo	loose	b	1.595	0.158
+7ubxC	IBMo	loose	u	1.595	0.066
+7ubxC	IBMo	real	b	1.595	0.822
+7ubxC	IBMo	real	u	1.595	0.768
+7ubxC	IB	twohit	b	5.071	0.091
+7ubxC	IB	twohit	u	5.071	0.076
+7ubxC	IB	loose	b	5.071	0.075
+7ubxC	IB	loose	u	5.071	0.071
+7ubxC	IB	real	b	5.071	0.447
+7ubxC	IB	real	u	5.071	0.471
+7ubxC	IBMoMu	twohit	b	0.989	0.076
+7ubxC	IBMoMu	twohit	u	0.989	0.076
+7ubxC	IBMoMu	loose	b	0.989	0.069
+7ubxC	IBMoMu	loose	u	0.989	0.077
+7ubxC	IBMoMu	real	b	0.989	0.821
+7ubxC	IBMoMu	real	u	0.989	0.773
+7ubxC	IBMu	twohit	b	0.989	0.069
+7ubxC	IBMu	twohit	u	0.989	0.074
+7ubxC	IBMu	loose	b	0.989	0.125
+7ubxC	IBMu	loose	u	0.989	0.071
+7ubxC	IBMu	real	b	0.989	0.54
+7ubxC	IBMu	real	u	0.989	0.516
+7ubxC	IBMu	surf	b	0.989	0.025
+8bb7D	IBMo	twohit	b	0.938	0.676
+8bb7D	IBMo	twohit	u	0.938	0.218
+8bb7D	IBMo	loose	b	0.938	0.627
+8bb7D	IBMo	loose	u	0.938	0.533
+8bb7D	IBMo	real	b	0.938	0.872
+8bb7D	IBMo	real	u	0.938	0.52
+8bb7D	IB	twohit	b	2.279	0.32
+8bb7D	IB	twohit	u	2.279	0.241
+8bb7D	IB	loose	b	2.279	0.34
+8bb7D	IB	loose	u	2.279	0.277
+8bb7D	IB	real	b	2.279	0.481
+8bb7D	IB	real	u	2.279	0.342
+8bb7D	IBMoMu	twohit	b	0.938	0.686
+8bb7D	IBMoMu	twohit	u	0.938	0.067
+8bb7D	IBMoMu	loose	b	0.938	0.774
+8bb7D	IBMoMu	loose	u	0.938	0.066
+8bb7D	IBMoMu	real	b	0.938	0.884
+8bb7D	IBMoMu	real	u	0.938	0.569
+8bb7D	IBMu	twohit	b	1.387	0.046
+8bb7D	IBMu	twohit	u	1.387	0.067
+8bb7D	IBMu	loose	b	1.387	0.453
+8bb7D	IBMu	loose	u	1.387	0.263
+8bb7D	IBMu	real	b	1.387	0.697
+8bb7D	IBMu	real	u	1.387	0.399
+8bb7D	IBMu	surf	b	1.387	0.028
+7tprE	IBMo	twohit	b	2.374	0.019
+7tprE	IBMo	twohit	u	2.374	0.039
+7tprE	IBMo	loose	b	2.374	0.023
+7tprE	IBMo	loose	u	2.374	0.058
+7tprE	IBMo	real	b	2.374	0.633
+7tprE	IBMo	real	u	2.374	0.327
+7tprE	IB	twohit	b	1.65	0.043
+7tprE	IB	twohit	u	1.65	0.053
+7tprE	IB	loose	b	1.65	0.032
+7tprE	IB	loose	u	1.65	0.054
+7tprE	IB	real	b	1.65	0.678
+7tprE	IB	real	u	1.65	0.466
+7tprE	IBMoMu	twohit	b	2.374	0.025
+7tprE	IBMoMu	twohit	u	2.374	0.038
+7tprE	IBMoMu	loose	b	2.374	0.024
+7tprE	IBMoMu	loose	u	2.374	0.068
+7tprE	IBMoMu	real	b	2.374	0.659
+7tprE	IBMoMu	real	u	2.374	0.344
+7tprE	IBMu	twohit	b	2.374	0.043
+7tprE	IBMu	twohit	u	2.374	0.049
+7tprE	IBMu	loose	b	2.374	0.033
+7tprE	IBMu	loose	u	2.374	0.051
+7tprE	IBMu	real	b	2.374	0.603
+7tprE	IBMu	real	u	2.374	0.331
+7tprE	IBMu	surf	b	2.374	0.019
+8en0D	IBMo	twohit	b	3.643	0.132
+8en0D	IBMo	twohit	u	3.643	0.077
+8en0D	IBMo	loose	b	3.643	0.109
+8en0D	IBMo	loose	u	3.643	0.129
+8en0D	IBMo	real	b	3.643	0.131
+8en0D	IBMo	real	u	3.643	0.126
+8en0D	IB	twohit	b	3.801	0.123
+8en0D	IB	twohit	u	3.801	0.082
+8en0D	IB	loose	b	3.801	0.115
+8en0D	IB	loose	u	3.801	0.126
+8en0D	IB	real	b	3.801	0.132
+8en0D	IB	real	u	3.801	0.237
+8en0D	IBMoMu	twohit	b	3.643	0.122
+8en0D	IBMoMu	twohit	u	3.643	0.116
+8en0D	IBMoMu	loose	b	3.643	0.322
+8en0D	IBMoMu	loose	u	3.643	0.128
+8en0D	IBMoMu	real	b	3.643	0.125
+8en0D	IBMoMu	real	u	3.643	0.13
+8en0D	IBMu	twohit	b	3.555	0.105
+8en0D	IBMu	twohit	u	3.555	0.094
+8en0D	IBMu	loose	b	3.555	0.1
+8en0D	IBMu	loose	u	3.555	0.129
+8en0D	IBMu	real	b	3.555	0.14
+8en0D	IBMu	real	u	3.555	0.353
+8en0D	IBMu	surf	b	3.555	0.029
+8ew6V	IBMo	twohit	b	1.35	0.101
+8ew6V	IBMo	twohit	u	1.35	0.114
+8ew6V	IBMo	loose	b	1.35	0.696
+8ew6V	IBMo	loose	u	1.35	0.109
+8ew6V	IBMo	real	b	1.35	0.676
+8ew6V	IBMo	real	u	1.35	0.344
+8ew6V	IB	twohit	b	2.825	0.382
+8ew6V	IB	twohit	u	2.825	0.083
+8ew6V	IB	loose	b	2.825	0.002
+8ew6V	IB	loose	u	2.825	0.291
+8ew6V	IB	real	b	2.825	0.532
+8ew6V	IB	real	u	2.825	0.304
+8ew6V	IBMoMu	twohit	b	1.35	0.104
+8ew6V	IBMoMu	twohit	u	1.35	0.11
+8ew6V	IBMoMu	loose	b	1.35	0.925
+8ew6V	IBMoMu	loose	u	1.35	0.477
+8ew6V	IBMoMu	real	b	1.35	0.922
+8ew6V	IBMoMu	real	u	1.35	0.39
+8ew6V	IBMu	twohit	b	1.414	0.124
+8ew6V	IBMu	twohit	u	1.414	0.097
+8ew6V	IBMu	loose	b	1.414	0.878
+8ew6V	IBMu	loose	u	1.414	0.189
+8ew6V	IBMu	real	b	1.414	0.902
+8ew6V	IBMu	real	u	1.414	0.546
+8ew6V	IBMu	surf	b	1.414	0.857
+7whiG	IBMo	twohit	b	2.089	0.008
+7whiG	IBMo	twohit	u	2.089	0.032
+7whiG	IBMo	loose	b	2.089	0.069
+7whiG	IBMo	loose	u	2.089	0.163
+7whiG	IBMo	real	b	2.089	0.127
+7whiG	IBMo	real	u	2.089	0.177
+7whiG	IB	twohit	b	0.794	0.724
+7whiG	IB	twohit	u	0.794	0.332
+7whiG	IB	loose	b	0.794	0.752
+7whiG	IB	loose	u	0.794	0.505
+7whiG	IB	real	b	0.794	0.0
+7whiG	IB	real	u	0.794	0.53
+7whiG	IBMoMu	twohit	b	2.089	0.028
+7whiG	IBMoMu	twohit	u	2.089	0.03
+7whiG	IBMoMu	loose	b	2.089	0.07
+7whiG	IBMoMu	loose	u	2.089	0.163
+7whiG	IBMoMu	real	b	2.089	0.083
+7whiG	IBMoMu	real	u	2.089	0.176
+7whiG	IBMu	twohit	b	0.946	0.703
+7whiG	IBMu	twohit	u	0.946	0.266
+7whiG	IBMu	loose	b	0.946	0.059
+7whiG	IBMu	loose	u	0.946	0.5
+7whiG	IBMu	real	b	0.946	0.827
+7whiG	IBMu	real	u	0.946	0.529
+7whiG	IBMu	surf	b	0.946	0.003
+7x7eA	IBMo	twohit	b	1.283	0.089
+7x7eA	IBMo	twohit	u	1.283	0.096
+7x7eA	IBMo	loose	b	1.283	0.071
+7x7eA	IBMo	loose	u	1.283	0.349
+7x7eA	IBMo	real	b	1.283	0.857
+7x7eA	IBMo	real	u	1.283	0.445
+7x7eA	IB	twohit	b	1.111	0.55
+7x7eA	IB	twohit	u	1.111	0.508
+7x7eA	IB	loose	b	1.111	0.001
+7x7eA	IB	loose	u	1.111	0.349
+7x7eA	IB	real	b	1.111	0.001
+7x7eA	IB	real	u	1.111	0.495
+7x7eA	IBMoMu	twohit	b	1.283	0.731
+7x7eA	IBMoMu	twohit	u	1.283	0.083
+7x7eA	IBMoMu	loose	b	1.283	0.753
+7x7eA	IBMoMu	loose	u	1.283	0.115
+7x7eA	IBMoMu	real	b	1.283	0.87
+7x7eA	IBMoMu	real	u	1.283	0.475
+7x7eA	IBMu	twohit	b	1.283	0.761
+7x7eA	IBMu	twohit	u	1.283	0.099
+7x7eA	IBMu	loose	b	1.283	0.085
+7x7eA	IBMu	loose	u	1.283	0.093
+7x7eA	IBMu	real	b	1.283	0.889
+7x7eA	IBMu	real	u	1.283	0.586
+7x7eA	IBMu	surf	b	1.283	0.067
+7t5fF	IBMo	twohit	b	1.309	0.099
+7t5fF	IBMo	twohit	u	1.309	0.134
+7t5fF	IBMo	loose	b	1.309	0.079
+7t5fF	IBMo	loose	u	1.309	0.086
+7t5fF	IBMo	real	b	1.309	0.665
+7t5fF	IBMo	real	u	1.309	0.673
+7t5fF	IB	twohit	b	0.581	0.056
+7t5fF	IB	twohit	u	0.581	0.053
+7t5fF	IB	loose	b	0.581	0.062
+7t5fF	IB	loose	u	0.581	0.074
+7t5fF	IB	real	b	0.581	0.91
+7t5fF	IB	real	u	0.581	0.863
+7t5fF	IBMoMu	twohit	b	1.309	0.321
+7t5fF	IBMoMu	twohit	u	1.309	0.134
+7t5fF	IBMoMu	loose	b	1.309	0.054
+7t5fF	IBMoMu	loose	u	1.309	0.086
+7t5fF	IBMoMu	real	b	1.309	0.69
+7t5fF	IBMoMu	real	u	1.309	0.649
+7t5fF	IBMu	twohit	b	1.778	0.252
+7t5fF	IBMu	twohit	u	1.778	0.04
+7t5fF	IBMu	loose	b	1.778	0.053
+7t5fF	IBMu	loose	u	1.778	0.04
+7t5fF	IBMu	real	b	1.778	0.715
+7t5fF	IBMu	real	u	1.778	0.641
+7t5fF	IBMu	surf	b	1.778	0.055
+7r24C	IBMo	twohit	b	1.532	0.094
+7r24C	IBMo	twohit	u	1.532	0.083
+7r24C	IBMo	loose	b	1.532	0.052
+7r24C	IBMo	loose	u	1.532	0.054
+7r24C	IBMo	real	b	1.532	0.441
+7r24C	IBMo	real	u	1.532	0.112
+7r24C	IB	twohit	b	2.996	0.095
+7r24C	IB	twohit	u	2.996	0.099
+7r24C	IB	loose	b	2.996	0.001
+7r24C	IB	loose	u	2.996	0.118
+7r24C	IB	real	b	2.996	0.344
+7r24C	IB	real	u	2.996	0.116
+7r24C	IBMoMu	twohit	b	1.532	0.097
+7r24C	IBMoMu	twohit	u	1.532	0.105
+7r24C	IBMoMu	loose	b	1.532	0.044
+7r24C	IBMoMu	loose	u	1.532	0.049
+7r24C	IBMoMu	real	b	1.532	0.267
+7r24C	IBMoMu	real	u	1.532	0.135
+7r24C	IBMu	twohit	b	2.001	0.695
+7r24C	IBMu	twohit	u	2.001	0.083
+7r24C	IBMu	loose	b	2.001	0.062
+7r24C	IBMu	loose	u	2.001	0.054
+7r24C	IBMu	real	b	2.001	0.682
+7r24C	IBMu	real	u	2.001	0.243
+7r24C	IBMu	surf	b	2.001	0.056
+8emzB	IBMo	twohit	b	2.192	0.589
+8emzB	IBMo	twohit	u	2.192	0.661
+8emzB	IBMo	loose	b	2.192	0.632
+8emzB	IBMo	loose	u	2.192	0.66
+8emzB	IBMo	real	b	2.192	0.689
+8emzB	IBMo	real	u	2.192	0.691
+8emzB	IB	twohit	b	2.192	0.318
+8emzB	IB	twohit	u	2.192	0.355
+8emzB	IB	loose	b	2.192	0.309
+8emzB	IB	loose	u	2.192	0.331
+8emzB	IB	real	b	2.192	0.461
+8emzB	IB	real	u	2.192	0.296
+8emzB	IBMoMu	twohit	b	2.192	0.506
+8emzB	IBMoMu	twohit	u	2.192	0.481
+8emzB	IBMoMu	loose	b	2.192	0.542
+8emzB	IBMoMu	loose	u	2.192	0.592
+8emzB	IBMoMu	real	b	2.192	0.656
+8emzB	IBMoMu	real	u	2.192	0.669
+8emzB	IBMu	twohit	b	2.192	0.532
+8emzB	IBMu	twohit	u	2.192	0.481
+8emzB	IBMu	loose	b	2.192	0.556
+8emzB	IBMu	loose	u	2.192	0.592
+8emzB	IBMu	real	b	2.192	0.656
+8emzB	IBMu	real	u	2.192	0.669
+8emzB	IBMu	surf	b	2.192	0.433
+7qbgE	IBMo	twohit	b	2.408	0.67
+7qbgE	IBMo	twohit	u	2.408	0.218
+7qbgE	IBMo	loose	b	2.408	0.693
+7qbgE	IBMo	loose	u	2.408	0.181
+7qbgE	IBMo	real	b	2.408	0.776
+7qbgE	IBMo	real	u	2.408	0.245
+7qbgE	IB	twohit	b	0.757	0.095
+7qbgE	IB	twohit	u	0.757	0.232
+7qbgE	IB	loose	b	0.757	0.86
+7qbgE	IB	loose	u	0.757	0.256
+7qbgE	IB	real	b	0.757	0.857
+7qbgE	IB	real	u	0.757	0.286
+7qbgE	IBMoMu	twohit	b	2.408	0.037
+7qbgE	IBMoMu	twohit	u	2.408	0.466
+7qbgE	IBMoMu	loose	b	2.408	0.693
+7qbgE	IBMoMu	loose	u	2.408	0.181
+7qbgE	IBMoMu	real	b	2.408	0.793
+7qbgE	IBMoMu	real	u	2.408	0.348
+7qbgE	IBMu	twohit	b	2.326	0.09
+7qbgE	IBMu	twohit	u	2.326	0.466
+7qbgE	IBMu	loose	b	2.326	0.516
+7qbgE	IBMu	loose	u	2.326	0.296
+7qbgE	IBMu	real	b	2.326	0.735
+7qbgE	IBMu	real	u	2.326	0.03
+7qbgE	IBMu	surf	b	2.326	0.02
+7b5gD	IBMo	twohit	b	1.081	0.042
+7b5gD	IBMo	twohit	u	1.081	0.038
+7b5gD	IBMo	loose	b	1.081	0.039
+7b5gD	IBMo	loose	u	1.081	0.03
+7b5gD	IBMo	real	b	1.081	0.91
+7b5gD	IBMo	real	u	1.081	0.77
+7b5gD	IB	twohit	b	5.441	0.037
+7b5gD	IB	twohit	u	5.441	0.039
+7b5gD	IB	loose	b	5.441	0.063
+7b5gD	IB	loose	u	5.441	0.07
+7b5gD	IB	real	b	5.441	0.232
+7b5gD	IB	real	u	5.441	0.22
+7b5gD	IBMoMu	twohit	b	1.081	0.037
+7b5gD	IBMoMu	twohit	u	1.081	0.043
+7b5gD	IBMoMu	loose	b	1.081	0.05
+7b5gD	IBMoMu	loose	u	1.081	0.093
+7b5gD	IBMoMu	real	b	1.081	0.902
+7b5gD	IBMoMu	real	u	1.081	0.751
+7b5gD	IBMu	twohit	b	1.24	0.037
+7b5gD	IBMu	twohit	u	1.24	0.043
+7b5gD	IBMu	loose	b	1.24	0.05
+7b5gD	IBMu	loose	u	1.24	0.055
+7b5gD	IBMu	real	b	1.24	0.891
+7b5gD	IBMu	real	u	1.24	0.766
+7b5gD	IBMu	surf	b	1.24	0.038
+7nxxB	IBMo	twohit	b	1.749	0.073
+7nxxB	IBMo	twohit	u	1.749	0.112
+7nxxB	IBMo	loose	b	1.749	0.078
+7nxxB	IBMo	loose	u	1.749	0.521
+7nxxB	IBMo	real	b	1.749	0.644
+7nxxB	IBMo	real	u	1.749	0.446
+7nxxB	IB	twohit	b	2.793	0.282
+7nxxB	IB	twohit	u	2.793	0.113
+7nxxB	IB	loose	b	2.793	0.001
+7nxxB	IB	loose	u	2.793	0.118
+7nxxB	IB	real	b	2.793	0.634
+7nxxB	IB	real	u	2.793	0.086
+7nxxB	IBMoMu	twohit	b	1.749	0.079
+7nxxB	IBMoMu	twohit	u	1.749	0.112
+7nxxB	IBMoMu	loose	b	1.749	0.087
+7nxxB	IBMoMu	loose	u	1.749	0.081
+7nxxB	IBMoMu	real	b	1.749	0.644
+7nxxB	IBMoMu	real	u	1.749	0.446
+7nxxB	IBMu	twohit	b	2.562	0.446
+7nxxB	IBMu	twohit	u	2.562	0.149
+7nxxB	IBMu	loose	b	2.562	0.169
+7nxxB	IBMu	loose	u	2.562	0.38
+7nxxB	IBMu	real	b	2.562	0.645
+7nxxB	IBMu	real	u	2.562	0.391
+7nxxB	IBMu	surf	b	2.562	0.043
+7tgfB	IBMo	twohit	b	2.766	0.38
+7tgfB	IBMo	twohit	u	2.766	0.083
+7tgfB	IBMo	loose	b	2.766	0.171
+7tgfB	IBMo	loose	u	2.766	0.2
+7tgfB	IBMo	real	b	2.766	0.581
+7tgfB	IBMo	real	u	2.766	0.189
+7tgfB	IB	twohit	b	3.383	0.426
+7tgfB	IB	twohit	u	3.383	0.262
+7tgfB	IB	loose	b	3.383	0.118
+7tgfB	IB	loose	u	3.383	0.125
+7tgfB	IB	real	b	3.383	0.598
+7tgfB	IB	real	u	3.383	0.184
+7tgfB	IBMoMu	twohit	b	1.738	0.819
+7tgfB	IBMoMu	twohit	u	1.738	0.122
+7tgfB	IBMoMu	loose	b	1.738	0.859
+7tgfB	IBMoMu	loose	u	1.738	0.826
+7tgfB	IBMoMu	real	b	1.738	0.837
+7tgfB	IBMoMu	real	u	1.738	0.788
+7tgfB	IBMu	twohit	b	1.738	0.828
+7tgfB	IBMu	twohit	u	1.738	0.099
+7tgfB	IBMu	loose	b	1.738	0.824
+7tgfB	IBMu	loose	u	1.738	0.171
+7tgfB	IBMu	real	b	1.738	0.891
+7tgfB	IBMu	real	u	1.738	0.819
+7tgfB	IBMu	surf	b	1.738	0.035
+7r24E	IBMo	twohit	b	1.765	0.038
+7r24E	IBMo	twohit	u	1.765	0.31
+7r24E	IBMo	loose	b	1.765	0.327
+7r24E	IBMo	loose	u	1.765	0.306
+7r24E	IBMo	real	b	1.765	0.435
+7r24E	IBMo	real	u	1.765	0.358
+7r24E	IB	twohit	b	1.064	0.863
+7r24E	IB	twohit	u	1.064	0.423
+7r24E	IB	loose	b	1.064	0.763
+7r24E	IB	loose	u	1.064	0.415
+7r24E	IB	real	b	1.064	0.916
+7r24E	IB	real	u	1.064	0.436
+7r24E	IBMoMu	twohit	b	1.113	0.491
+7r24E	IBMoMu	twohit	u	1.113	0.46
+7r24E	IBMoMu	loose	b	1.113	0.512
+7r24E	IBMoMu	loose	u	1.113	0.458
+7r24E	IBMoMu	real	b	1.113	0.898
+7r24E	IBMoMu	real	u	1.113	0.481
+7r24E	IBMu	twohit	b	1.113	0.46
+7r24E	IBMu	twohit	u	1.113	0.433
+7r24E	IBMu	loose	b	1.113	0.619
+7r24E	IBMu	loose	u	1.113	0.447
+7r24E	IBMu	real	b	1.113	0.857
+7r24E	IBMu	real	u	1.113	0.478
+7r24E	IBMu	surf	b	1.113	0.039
+7zmvG	IBMo	twohit	b	1.066	0.216
+7zmvG	IBMo	twohit	u	1.066	0.443
+7zmvG	IBMo	loose	b	1.066	0.766
+7zmvG	IBMo	loose	u	1.066	0.496
+7zmvG	IBMo	real	b	1.066	0.888
+7zmvG	IBMo	real	u	1.066	0.553
+7zmvG	IB	twohit	b	0.915	0.789
+7zmvG	IB	twohit	u	0.915	0.45
+7zmvG	IB	loose	b	0.915	0.874
+7zmvG	IB	loose	u	0.915	0.49
+7zmvG	IB	real	b	0.915	0.94
+7zmvG	IB	real	u	0.915	0.59
+7zmvG	IBMoMu	twohit	b	1.066	0.087
+7zmvG	IBMoMu	twohit	u	1.066	0.07
+7zmvG	IBMoMu	loose	b	1.066	0.86
+7zmvG	IBMoMu	loose	u	1.066	0.49
+7zmvG	IBMoMu	real	b	1.066	0.898
+7zmvG	IBMoMu	real	u	1.066	0.566
+7zmvG	IBMu	twohit	b	1.066	0.066
+7zmvG	IBMu	twohit	u	1.066	0.45
+7zmvG	IBMu	loose	b	1.066	0.86
+7zmvG	IBMu	loose	u	1.066	0.506
+7zmvG	IBMu	real	b	1.066	0.898
+7zmvG	IBMu	real	u	1.066	0.566
+7zmvG	IBMu	surf	b	1.066	0.032
+7w1sB	IBMo	twohit	b	1.475	0.169
+7w1sB	IBMo	twohit	u	1.475	0.526
+7w1sB	IBMo	loose	b	1.475	0.16
+7w1sB	IBMo	loose	u	1.475	0.582
+7w1sB	IBMo	real	b	1.475	0.606
+7w1sB	IBMo	real	u	1.475	0.627
+7w1sB	IB	twohit	b	1.853	0.225
+7w1sB	IB	twohit	u	1.853	0.172
+7w1sB	IB	loose	b	1.853	0.142
+7w1sB	IB	loose	u	1.853	0.424
+7w1sB	IB	real	b	1.853	0.11
+7w1sB	IB	real	u	1.853	0.374
+7w1sB	IBMoMu	twohit	b	1.475	0.182
+7w1sB	IBMoMu	twohit	u	1.475	0.465
+7w1sB	IBMoMu	loose	b	1.475	0.184
+7w1sB	IBMoMu	loose	u	1.475	0.511
+7w1sB	IBMoMu	real	b	1.475	0.194
+7w1sB	IBMoMu	real	u	1.475	0.64
+7w1sB	IBMu	twohit	b	1.365	0.565
+7w1sB	IBMu	twohit	u	1.365	0.761
+7w1sB	IBMu	loose	b	1.365	0.841
+7w1sB	IBMu	loose	u	1.365	0.437
+7w1sB	IBMu	real	b	1.365	0.848
+7w1sB	IBMu	real	u	1.365	0.723
+7w1sB	IBMu	surf	b	1.365	0.718
+7wd2D	IBMo	twohit	b	2.606	0.559
+7wd2D	IBMo	twohit	u	2.606	0.432
+7wd2D	IBMo	loose	b	2.606	0.204
+7wd2D	IBMo	loose	u	2.606	0.081
+7wd2D	IBMo	real	b	2.606	0.515
+7wd2D	IBMo	real	u	2.606	0.367
+7wd2D	IB	twohit	b	2.606	0.531
+7wd2D	IB	twohit	u	2.606	0.45
+7wd2D	IB	loose	b	2.606	0.001
+7wd2D	IB	loose	u	2.606	0.16
+7wd2D	IB	real	b	2.606	0.571
+7wd2D	IB	real	u	2.606	0.262
+7wd2D	IBMoMu	twohit	b	1.617	0.509
+7wd2D	IBMoMu	twohit	u	1.617	0.248
+7wd2D	IBMoMu	loose	b	1.617	0.209
+7wd2D	IBMoMu	loose	u	1.617	0.157
+7wd2D	IBMoMu	real	b	1.617	0.408
+7wd2D	IBMoMu	real	u	1.617	0.283
+7wd2D	IBMu	twohit	b	1.617	0.383
+7wd2D	IBMu	twohit	u	1.617	0.432
+7wd2D	IBMu	loose	b	1.617	0.236
+7wd2D	IBMu	loose	u	1.617	0.071
+7wd2D	IBMu	real	b	1.617	0.515
+7wd2D	IBMu	real	u	1.617	0.283
+7wd2D	IBMu	surf	b	1.617	0.055
+7yz9B	IBMo	twohit	b	3.994	0.133
+7yz9B	IBMo	twohit	u	3.994	0.158
+7yz9B	IBMo	loose	b	3.994	0.247
+7yz9B	IBMo	loose	u	3.994	0.096
+7yz9B	IBMo	real	b	3.994	0.477
+7yz9B	IBMo	real	u	3.994	0.332
+7yz9B	IB	twohit	b	3.866	0.077
+7yz9B	IB	twohit	u	3.866	0.114
+7yz9B	IB	loose	b	3.866	0.117
+7yz9B	IB	loose	u	3.866	0.382
+7yz9B	IB	real	b	3.866	0.217
+7yz9B	IB	real	u	3.866	0.177
+7yz9B	IBMoMu	twohit	b	3.285	0.133
+7yz9B	IBMoMu	twohit	u	3.285	0.136
+7yz9B	IBMoMu	loose	b	3.285	0.058
+7yz9B	IBMoMu	loose	u	3.285	0.06
+7yz9B	IBMoMu	real	b	3.285	0.577
+7yz9B	IBMoMu	real	u	3.285	0.533
+7yz9B	IBMu	twohit	b	3.285	0.121
+7yz9B	IBMu	twohit	u	3.285	0.072
+7yz9B	IBMu	loose	b	3.285	0.139
+7yz9B	IBMu	loose	u	3.285	0.105
+7yz9B	IBMu	real	b	3.285	0.535
+7yz9B	IBMu	real	u	3.285	0.182
+7yz9B	IBMu	surf	b	3.285	0.857

@@ -1,109 +1,175 @@
-scenario	antigen	top	CAPRI_class	sr
-true	bound	1	acceptable	74.4186046511628
-true	bound	1	medium	58.139534883720934
-true	bound	1	high	27.906976744186046
-true	unbound	1	acceptable	67.44186046511628
-true	unbound	1	medium	41.86046511627907
-true	unbound	1	high	4.651162790697675
-true	bound	2	acceptable	93.02325581395348
-true	bound	2	medium	72.09302325581395
-true	bound	2	high	32.55813953488372
-true	unbound	2	acceptable	81.3953488372093
-true	unbound	2	medium	46.51162790697674
-true	unbound	2	high	6.976744186046512
-true	bound	3	acceptable	95.34883720930233
-true	bound	3	medium	79.06976744186046
-true	bound	3	high	32.55813953488372
-true	unbound	3	acceptable	86.04651162790698
-true	unbound	3	medium	51.162790697674424
-true	unbound	3	high	6.976744186046512
-true	bound	4	acceptable	97.67441860465115
-true	bound	4	medium	79.06976744186046
-true	bound	4	high	32.55813953488372
-true	unbound	4	acceptable	90.69767441860465
-true	unbound	4	medium	51.162790697674424
-true	unbound	4	high	6.976744186046512
-true	bound	5	acceptable	97.67441860465115
-true	bound	5	medium	79.06976744186046
-true	bound	5	high	32.55813953488372
-true	unbound	5	acceptable	93.02325581395348
-true	unbound	5	medium	55.81395348837209
-true	unbound	5	high	6.976744186046512
-true	bound	10	acceptable	97.67441860465115
-true	bound	10	medium	86.04651162790698
-true	bound	10	high	32.55813953488372
-true	unbound	10	acceptable	93.02325581395348
-true	unbound	10	medium	62.7906976744186
-true	unbound	10	high	6.976744186046512
-loose	bound	1	acceptable	27.906976744186046
-loose	bound	1	medium	16.27906976744186
-loose	bound	1	high	11.627906976744185
-loose	unbound	1	acceptable	18.6046511627907
-loose	unbound	1	medium	11.627906976744185
-loose	unbound	1	high	0.0
-loose	bound	2	acceptable	32.55813953488372
-loose	bound	2	medium	20.930232558139537
-loose	bound	2	high	13.953488372093023
-loose	unbound	2	acceptable	27.906976744186046
-loose	unbound	2	medium	18.6046511627907
-loose	unbound	2	high	0.0
-loose	bound	3	acceptable	41.86046511627907
-loose	bound	3	medium	25.581395348837212
-loose	bound	3	high	13.953488372093023
-loose	unbound	3	acceptable	30.23255813953488
-loose	unbound	3	medium	18.6046511627907
-loose	unbound	3	high	0.0
-loose	bound	4	acceptable	51.162790697674424
-loose	bound	4	medium	27.906976744186046
-loose	bound	4	high	13.953488372093023
-loose	unbound	4	acceptable	32.55813953488372
-loose	unbound	4	medium	18.6046511627907
-loose	unbound	4	high	0.0
-loose	bound	5	acceptable	58.139534883720934
-loose	bound	5	medium	34.883720930232556
-loose	bound	5	high	13.953488372093023
-loose	unbound	5	acceptable	39.53488372093023
-loose	unbound	5	medium	18.6046511627907
-loose	unbound	5	high	0.0
-loose	bound	10	acceptable	65.11627906976744
-loose	bound	10	medium	37.2093023255814
-loose	bound	10	high	13.953488372093023
-loose	unbound	10	acceptable	51.162790697674424
-loose	unbound	10	medium	18.6046511627907
-loose	unbound	10	high	0.0
-two-hit	bound	1	acceptable	27.906976744186046
-two-hit	bound	1	medium	16.27906976744186
-two-hit	bound	1	high	6.976744186046512
-two-hit	unbound	1	acceptable	13.953488372093023
-two-hit	unbound	1	medium	4.651162790697675
-two-hit	unbound	1	high	0.0
-two-hit	bound	2	acceptable	34.883720930232556
-two-hit	bound	2	medium	18.6046511627907
-two-hit	bound	2	high	6.976744186046512
-two-hit	unbound	2	acceptable	23.25581395348837
-two-hit	unbound	2	medium	9.30232558139535
-two-hit	unbound	2	high	0.0
-two-hit	bound	3	acceptable	37.2093023255814
-two-hit	bound	3	medium	18.6046511627907
-two-hit	bound	3	high	6.976744186046512
-two-hit	unbound	3	acceptable	30.23255813953488
-two-hit	unbound	3	medium	9.30232558139535
-two-hit	unbound	3	high	0.0
-two-hit	bound	4	acceptable	39.53488372093023
-two-hit	bound	4	medium	18.6046511627907
-two-hit	bound	4	high	6.976744186046512
-two-hit	unbound	4	acceptable	32.55813953488372
-two-hit	unbound	4	medium	13.953488372093023
-two-hit	unbound	4	high	0.0
-two-hit	bound	5	acceptable	44.18604651162791
-two-hit	bound	5	medium	20.930232558139537
-two-hit	bound	5	high	6.976744186046512
-two-hit	unbound	5	acceptable	32.55813953488372
-two-hit	unbound	5	medium	16.27906976744186
-two-hit	unbound	5	high	0.0
-two-hit	bound	10	acceptable	53.48837209302325
-two-hit	bound	10	medium	27.906976744186046
-two-hit	bound	10	high	9.30232558139535
-two-hit	unbound	10	acceptable	39.53488372093023
-two-hit	unbound	10	medium	16.27906976744186
-two-hit	unbound	10	high	0.0
+ensemble	scenario	struct	rank	stage	acc_sr	med_sr	high_sr
+IBMo	twohit	b	1	clust	0.15	0.05	0.0
+IBMo	twohit	b	2	clust	0.225	0.075	0.0
+IBMo	twohit	b	3	clust	0.3	0.125	0.0
+IBMo	twohit	b	4	clust	0.375	0.15	0.0
+IBMo	twohit	b	5	clust	0.475	0.175	0.0
+IBMo	twohit	b	10	clust	0.525	0.2	0.0
+IBMo	loose	u	1	clust	0.1	0.0	0.0
+IBMo	loose	u	2	clust	0.175	0.05	0.0
+IBMo	loose	u	3	clust	0.275	0.1	0.0
+IBMo	loose	u	4	clust	0.325	0.1	0.0
+IBMo	loose	u	5	clust	0.375	0.125	0.0
+IBMo	loose	u	10	clust	0.45	0.125	0.0
+IBMo	real	u	1	clust	0.475	0.15	0.0
+IBMo	real	u	2	clust	0.625	0.275	0.0
+IBMo	real	u	3	clust	0.725	0.3	0.0
+IBMo	real	u	4	clust	0.8	0.325	0.0
+IBMo	real	u	5	clust	0.875	0.325	0.0
+IBMo	real	u	10	clust	0.9	0.35	0.0
+IBMo	real	b	1	clust	0.575	0.45	0.15
+IBMo	real	b	2	clust	0.775	0.575	0.15
+IBMo	real	b	3	clust	0.85	0.6	0.15
+IBMo	real	b	4	clust	0.975	0.65	0.15
+IBMo	real	b	5	clust	0.975	0.725	0.15
+IBMo	real	b	10	clust	1.0	0.725	0.15
+IBMo	twohit	u	1	clust	0.075	0.0	0.0
+IBMo	twohit	u	2	clust	0.1	0.025	0.0
+IBMo	twohit	u	3	clust	0.125	0.025	0.0
+IBMo	twohit	u	4	clust	0.175	0.025	0.0
+IBMo	twohit	u	5	clust	0.225	0.025	0.0
+IBMo	twohit	u	10	clust	0.325	0.025	0.0
+IBMo	loose	b	1	clust	0.225	0.1	0.0
+IBMo	loose	b	2	clust	0.3	0.125	0.025
+IBMo	loose	b	3	clust	0.325	0.15	0.025
+IBMo	loose	b	4	clust	0.35	0.15	0.025
+IBMo	loose	b	5	clust	0.4	0.175	0.025
+IBMo	loose	b	10	clust	0.425	0.175	0.025
+IB	twohit	b	1	clust	0.2	0.125	0.05
+IB	twohit	b	2	clust	0.325	0.15	0.05
+IB	twohit	b	3	clust	0.375	0.175	0.05
+IB	twohit	b	4	clust	0.45	0.2	0.075
+IB	twohit	b	5	clust	0.45	0.2	0.075
+IB	twohit	b	10	clust	0.5	0.225	0.075
+IBMoMu	twohit	u	1	clust	0.175	0.05	0.0
+IBMoMu	twohit	u	2	clust	0.2	0.05	0.0
+IBMoMu	twohit	u	3	clust	0.225	0.05	0.0
+IBMoMu	twohit	u	4	clust	0.25	0.05	0.0
+IBMoMu	twohit	u	5	clust	0.3	0.125	0.0
+IBMoMu	twohit	u	10	clust	0.425	0.125	0.0
+IBMoMu	real	u	1	clust	0.55	0.425	0.05
+IBMoMu	real	u	2	clust	0.675	0.475	0.05
+IBMoMu	real	u	3	clust	0.825	0.525	0.05
+IBMoMu	real	u	4	clust	0.875	0.55	0.05
+IBMoMu	real	u	5	clust	0.9	0.55	0.05
+IBMoMu	real	u	10	clust	0.925	0.575	0.05
+IBMoMu	loose	b	1	clust	0.275	0.2	0.15
+IBMoMu	loose	b	2	clust	0.3	0.225	0.15
+IBMoMu	loose	b	3	clust	0.375	0.25	0.15
+IBMoMu	loose	b	4	clust	0.45	0.325	0.15
+IBMoMu	loose	b	5	clust	0.525	0.325	0.15
+IBMoMu	loose	b	10	clust	0.575	0.35	0.15
+IBMoMu	real	b	1	clust	0.75	0.6	0.35
+IBMoMu	real	b	2	clust	0.925	0.725	0.35
+IBMoMu	real	b	3	clust	0.925	0.75	0.35
+IBMoMu	real	b	4	clust	0.925	0.775	0.35
+IBMoMu	real	b	5	clust	0.95	0.8	0.35
+IBMoMu	real	b	10	clust	0.975	0.9	0.35
+IB	loose	b	1	clust	0.175	0.075	0.05
+IB	loose	b	2	clust	0.2	0.125	0.075
+IB	loose	b	3	clust	0.225	0.125	0.075
+IB	loose	b	4	clust	0.25	0.125	0.075
+IB	loose	b	5	clust	0.275	0.15	0.075
+IB	loose	b	10	clust	0.375	0.175	0.075
+IBMu	mix-loose	b	1	clust	0.25	0.175	0.1
+IBMu	mix-loose	b	2	clust	0.3	0.2	0.125
+IBMu	mix-loose	b	3	clust	0.35	0.225	0.15
+IBMu	mix-loose	b	4	clust	0.375	0.225	0.15
+IBMu	mix-loose	b	5	clust	0.45	0.25	0.15
+IBMu	mix-loose	b	10	clust	0.625	0.3	0.15
+IBMu	twohit	b	1	clust	0.275	0.175	0.075
+IBMu	twohit	b	2	clust	0.35	0.2	0.075
+IBMu	twohit	b	3	clust	0.375	0.2	0.075
+IBMu	twohit	b	4	clust	0.4	0.2	0.075
+IBMu	twohit	b	5	clust	0.475	0.2	0.075
+IBMu	twohit	b	10	clust	0.575	0.275	0.1
+IB	loose	u	1	clust	0.225	0.025	0.0
+IB	loose	u	2	clust	0.25	0.05	0.0
+IB	loose	u	3	clust	0.3	0.075	0.0
+IB	loose	u	4	clust	0.325	0.075	0.0
+IB	loose	u	5	clust	0.425	0.075	0.0
+IB	loose	u	10	clust	0.425	0.1	0.0
+IBMu	mix-twohit	u	1	clust	0.1	0.05	0.0
+IBMu	mix-twohit	u	2	clust	0.225	0.125	0.0
+IBMu	mix-twohit	u	3	clust	0.3	0.125	0.0
+IBMu	mix-twohit	u	4	clust	0.325	0.15	0.0
+IBMu	mix-twohit	u	5	clust	0.375	0.15	0.0
+IBMu	mix-twohit	u	10	clust	0.5	0.15	0.0
+IB	real	b	1	clust	0.525	0.225	0.1
+IB	real	b	2	clust	0.725	0.35	0.125
+IB	real	b	3	clust	0.8	0.375	0.125
+IB	real	b	4	clust	0.85	0.425	0.125
+IB	real	b	5	clust	0.875	0.5	0.125
+IB	real	b	10	clust	0.9	0.575	0.125
+IBMu	real	u	1	clust	0.6	0.425	0.05
+IBMu	real	u	2	clust	0.8	0.525	0.075
+IBMu	real	u	3	clust	0.85	0.55	0.075
+IBMu	real	u	4	clust	0.9	0.55	0.075
+IBMu	real	u	5	clust	0.925	0.6	0.075
+IBMu	real	u	10	clust	0.925	0.65	0.075
+IBMoMu	loose	u	1	clust	0.15	0.075	0.0
+IBMoMu	loose	u	2	clust	0.3	0.1	0.0
+IBMoMu	loose	u	3	clust	0.3	0.1	0.0
+IBMoMu	loose	u	4	clust	0.3	0.1	0.0
+IBMoMu	loose	u	5	clust	0.4	0.125	0.0
+IBMoMu	loose	u	10	clust	0.525	0.15	0.0
+IBMu	real	b	1	clust	0.775	0.6	0.25
+IBMu	real	b	2	clust	0.925	0.7	0.3
+IBMu	real	b	3	clust	0.975	0.8	0.3
+IBMu	real	b	4	clust	1.0	0.8	0.3
+IBMu	real	b	5	clust	1.0	0.8	0.3
+IBMu	real	b	10	clust	1.0	0.875	0.3
+IBMu	mix-twohit	b	1	clust	0.325	0.15	0.05
+IBMu	mix-twohit	b	2	clust	0.4	0.225	0.1
+IBMu	mix-twohit	b	3	clust	0.4	0.225	0.1
+IBMu	mix-twohit	b	4	clust	0.45	0.225	0.1
+IBMu	mix-twohit	b	5	clust	0.525	0.25	0.125
+IBMu	mix-twohit	b	10	clust	0.55	0.275	0.125
+IBMoMu	twohit	b	1	clust	0.25	0.175	0.075
+IBMoMu	twohit	b	2	clust	0.375	0.225	0.1
+IBMoMu	twohit	b	3	clust	0.375	0.25	0.1
+IBMoMu	twohit	b	4	clust	0.45	0.3	0.1
+IBMoMu	twohit	b	5	clust	0.475	0.3	0.1
+IBMoMu	twohit	b	10	clust	0.55	0.3	0.1
+IBMu	loose	b	1	clust	0.25	0.15	0.1
+IBMu	loose	b	2	clust	0.325	0.2	0.125
+IBMu	loose	b	3	clust	0.375	0.25	0.125
+IBMu	loose	b	4	clust	0.45	0.275	0.125
+IBMu	loose	b	5	clust	0.575	0.35	0.125
+IBMu	loose	b	10	clust	0.65	0.375	0.125
+IB	twohit	u	1	clust	0.1	0.05	0.0
+IB	twohit	u	2	clust	0.25	0.05	0.0
+IB	twohit	u	3	clust	0.275	0.075	0.0
+IB	twohit	u	4	clust	0.3	0.075	0.0
+IB	twohit	u	5	clust	0.3	0.075	0.0
+IB	twohit	u	10	clust	0.35	0.075	0.0
+IBMu	loose	u	1	clust	0.175	0.125	0.0
+IBMu	loose	u	2	clust	0.3	0.2	0.0
+IBMu	loose	u	3	clust	0.325	0.2	0.0
+IBMu	loose	u	4	clust	0.325	0.2	0.0
+IBMu	loose	u	5	clust	0.4	0.2	0.0
+IBMu	loose	u	10	clust	0.55	0.2	0.0
+IBMu	twohit	u	1	clust	0.15	0.05	0.0
+IBMu	twohit	u	2	clust	0.25	0.1	0.0
+IBMu	twohit	u	3	clust	0.325	0.1	0.0
+IBMu	twohit	u	4	clust	0.35	0.15	0.0
+IBMu	twohit	u	5	clust	0.35	0.15	0.0
+IBMu	twohit	u	10	clust	0.425	0.15	0.0
+IB	real	u	1	clust	0.35	0.075	0.025
+IB	real	u	2	clust	0.65	0.15	0.025
+IB	real	u	3	clust	0.75	0.2	0.025
+IB	real	u	4	clust	0.775	0.2	0.025
+IB	real	u	5	clust	0.85	0.25	0.025
+IB	real	u	10	clust	0.9	0.275	0.025
+IBMu	mix-loose	u	1	clust	0.125	0.075	0.0
+IBMu	mix-loose	u	2	clust	0.25	0.15	0.0
+IBMu	mix-loose	u	3	clust	0.325	0.175	0.0
+IBMu	mix-loose	u	4	clust	0.425	0.2	0.0
+IBMu	mix-loose	u	5	clust	0.475	0.2	0.0
+IBMu	mix-loose	u	10	clust	0.625	0.275	0.0
+IBMu	surf	b	1	clust	0.075	0.05	0.025
+IBMu	surf	b	2	clust	0.1	0.075	0.05
+IBMu	surf	b	3	clust	0.1	0.075	0.05
+IBMu	surf	b	4	clust	0.125	0.075	0.05
+IBMu	surf	b	5	clust	0.175	0.125	0.1
+IBMu	surf	b	10	clust	0.25	0.2	0.1

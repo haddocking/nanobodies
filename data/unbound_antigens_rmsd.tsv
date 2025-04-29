@@ -19,7 +19,6 @@ pdb	af_multimer_whole_rmsd	af_multimer_epitope_rmsd	af_multimer_pdb_whole_rmsd	a
 7nxxB	0.757	0.565	0.705	0.436
 8dtnE	3.911	3.534	3.911	3.534
 8h3yE	2.38	3.575	2.38	3.575
-7q6cH	1.49	1.437	2.655	1.645
 7q3qB	0.888	0.571	0.942	0.679
 7tprE	26.722	2.192	0.998	1.0
 7x2jB	1.108	1.223	1.687	1.811
@@ -29,7 +28,6 @@ pdb	af_multimer_whole_rmsd	af_multimer_epitope_rmsd	af_multimer_pdb_whole_rmsd	a
 8dquB	10.851	5.69	10.851	5.69
 7uiaB	1.69	2.22	1.185	2.486
 7t5fF	1.291	0.57	1.157	0.452
-8f8xD	0.911	0.333	0.73	0.32
 7wkiB	2.2	3.716	1.865	2.199
 7x7eA	1.092	0.875	1.043	0.78
 7qbgE	4.316	2.52	4.316	2.52
@@ -38,7 +36,6 @@ pdb	af_multimer_whole_rmsd	af_multimer_epitope_rmsd	af_multimer_pdb_whole_rmsd	a
 7r24E	13.975	1.589	13.975	1.589
 7r24C	11.021	1.375	11.021	1.375
 7xqvB	0.702	0.632	0.702	0.632
-7wpfU	20.468	1.692	1.764	1.386
 7whiG	26.377	1.639	1.479	1.091
 8bb7D	2.068	1.206	2.068	1.206
 8en0D	1.212	2.169	0.923	0.97
