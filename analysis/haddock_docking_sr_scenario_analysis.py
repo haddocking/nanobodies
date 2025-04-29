@@ -358,7 +358,7 @@ handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.14)
 plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.57, -0.18))
-plt.savefig(Path("figures", "haddock_docking_sr_allsurface.png"), dpi=400)
+plt.savefig(Path("figures", "SI_figure2.png"), dpi=400)
 
 # ##SUPPLEMENTARY FIGURE 3A
 # ##Bar plot comparing model docking success rates (SRs) for TopN structures after HADDOCK scoring (HS) and Voronoi scoring (VS) for different information scenarios.
@@ -401,4 +401,4 @@ handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.20)
 plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.57, -0.28)) 
-plt.savefig(Path("figures", "voro_scoring_models_sr.png"), dpi=400)
+plt.savefig(Path("figures", "SI_figure3.png"), dpi=400)
