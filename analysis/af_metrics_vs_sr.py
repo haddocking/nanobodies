@@ -108,7 +108,7 @@ plt.scatter(af3_iptms, af3_dockqs)
 plt.xlabel("IPTM")
 plt.title("AF3 IPTM vs DOCKQ-T1")
 plt.ylabel("DOCKQ in the top 10 models")
-plt.savefig(Path("figures", "alphafold", "af3_iptm_vs_dockq.png"))
+plt.savefig(Path("figures", "alphafold", "af3_iptm_vs_dockq.png"), dpi=300)
 plt.close()
 # correlations for alphafold multimer
 af2_corr_iptm = spearmanr(af2_iptms, af2_dockqs)
@@ -117,7 +117,7 @@ plt.scatter(af2_iptms, af2_dockqs)
 plt.xlabel("IPTM")
 plt.ylabel("DOCKQ in the top 1 model")
 plt.title("AF2 IPTM vs DOCKQ-T1")
-plt.savefig(Path("figures", "alphafold", "af2_iptm_vs_dockq.png"))
+plt.savefig(Path("figures", "alphafold", "af2_iptm_vs_dockq.png"), dpi=300)
 
 # failed_af2: should be 73%
 assert round(len(af2_failed_pdbs)/len(pdbs_capri),3) == 0.725, f"Expected 72.5% failed structures, got {len(af2_failed_pdbs)/len(pdbs)}"
