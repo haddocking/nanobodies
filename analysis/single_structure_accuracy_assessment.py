@@ -367,17 +367,17 @@ for el in all_pdbs:
         alphaflow_centr_pdb = alphaflow_centroids[alphaflow_centroids['pdb'] == el]
         # print minimum CDR3_RMS
         min_cdr3_aflow_centr = alphaflow_centr_pdb['CDR3_RMS'].min()
-        print(f"{el} aflow min CDR3_RMS (20 centroids) {min_cdr3_aflow_centr}")
+        print(f"{el} aflow min CDR3_RMS (20 centroids) {min_cdr3_aflow_centr:.2f}")
         # overall
         min_cdr3_aflow_overall = aflow_rmsd[aflow_rmsd['pdb'] == el]['CDR3_RMS'].min()
-        print(f"{el} aflow min CDR3_RMS (overall) {min_cdr3_aflow_overall}")
+        print(f"{el} aflow min CDR3_RMS (overall) {min_cdr3_aflow_overall:.2f}")
         # do some differences
         diff_cdr3_aflow_centr = min_cdr3_aflow_centr - min_af_std
         diff_cdr3_aflow_overall = min_cdr3_aflow_overall - min_af_std
-        print(f"{el} aflow diff CDR3_RMS (20 centroids) {diff_cdr3_aflow_centr}")
-        print(f"{el} aflow diff CDR3_RMS (overall) {diff_cdr3_aflow_overall}")
+        print(f"{el} aflow diff CDR3_RMS (20 centroids) {diff_cdr3_aflow_centr:.2f}")
+        print(f"{el} aflow diff CDR3_RMS (overall) {diff_cdr3_aflow_overall:.2f}")
         diff_wrt_centroids.append(diff_cdr3_aflow_centr)
         diff_wrt_overall.append(diff_cdr3_aflow_overall)
 import numpy as np
-print(f"avg Diff wrt centroids: {np.mean(diff_wrt_centroids)}")
-print(f"avg Diff wrt overall: {np.mean(diff_wrt_overall)}")
+print(f"avg Diff wrt centroids: {np.mean(diff_wrt_centroids):.2f}")
+print(f"avg Diff wrt overall: {np.mean(diff_wrt_overall):.2f}")

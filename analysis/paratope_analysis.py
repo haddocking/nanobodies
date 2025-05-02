@@ -223,15 +223,19 @@ RX_regions = {
     "R10": [[103,108]],
 }
 
+# if residue_freq[res] > 0.25 print the value
+for res in residue_freq:
+    if residue_freq[res] > 0.25:
+        print(f"residue {res} : frequency {residue_freq[res]:.2f}")
+
 # now add to the list the max of the frequencies across that interval
-print(residue_freq)
 for rx in RX_regions:
     RX_regions[rx].append(max([residue_freq[res] for res in range(RX_regions[rx][0][0], RX_regions[rx][0][1]+1)]))
 
 # plt.savefig(Path(".", "figures", "paratope_representations_presentations.png"), dpi=400)
 
 for rx in RX_regions:
-    print("hline for ", rx, RX_regions[rx])
+    # print("hline for ", rx, RX_regions[rx])
     ax[1].hlines(RX_regions[rx][1] + 0.1, RX_regions[rx][0][0] - 0.5, RX_regions[rx][0][1] + 0.5, color='purple', linewidth=4)
     ax[1].text(RX_regions[rx][0][0] + (RX_regions[rx][0][1] - RX_regions[rx][0][0])/2, RX_regions[rx][1] + 0.1, rx, ha='center', va='bottom', color='purple', size=15)
 plt.tight_layout()
