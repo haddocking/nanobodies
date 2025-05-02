@@ -85,7 +85,7 @@ for n in range(nanobodies.shape[0]):
             inter_resids.append(con[3])
     
     unique_inter_resids = list(set(inter_resids))
-    print(unique_inter_resids)
+    # print(unique_inter_resids)
 
     inter_resnums = []
     for con in contact_nums:
@@ -95,9 +95,9 @@ for n in range(nanobodies.shape[0]):
             inter_resnums.append(con[3])
     
     unique_inter_resnums = list(set(inter_resnums))
-    print(unique_inter_resnums)
+    # print(unique_inter_resnums)
     
-    per_pdb_interacting_residues.append([pdb, chain, unique_inter_resids, inter_resids])
+    per_pdb_interacting_residues.append([pdb, chain, "-".join([str(res) for res in sorted(unique_inter_resids)]), "-".join([str(res) for res in sorted(inter_resids)])])
     per_pdb_interacting_resnums.append([pdb, chain, "-".join([str(res) for res in sorted(unique_inter_resnums)]), "-".join([str(res) for res in sorted(inter_resnums)])])
 
 #Now we convert the list into dataframes
