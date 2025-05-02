@@ -36,7 +36,7 @@ fig,axs = plt.subplots(3,5, figsize = (15, 12), width_ratios=[3, 3, 3, 3, 2])
 
 #xticks = [0.3, 0.7, 1.3, 1.7, 2.3, 2.7, 3.3, 3.7, 4.3, 4.7, 5.3, 5.7, 6.3, 6.7, 7.3, 7.7, 8.3, 8.7, 9.3, 9.7, 10.3, 10.7, 11.3, 11.7, 12.4, 12.8, 13.4, 13.8]
 xlabels = ["B T1", "B T10", "B T200", "U T1", "U T10", "U T200"]
-af3_xlabels = ["AFMu T1", "AFMu T10", "AF3 T1", "AF3 T10"]
+af3_xlabels = ["AF2M T1", "AF2M T10", "AF3 T1", "AF3 T10"]
 barwidth = 0.4
 ensembles = ["IB", "IBMo", "IBMu", "IBMoMu"]
 scenarios = ["real", "loose", "twohit"]
