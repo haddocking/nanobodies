@@ -1,6 +1,61 @@
 import pandas as pd
 from pathlib import Path
 
+def retrieve_acc_models(pdb):
+    pdb_capri_df = Path(f"../benchmark_pdb_files/{pdb}/{pdb}_capri.tsv")
+    pdb_capri_df = pd.read_csv(pdb_capri_df, sep="\t")
+    pdb_capri_df_filtered = pdb_capri_df[(pdb_capri_df["ensemble"] == "IBMu") & (pdb_capri_df["struct"] == "u") & (pdb_capri_df["stage"] == "flex")]
+    # loose scenario
+    loose_unb_top10 = pdb_capri_df_filtered[(pdb_capri_df_filtered["scenario"] == "loose") & (pdb_capri_df_filtered["caprieval_rank"] < 11)]
+    assert loose_unb_top10.shape[0] == 10, f"Expected 10 models, found {loose_unb_top10.shape[0]}"
+    acc_models_loose = loose_unb_top10[
+        (loose_unb_top10["fnat"] > 0.1) &
+        ((loose_unb_top10["lrmsd"] < 10) | (loose_unb_top10["irmsd"] < 4))
+    ]
+    # twohit scenario
+    twohit_unb_top10 = pdb_capri_df_filtered[(pdb_capri_df_filtered["scenario"] == "twohit") & (pdb_capri_df_filtered["caprieval_rank"] < 11)]
+    assert twohit_unb_top10.shape[0] == 10, f"Expected 10 models, found {twohit_unb_top10.shape[0]}"
+    acc_models_twohit = twohit_unb_top10[
+        (twohit_unb_top10["fnat"] > 0.1) &
+        ((twohit_unb_top10["lrmsd"] < 10) | (twohit_unb_top10["irmsd"] < 4))
+    ]
+    # real scenario
+    real_unb_top10 = pdb_capri_df_filtered[(pdb_capri_df_filtered["scenario"] == "real") & (pdb_capri_df_filtered["caprieval_rank"] < 11)]
+    assert real_unb_top10.shape[0] == 10, f"Expected 10 models, found {real_unb_top10.shape[0]}"
+    acc_models_real = real_unb_top10[
+        (real_unb_top10["fnat"] > 0.1) &
+        ((real_unb_top10["lrmsd"] < 10) | (real_unb_top10["irmsd"] < 4))
+    ]
+    acc_loose_unb_t10 = 0 if acc_models_loose.shape[0] == 0 else 1
+    acc_twohit_unb_t10 = 0 if acc_models_twohit.shape[0] == 0 else 1
+    acc_real_unb_t10 = 0 if acc_models_real.shape[0] == 0 else 1
+    # now only with the best ranked model
+    loose_unb_top1 = pdb_capri_df_filtered[(pdb_capri_df_filtered["scenario"] == "loose") & (pdb_capri_df_filtered["caprieval_rank"] == 1)]
+    assert loose_unb_top1.shape[0] == 1, f"Expected 1 model, found {loose_unb_top1.shape[0]}"
+    acc_models_loose = loose_unb_top1[
+        (loose_unb_top1["fnat"] > 0.1) &
+        ((loose_unb_top1["lrmsd"] < 10) | (loose_unb_top1["irmsd"] < 4))
+    ]
+    
+    # twohit scenario
+    twohit_unb_top1 = pdb_capri_df_filtered[(pdb_capri_df_filtered["scenario"] == "twohit") & (pdb_capri_df_filtered["caprieval_rank"] == 1)]
+    assert twohit_unb_top1.shape[0] == 1, f"Expected 1 model, found {twohit_unb_top1.shape[0]}"
+    acc_models_twohit = twohit_unb_top1[
+        (twohit_unb_top1["fnat"] > 0.1) &
+        ((twohit_unb_top1["lrmsd"] < 10) | (twohit_unb_top1["irmsd"] < 4))
+    ]
+    # real scenario
+    real_unb_top1 = pdb_capri_df_filtered[(pdb_capri_df_filtered["scenario"] == "real") & (pdb_capri_df_filtered["caprieval_rank"] == 1)]
+    assert real_unb_top1.shape[0] == 1, f"Expected 1 model, found {real_unb_top1.shape[0]}"
+    acc_models_real = real_unb_top1[
+        (real_unb_top1["fnat"] > 0.1) &
+        ((real_unb_top1["lrmsd"] < 10) | (real_unb_top1["irmsd"] < 4))
+    ]
+    acc_loose_unb_t1 = 0 if acc_models_loose.shape[0] == 0 else 1
+    acc_twohit_unb_t1 = 0 if acc_models_twohit.shape[0] == 0 else 1
+    acc_real_unb_t1 = 0 if acc_models_real.shape[0] == 0 else 1
+    return acc_loose_unb_t10, acc_twohit_unb_t10, acc_real_unb_t10, acc_loose_unb_t1, acc_twohit_unb_t1, acc_real_unb_t1
+
 df_af2 = pd.read_csv("../data/af2_metrics.tsv", sep="\t")
 df_af3 = pd.read_csv("../data/af3_predictions_5_seeds_sorted.tsv", sep="\t")
 
@@ -72,7 +127,6 @@ for pdb in pdbs_capri:
     af3_dockq_t10 = df_af3_dockq[(df_af3_dockq["pdb"] == pdb) & (df_af3_dockq["rank"] < 11)]["dockq"].max()
     af3_iptm, af3_ptm = df_af3[df_af3["pdb"] == pdb]["iptm"].values[0], df_af3[df_af3["pdb"] == pdb]["ptm"].values[0]
     af3_dockqs.append(af3_dockq_t10)
-    # print(f"{pdb} has AF3 iptm {af3_iptm} and af3_dockq_t10 {af3_dockq_t10} while AF2 iptm is {af2_iptm} and af2_dockq_t10 is {af2_dockq_t10}")
     af3_iptms.append(af3_iptm)
     af3_rscore.append(0.8*af3_iptm + 0.2*af3_ptm)
     for i in range(1, 11):
@@ -82,18 +136,11 @@ for pdb in pdbs_capri:
             break
     if af3_failed:
         af3_failed_pdbs.append(pdb)
-    # else:
-    #     af3_dockq_t10 = "NA"
-    #     af3_iptm, af3_ptm = "NA", "NA"
-
-    # print(f"{pdb}\t{af2_dockq_t10}\t{af2_iptm}\t{af3_dockq_t10}\t{af3_iptm}")
     
     if af2_iptm < 0.6:
-        #print(f"{pdb} has low AF2 iptm score")
         low_iptm_af2.append(pdb)
-    # if af3_iptm is a float
-    if af3_iptm != "NA" and af3_iptm < 0.6:
-        #print(f"{pdb} has low AF3 iptm score")
+    # af3_iptm
+    if af3_iptm < 0.6:
         low_iptm_af3.append(pdb)
 
 # calculate correlation between AF3 and iptm
@@ -126,11 +173,6 @@ print(f"Number of low AF2 iptm scores: {len(low_iptm_af2)}")
 print(f"Number of low AF3 iptm scores: {len(low_iptm_af3)}")
 print(f"Number of failed AF3 structures: {len(af3_failed_pdbs)}")
 
-# now let's iterate over the low_iptm values and check the HADDOCK values
-haddock_df_loose_unb = pd.read_csv("../data/capri/loose_capri_predictions_semibound.tsv", sep="\t")
-haddock_df_twohit_unb = pd.read_csv("../data/capri/twohit_capri_predictions_semibound.tsv", sep="\t")
-haddock_df_real_unb = pd.read_csv("../data/capri/real_capri_predictions_semibound.tsv", sep="\t")
-
 loose_unb_t10 = 0
 twohit_unb_t10 = 0
 real_unb_t10 = 0
@@ -139,45 +181,20 @@ twohit_unb_t1 = 0
 real_unb_t1 = 0
 
 for pdb in low_iptm_af2:
-    dock_loose_unb_top10 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] < 11)]
-    # print(dock_loose_unb_top10)
-    if "acceptable" in dock_loose_unb_top10["capri"].values or "medium" in dock_loose_unb_top10["capri"].values or "high" in dock_loose_unb_top10["capri"].values:
-        max_dockq = dock_loose_unb_top10["dockq"].max()
-        # print(f"{pdb} has low AF2 iptm score but high HADDOCK dockq ({dock_loose_unb_top10}) in the loose scenario")
-        loose_unb_t10 += 1
-    dock_twohit_unb_top10 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] < 11)]
-    if "acceptable" in dock_twohit_unb_top10["capri"].values or "medium" in dock_twohit_unb_top10["capri"].values or "high" in dock_twohit_unb_top10["capri"].values:
-        max_dockq = dock_twohit_unb_top10["dockq"].max()
-        # print(f"{pdb} has low AF2 iptm score but high HADDOCK dockq ({dock_twohit_unb_top10}) in the two-hit scenario")
-        twohit_unb_t10 += 1
-    dock_real_unb_top10 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] < 11)]
-    if "acceptable" in dock_real_unb_top10["capri"].values or "medium" in dock_real_unb_top10["capri"].values or "high" in dock_real_unb_top10["capri"].values:
-        max_dockq = dock_real_unb_top10["dockq"].max()
-        # print(f"{pdb} has low AF2 iptm score but high HADDOCK dockq ({dock_real_unb_top10}) in the real scenario")
-        real_unb_t10 += 1
-    # now only with the best ranked model
-    dock_loose_unb_top1 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] == 1)]
-    if "acceptable" in dock_loose_unb_top1["capri"].values or "medium" in dock_loose_unb_top1["capri"].values or "high" in dock_loose_unb_top1["capri"].values:
-        max_dockq = dock_loose_unb_top1["dockq"].max()
-        # print(f"{pdb} has low AF2 iptm score but high HADDOCK dockq ({dock_loose_unb_top1}) in the loose scenario")
-        loose_unb_t1 += 1
-    dock_twohit_unb_top1 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] == 1)]
-    if "acceptable" in dock_twohit_unb_top1["capri"].values or "medium" in dock_twohit_unb_top1["capri"].values or "high" in dock_twohit_unb_top1["capri"].values:
-        max_dockq = dock_twohit_unb_top1["dockq"].max()
-        # print(f"{pdb} has low AF2 iptm score but high HADDOCK dockq ({dock_twohit_unb_top1}) in the two-hit scenario")
-        twohit_unb_t1 += 1
-    dock_real_unb_top1 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] == 1)]
-    if "acceptable" in dock_real_unb_top1["capri"].values or "medium" in dock_real_unb_top1["capri"].values or "high" in dock_real_unb_top1["capri"].values:
-        max_dockq = dock_real_unb_top1["dockq"].max()
-        # print(f"{pdb} has low AF2 iptm score but high HADDOCK dockq ({dock_real_unb_top1}) in the real scenario")
-        real_unb_t1 += 1
+    l_t10, t_t10, r_t10, l_t1, t_t1, r_t1 = retrieve_acc_models(pdb)
+    loose_unb_t10 += l_t10
+    twohit_unb_t10 += t_t10
+    real_unb_t10 += r_t10
+    loose_unb_t1 += l_t1
+    twohit_unb_t1 += t_t1
+    real_unb_t1 += r_t1
 
-print(f"Number of low AF2 iptm scores with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(low_iptm_af2):.2f}")
-print(f"Number of low AF2 iptm scores with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(low_iptm_af2):.2f}")
-print(f"Number of low AF2 iptm scores with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(low_iptm_af2):.2f}")
-print(f"Number of low AF2 iptm scores with high HADDOCK dockq in the loose scenario with the best model (T10): {loose_unb_t1/len(low_iptm_af2):.2f}")
-print(f"Number of low AF2 iptm scores with high HADDOCK dockq in the two-hit scenario with the best model (T10): {twohit_unb_t1/len(low_iptm_af2):.2f}")
-print(f"Number of low AF2 iptm scores with high HADDOCK dockq in the real scenario with the best model (T10): {real_unb_t1/len(low_iptm_af2):.2f}")
+print(f"% of low AF2 iptm scores with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(low_iptm_af2):.2f}")
+print(f"% of low AF2 iptm scores with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(low_iptm_af2):.2f}")
+print(f"% of low AF2 iptm scores with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(low_iptm_af2):.2f}")
+print(f"% of low AF2 iptm scores with high HADDOCK dockq in the loose scenario with the best model (T1): {loose_unb_t1/len(low_iptm_af2):.2f}")
+print(f"% of low AF2 iptm scores with high HADDOCK dockq in the two-hit scenario with the best model (T1): {twohit_unb_t1/len(low_iptm_af2):.2f}")
+print(f"% of low AF2 iptm scores with high HADDOCK dockq in the real scenario with the best model (T1): {real_unb_t1/len(low_iptm_af2):.2f}\n")
 
 # same with failed AF2 structures
 loose_unb_t10 = 0
@@ -188,38 +205,20 @@ twohit_unb_t1 = 0
 real_unb_t1 = 0
 
 for pdb in af2_failed_pdbs:
-    dock_loose_unb_top10 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] < 11)]
-    if "acceptable" in dock_loose_unb_top10["capri"].values or "medium" in dock_loose_unb_top10["capri"].values or "high" in dock_loose_unb_top10["capri"].values:
-        max_dockq = dock_loose_unb_top10["dockq"].max()
-        loose_unb_t10 += 1
-    dock_twohit_unb_top10 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] < 11)]
-    if "acceptable" in dock_twohit_unb_top10["capri"].values or "medium" in dock_twohit_unb_top10["capri"].values or "high" in dock_twohit_unb_top10["capri"].values:
-        max_dockq = dock_twohit_unb_top10["dockq"].max()
-        twohit_unb_t10 += 1
-    dock_real_unb_top10 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] < 11)]
-    if "acceptable" in dock_real_unb_top10["capri"].values or "medium" in dock_real_unb_top10["capri"].values or "high" in dock_real_unb_top10["capri"].values:
-        max_dockq = dock_real_unb_top10["dockq"].max()
-        real_unb_t10 += 1
-    # now only with the best ranked model
-    dock_loose_unb_top1 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] == 1)]
-    if "acceptable" in dock_loose_unb_top1["capri"].values or "medium" in dock_loose_unb_top1["capri"].values or "high" in dock_loose_unb_top1["capri"].values:
-        max_dockq = dock_loose_unb_top1["dockq"].max()
-        loose_unb_t1 += 1
-    dock_twohit_unb_top1 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] == 1)]
-    if "acceptable" in dock_twohit_unb_top1["capri"].values or "medium" in dock_twohit_unb_top1["capri"].values or "high" in dock_twohit_unb_top1["capri"].values:
-        max_dockq = dock_twohit_unb_top1["dockq"].max()
-        twohit_unb_t1 += 1
-    dock_real_unb_top1 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] == 1)]
-    if "acceptable" in dock_real_unb_top1["capri"].values or "medium" in dock_real_unb_top1["capri"].values or "high" in dock_real_unb_top1["capri"].values:
-        max_dockq = dock_real_unb_top1["dockq"].max()
-        real_unb_t1 += 1
+    l_t10, t_t10, r_t10, l_t1, t_t1, r_t1 = retrieve_acc_models(pdb)
+    loose_unb_t10 += l_t10
+    twohit_unb_t10 += t_t10
+    real_unb_t10 += r_t10
+    loose_unb_t1 += l_t1
+    twohit_unb_t1 += t_t1
+    real_unb_t1 += r_t1
 
-print(f"Number of failed AF2 structures with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(af2_failed_pdbs):.2f}")
-print(f"Number of failed AF2 structures with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(af2_failed_pdbs):.2f}")
-print(f"Number of failed AF2 structures with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(af2_failed_pdbs):.2f}")
-print(f"Number of failed AF2 structures with high HADDOCK dockq in the loose scenario with the best model (T10): {loose_unb_t1/len(af2_failed_pdbs):.2f}")
-print(f"Number of failed AF2 structures with high HADDOCK dockq in the two-hit scenario with the best model (T10): {twohit_unb_t1/len(af2_failed_pdbs):.2f}")
-print(f"Number of failed AF2 structures with high HADDOCK dockq in the real scenario with the best model (T10): {real_unb_t1/len(af2_failed_pdbs):.2f}")
+print(f"% of failed AF2 structures with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(af2_failed_pdbs):.2f}")
+print(f"% of failed AF2 structures with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(af2_failed_pdbs):.2f}")
+print(f"% of failed AF2 structures with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(af2_failed_pdbs):.2f}")
+print(f"% of failed AF2 structures with high HADDOCK dockq in the loose scenario with the best model (T1): {loose_unb_t1/len(af2_failed_pdbs):.2f}")
+print(f"% of failed AF2 structures with high HADDOCK dockq in the two-hit scenario with the best model (T1): {twohit_unb_t1/len(af2_failed_pdbs):.2f}")
+print(f"% of failed AF2 structures with high HADDOCK dockq in the real scenario with the best model (T1): {real_unb_t1/len(af2_failed_pdbs):.2f}\n")
 
 # same with failed AF3 structures
 loose_unb_t10 = 0
@@ -230,38 +229,20 @@ twohit_unb_t1 = 0
 real_unb_t1 = 0
 
 for pdb in af3_failed_pdbs:
-    dock_loose_unb_top10 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] < 11)]
-    if "acceptable" in dock_loose_unb_top10["capri"].values or "medium" in dock_loose_unb_top10["capri"].values or "high" in dock_loose_unb_top10["capri"].values:
-        max_dockq = dock_loose_unb_top10["dockq"].max()
-        loose_unb_t10 += 1
-    dock_twohit_unb_top10 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] < 11)]
-    if "acceptable" in dock_twohit_unb_top10["capri"].values or "medium" in dock_twohit_unb_top10["capri"].values or "high" in dock_twohit_unb_top10["capri"].values:
-        max_dockq = dock_twohit_unb_top10["dockq"].max()
-        twohit_unb_t10 += 1
-    dock_real_unb_top10 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] < 11)]
-    if "acceptable" in dock_real_unb_top10["capri"].values or "medium" in dock_real_unb_top10["capri"].values or "high" in dock_real_unb_top10["capri"].values:
-        max_dockq = dock_real_unb_top10["dockq"].max()
-        real_unb_t10 += 1
-    # now only with the best ranked model
-    dock_loose_unb_top1 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] == 1)]
-    if "acceptable" in dock_loose_unb_top1["capri"].values or "medium" in dock_loose_unb_top1["capri"].values or "high" in dock_loose_unb_top1["capri"].values:
-        max_dockq = dock_loose_unb_top1
-        loose_unb_t1 += 1
-    dock_twohit_unb_top1 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] == 1)]
-    if "acceptable" in dock_twohit_unb_top1["capri"].values or "medium" in dock_twohit_unb_top1["capri"].values or "high" in dock_twohit_unb_top1["capri"].values:
-        max_dockq = dock_twohit_unb_top1
-        twohit_unb_t1 += 1
-    dock_real_unb_top1 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] == 1)]
-    if "acceptable" in dock_real_unb_top1["capri"].values or "medium" in dock_real_unb_top1["capri"].values or "high" in dock_real_unb_top1["capri"].values:
-        max_dockq = dock_real_unb_top1
-        real_unb_t1 += 1
+    l_t10, t_t10, r_t10, l_t1, t_t1, r_t1 = retrieve_acc_models(pdb)
+    loose_unb_t10 += l_t10
+    twohit_unb_t10 += t_t10
+    real_unb_t10 += r_t10
+    loose_unb_t1 += l_t1
+    twohit_unb_t1 += t_t1
+    real_unb_t1 += r_t1
 
-print(f"Number of failed AF3 structures with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(af3_failed_pdbs):.2f}")
-print(f"Number of failed AF3 structures with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(af3_failed_pdbs):.2f}")
-print(f"Number of failed AF3 structures with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(af3_failed_pdbs):.2f}")
-print(f"Number of failed AF3 structures with high HADDOCK dockq in the loose scenario with the best model (T10): {loose_unb_t1/len(af3_failed_pdbs):.2f}")
-print(f"Number of failed AF3 structures with high HADDOCK dockq in the two-hit scenario with the best model (T10): {twohit_unb_t1/len(af3_failed_pdbs):.2f}")
-print(f"Number of failed AF3 structures with high HADDOCK dockq in the real scenario with the best model (T10): {real_unb_t1/len(af3_failed_pdbs):.2f}")
+print(f"% of failed AF3 structures with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(af3_failed_pdbs):.2f}")
+print(f"% of failed AF3 structures with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(af3_failed_pdbs):.2f}")
+print(f"% of failed AF3 structures with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(af3_failed_pdbs):.2f}")
+print(f"% of failed AF3 structures with high HADDOCK dockq in the loose scenario with the best model (T1): {loose_unb_t1/len(af3_failed_pdbs):.2f}")
+print(f"% of failed AF3 structures with high HADDOCK dockq in the two-hit scenario with the best model (T1): {twohit_unb_t1/len(af3_failed_pdbs):.2f}")
+print(f"% of failed AF3 structures with high HADDOCK dockq in the real scenario with the best model (T1): {real_unb_t1/len(af3_failed_pdbs):.2f}\n")
 
 loose_unb_t10 = 0
 twohit_unb_t10 = 0
@@ -271,35 +252,17 @@ twohit_unb_t1 = 0
 real_unb_t1 = 0
 
 for pdb in low_iptm_af3:
-    dock_loose_unb_top10 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] < 11)]
-    if "acceptable" in dock_loose_unb_top10["capri"].values or "medium" in dock_loose_unb_top10["capri"].values or "high" in dock_loose_unb_top10["capri"].values:
-        max_dockq = dock_loose_unb_top10["dockq"].max()
-        loose_unb_t10 += 1
-    dock_twohit_unb_top10 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] < 11)]
-    if "acceptable" in dock_twohit_unb_top10["capri"].values or "medium" in dock_twohit_unb_top10["capri"].values or "high" in dock_twohit_unb_top10["capri"].values:
-        max_dockq = dock_twohit_unb_top10["dockq"].max()
-        twohit_unb_t10 += 1
-    dock_real_unb_top10 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] < 11)]
-    if "acceptable" in dock_real_unb_top10["capri"].values or "medium" in dock_real_unb_top10["capri"].values or "high" in dock_real_unb_top10["capri"].values:
-        max_dockq = dock_real_unb_top10["dockq"].max()
-        real_unb_t10 += 1
-    # now only with the best ranked model
-    dock_loose_unb_top1 = haddock_df_loose_unb[(haddock_df_loose_unb["pdb"] == pdb) & (haddock_df_loose_unb["rank"] == 1)]
-    if "acceptable" in dock_loose_unb_top1["capri"].values or "medium" in dock_loose_unb_top1["capri"].values or "high" in dock_loose_unb_top1["capri"].values:
-        max_dockq = dock_loose_unb_top1["dockq"].max()
-        loose_unb_t1 += 1
-    dock_twohit_unb_top1 = haddock_df_twohit_unb[(haddock_df_twohit_unb["pdb"] == pdb) & (haddock_df_twohit_unb["rank"] == 1)]
-    if "acceptable" in dock_twohit_unb_top1["capri"].values or "medium" in dock_twohit_unb_top1["capri"].values or "high" in dock_twohit_unb_top1["capri"].values:
-        max_dockq = dock_twohit_unb_top1["dockq"].max()
-        twohit_unb_t1 += 1
-    dock_real_unb_top1 = haddock_df_real_unb[(haddock_df_real_unb["pdb"] == pdb) & (haddock_df_real_unb["rank"] == 1)]
-    if "acceptable" in dock_real_unb_top1["capri"].values or "medium" in dock_real_unb_top1["capri"].values or "high" in dock_real_unb_top1["capri"].values:
-        max_dockq = dock_real_unb_top1["dockq"].max()
-        real_unb_t1 += 1
+    l_t10, t_t10, r_t10, l_t1, t_t1, r_t1 = retrieve_acc_models(pdb)
+    loose_unb_t10 += l_t10
+    twohit_unb_t10 += t_t10
+    real_unb_t10 += r_t10
+    loose_unb_t1 += l_t1
+    twohit_unb_t1 += t_t1
+    real_unb_t1 += r_t1
 
-print(f"Number of low AF3 iptm scores with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(low_iptm_af3):.2f}")
-print(f"Number of low AF3 iptm scores with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(low_iptm_af3):.2f}")
-print(f"Number of low AF3 iptm scores with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(low_iptm_af3):.2f}")
-print(f"Number of low AF3 iptm scores with high HADDOCK dockq in the loose scenario with the best model: {loose_unb_t1/len(low_iptm_af3):.2f}")
-print(f"Number of low AF3 iptm scores with high HADDOCK dockq in the two-hit scenario with the best model: {twohit_unb_t1/len(low_iptm_af3):.2f}")
-print(f"Number of low AF3 iptm scores with high HADDOCK dockq in the real scenario with the best model: {real_unb_t1/len(low_iptm_af3):.2f}")
+print(f"% of low AF3 iptm scores with high HADDOCK dockq in the loose scenario (T10): {loose_unb_t10/len(low_iptm_af3):.2f}")
+print(f"% of low AF3 iptm scores with high HADDOCK dockq in the two-hit scenario (T10): {twohit_unb_t10/len(low_iptm_af3):.2f}")
+print(f"% of low AF3 iptm scores with high HADDOCK dockq in the real scenario (T10): {real_unb_t10/len(low_iptm_af3):.2f}")
+print(f"% of low AF3 iptm scores with high HADDOCK dockq in the loose scenario with the best model (T1): {loose_unb_t1/len(low_iptm_af3):.2f}")
+print(f"% of low AF3 iptm scores with high HADDOCK dockq in the two-hit scenario with the best model (T1): {twohit_unb_t1/len(low_iptm_af3):.2f}")
+print(f"% of low AF3 iptm scores with high HADDOCK dockq in the real scenario with the best model (T1): {real_unb_t1/len(low_iptm_af3):.2f}\n")
