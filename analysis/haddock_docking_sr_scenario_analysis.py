@@ -402,3 +402,57 @@ plt.tight_layout()
 plt.subplots_adjust(bottom=0.20)
 plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.57, -0.28)) 
 plt.savefig(Path("figures", "SI_figure3.png"), dpi=400)
+
+# same as figure2 but with mix-loose and mix-twohit scenarios
+fig,axs = plt.subplots(1,2, figsize = (12, 6), width_ratios=[3, 3])
+barwidth = 0.4
+#
+#
+axs[0].set_xlim(0, 3)
+bars_b = [0.3, 1.3, 2.3]
+bars_u = [0.7, 1.7, 2.7]
+n_array = [1,10,200]
+mix_loose_b = sr_data_flex[(sr_data_flex["scenario"]=="mix-loose")&(sr_data_flex["struct"]=="b")]
+mix_loose_u = sr_data_flex[(sr_data_flex["scenario"]=="mix-loose")&(sr_data_flex["struct"]=="u")]
+# print(mix_loose)
+for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
+    vals_bound = [mix_loose_b[mix_loose_b["rank"]==n][sr].values[0]*100 for n in n_array]
+    axs[0].bar(bars_b, vals_bound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[j])
+    vals_unbound = [mix_loose_u[mix_loose_u["rank"]==n][sr].values[0]*100 for n in n_array]
+    axs[0].bar(bars_u, vals_unbound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth)
+    if j == 0: # acc
+        for bar_idx, n in enumerate(n_array):
+            value_bound = vals_bound[bar_idx]
+            axs[0].text(bars_b[bar_idx], vals_bound[bar_idx], f"{vals_bound[bar_idx]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+            value_unbound = vals_unbound[bar_idx]
+            axs[0].text(bars_u[bar_idx], vals_unbound[bar_idx], f"{vals_unbound[bar_idx]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+
+mix_twohit_b = sr_data_flex[(sr_data_flex["scenario"]=="mix-twohit")&(sr_data_flex["struct"]=="b")]
+mix_twohit_u = sr_data_flex[(sr_data_flex["scenario"]=="mix-twohit")&(sr_data_flex["struct"]=="u")]
+for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
+    vals_bound = [mix_twohit_b[mix_twohit_b["rank"]==n][sr].values[0]*100 for n in n_array]
+    vals_unbound = [mix_twohit_u[mix_twohit_u["rank"]==n][sr].values[0]*100 for n in n_array]
+    axs[1].bar(bars_b, vals_bound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth, label = acc_labels[j])
+    axs[1].bar(bars_u, vals_unbound, color = acc_colors[j], alpha = 1, edgecolor = "black", width=barwidth)
+    if j == 0: # acc
+        for bar_idx, n in enumerate(n_array):
+            axs[1].text(bars_b[bar_idx], vals_bound[bar_idx], f"{vals_bound[bar_idx]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+            axs[1].text(bars_u[bar_idx], vals_unbound[bar_idx], f"{vals_unbound[bar_idx]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = text_fontsize)
+# we set the x ticks and labels
+for i in range(2):
+    axs[i].set_ylim(0, 100)
+    axs[i].set_xticks(bound_bars)
+    axs[i].set_xticklabels(["T1", "T10", "T200"], size = 15)
+#we plot the name of the stages
+axs[0].set_title("Mix-loose scenario", fontsize = 15)
+axs[1].set_title("Mix-twohit scenario", fontsize = 15)
+axs[0].set_ylabel("SR (%)", size = 15)
+# empty y tick labels on axs[1] and axs[2]
+axs[1].set_yticks([])
+axs[0].set_yticks([0, 20, 40, 60, 80, 100])
+axs[0].set_yticklabels([0, 20, 40, 60, 80, 100], size = 12)
+handles, labels = axs[0].get_legend_handles_labels()
+plt.tight_layout()
+plt.subplots_adjust(bottom=0.14)
+plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.0, -0.18))
+plt.savefig(Path("figures", "mixed_paratope_restraints_sr.png"), dpi=400)
