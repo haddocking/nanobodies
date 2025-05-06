@@ -110,6 +110,7 @@ per_pdb_interacting_resnums_df.to_csv(Path("..", "data", "per_pdb_interacting_re
 
 nanobodies_angles = pd.read_csv(Path("..", "data", "nanobodies_torsion_angles.tsv"), sep="\t")
 
+print(f"pdb chain angle_class fr1 cdr1 fr2 cdr2 fr3 cdr3 fr4 species")
 probability_regions = []
 for n in range(per_pdb_interacting_resnums_df.shape[0]):
     pdb,chain = per_pdb_interacting_resnums_df.iloc[n]["pdb"], per_pdb_interacting_resnums_df.iloc[n]["chain"]
@@ -140,9 +141,11 @@ for n in range(per_pdb_interacting_resnums_df.shape[0]):
             fr3 += 1
         elif res in range(95, 103):#chothia definition from 95 to 102
             cdr3 += 1
+        #elif res in range(95, 104): #taking the terminal tryptophan into account
+        #    cdr3 += 1
         elif res > 102:
             fr4 += 1
-
+    print(f"{pdb} {chain} {angle_class[:1]} {fr1} {cdr1} {fr2} {cdr2} {fr3} {cdr3} {fr4} {species}")
     probability_regions.append([pdb, chain, angle_class, fr1/len(res_no_icode), cdr1/len(res_no_icode), fr2/len(res_no_icode), cdr2/len(res_no_icode), fr3/len(res_no_icode), cdr3/len(res_no_icode), fr4/len(res_no_icode), species])
 
 probability_regions_df = pd.DataFrame(probability_regions, columns=["pdb", "chain", "angle_class", "fr1", "cdr1", "fr2", "cdr2", "fr3", "cdr3", "fr4", "species"])

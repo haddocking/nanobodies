@@ -409,11 +409,16 @@ barwidth = 0.4
 #
 #
 axs[0].set_xlim(0, 3)
+axs[1].set_xlim(0, 3)
+
 bars_b = [0.3, 1.3, 2.3]
 bars_u = [0.7, 1.7, 2.7]
 n_array = [1,10,200]
 mix_loose_b = sr_data_flex[(sr_data_flex["scenario"]=="mix-loose")&(sr_data_flex["struct"]=="b")]
 mix_loose_u = sr_data_flex[(sr_data_flex["scenario"]=="mix-loose")&(sr_data_flex["struct"]=="u")]
+print(f"Mix-loose T10 SR unbound: {mix_loose_u}")
+print(f"Mix-twohit T10 SR bound: {mix_loose_b}")
+
 # print(mix_loose)
 for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
     vals_bound = [mix_loose_b[mix_loose_b["rank"]==n][sr].values[0]*100 for n in n_array]
@@ -429,6 +434,7 @@ for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
 
 mix_twohit_b = sr_data_flex[(sr_data_flex["scenario"]=="mix-twohit")&(sr_data_flex["struct"]=="b")]
 mix_twohit_u = sr_data_flex[(sr_data_flex["scenario"]=="mix-twohit")&(sr_data_flex["struct"]=="u")]
+
 for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
     vals_bound = [mix_twohit_b[mix_twohit_b["rank"]==n][sr].values[0]*100 for n in n_array]
     vals_unbound = [mix_twohit_u[mix_twohit_u["rank"]==n][sr].values[0]*100 for n in n_array]
@@ -455,4 +461,15 @@ handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.14)
 plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.0, -0.18))
-plt.savefig(Path("figures", "mixed_paratope_restraints_sr.png"), dpi=400)
+plt.savefig(Path("figures", "SI_figure6.png"), dpi=400)
+
+sr_data_emref = sr_data[sr_data["stage"]=="emref"]
+sr_data_emref_mix_loose = sr_data_emref[sr_data_emref["scenario"]=="mix-loose"]
+print(f"sr_data_emref_mix_loose {sr_data_emref_mix_loose.shape}")
+print(f'Mix-loose T10 SR unbound: {sr_data_emref_mix_loose[sr_data_emref_mix_loose["struct"]=="u"]}')
+print(f'Mix-loose T10 SR bound: {sr_data_emref_mix_loose[sr_data_emref_mix_loose["struct"]=="b"]}')
+sr_data_rigid = sr_data[sr_data["stage"]=="rigid"]
+sr_data_rigid_mix_loose = sr_data_rigid[sr_data_rigid["scenario"]=="mix-loose"]
+print(f"sr_data_rigid_mix_loose {sr_data_rigid_mix_loose.shape}")
+print(f'Mix-loose T10 SR unbound: {sr_data_rigid_mix_loose[sr_data_rigid_mix_loose["struct"]=="u"]}')
+print(f'Mix-loose T10 SR bound: {sr_data_rigid_mix_loose[sr_data_rigid_mix_loose["struct"]=="b"]}')

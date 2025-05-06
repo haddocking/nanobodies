@@ -19,7 +19,6 @@ def int_incode_sort(el):
 
 #SUPPLEMENTARY FIGURE 5
 #Percent of ‘kinked’ and ‘extended’ CDR3 conformation structures that involve each nanobody region in antigen binding.
-
 probability_regions = pd.read_csv(Path("..", "data", "probability_regions_interaction.tsv"), sep="\t")
 probability_regions_kinked = probability_regions[probability_regions["angle_class"] == "kinked"]
 probability_regions_extended = probability_regions[probability_regions["angle_class"] == "extended"]
