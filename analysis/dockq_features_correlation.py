@@ -19,7 +19,6 @@ cdr3rmsd_dockq_ib_monom_multim = cdr3rmsd_dockq_filtered[cdr3rmsd_dockq_filtered
 
 fig, axs = plt.subplots(1, 4, figsize=(16.8,5))
 gs = gridspec.GridSpec(4, 1, height_ratios=[1, 1, 1, 1])
-gs.update(wspace=0.5)
 axs[0].scatter(cdr3rmsd_dockq_ib["min_cdr3_rmsd"], cdr3rmsd_dockq_ib["max_dockq"], color="purple", label="IB", marker="o", alpha=0.5, edgecolors="black")
 axs[0].scatter(cdr3rmsd_dockq_ib_monom["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom["max_dockq"], color="purple", label="IBMo", marker="^", alpha=0.5, edgecolors="black")
 axs[0].scatter(cdr3rmsd_dockq_ib_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_multim["max_dockq"], color="purple", label="IBMu", marker="s", alpha=0.5, edgecolors="black")
@@ -59,7 +58,6 @@ axs[1].scatter(cdr3rmsd_dockq_ib_monom["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom
 axs[1].scatter(cdr3rmsd_dockq_ib_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_multim["max_dockq"], color="purple", label="IBMu", marker="s", alpha=0.5, edgecolors="black")
 axs[1].scatter(cdr3rmsd_dockq_ib_monom_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom_multim["max_dockq"], color="purple", label="IBMM", marker="x", alpha=0.5)
 axs[1].set_xlabel("Min CDR3 RMSD", size = 18)
-#axs[1].set_ylabel("Max DockQ in top10 models", size = 18)
 
 # correlations
 corr_ib = np.corrcoef(cdr3rmsd_dockq_ib["min_cdr3_rmsd"], cdr3rmsd_dockq_ib["max_dockq"])[0,1]
@@ -94,7 +92,8 @@ axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensembl
 axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMoMu"]["max_dockq"], color="blue", label="IBMM", marker="x", alpha=0.5)
 axs[2].set_title(f"Loose Interface", size = 18)
 axs[2].set_xlabel("$F_{para}$", size = 18)
-# axs[1].set_ylabel("Max DockQ in top10 models", size = 15)
+axs[2].set_ylabel("Max DockQ in top10 models", size = 18)
+
 # #we calculate the correlation and plot it at the top left corner
 corr_ib = np.corrcoef(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IB"]["max_dockq"])[0,1]
 corr_ib_monom = np.corrcoef(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMo"]["max_dockq"])[0,1]
@@ -136,8 +135,7 @@ axs[3].axhline(y=0.23, color="black", linestyle="--", alpha=0.5)
 
 for i in range(4):
     axs[i].set_ylim(-0.02,1)
-    if i != 0:
-        # remove yticks
+    if i not in [0, 2]:
         axs[i].set_yticks([])
 #plt.savefig(Path("figures", "dockq_paratope_represented_correlation_top10.png"))
 # putting a) and b) text

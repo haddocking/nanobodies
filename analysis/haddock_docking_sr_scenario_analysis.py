@@ -447,8 +447,8 @@ for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
 # we set the x ticks and labels
 for i in range(2):
     axs[i].set_ylim(0, 100)
-    axs[i].set_xticks(bound_bars)
-    axs[i].set_xticklabels(["T1", "T10", "T200"], size = 15)
+    axs[i].set_xticks([el for el in bound_bars] + [el + 0.4 for el in bound_bars])
+    axs[i].set_xticklabels(["B T1", "B T10", "B T200", "U T1", "U T10", "U T200" ], rotation = 45, ha = "right", size = 12)
 #we plot the name of the stages
 axs[0].set_title("Mix-loose scenario", fontsize = 15)
 axs[1].set_title("Mix-twohit scenario", fontsize = 15)
@@ -459,8 +459,8 @@ axs[0].set_yticks([0, 20, 40, 60, 80, 100])
 axs[0].set_yticklabels([0, 20, 40, 60, 80, 100], size = 12)
 handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
-plt.subplots_adjust(bottom=0.14)
-plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.0, -0.18))
+plt.subplots_adjust(bottom=0.18)
+plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.0, -0.25))
 plt.savefig(Path("figures", "SI_figure6.png"), dpi=400)
 
 sr_data_emref = sr_data[sr_data["stage"]=="emref"]
