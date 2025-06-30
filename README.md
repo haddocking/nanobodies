@@ -1,6 +1,7 @@
 # Nanobody - Antigen HADDOCK docking
 
-This repository contains all data and analysis required to reproduce the figures and supplementary figures in the 'Information-driven docking of machine learning structure ensembles achieves high success on nanobody-antigen complexes' Major Research Project Report from Miguel Sánchez Marín (MSc Bioinformatics and Biocomplexity, Utrecht University)
+This repository contains all data and analysis required to reproduce the figures and supplementary figures in the paper 'Combining AI structure prediction and integrative
+modelling for nanobody-antigen complexes' from Miguel Sánchez-Marín, Marco Giulini, Alexandre MJJ Bonvin
 
 ## Repository organisation
 This repository contains the follwoing directories:
