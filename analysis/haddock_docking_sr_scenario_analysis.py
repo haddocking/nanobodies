@@ -305,7 +305,7 @@ print(f"Mix-twohit T10 SR bound: {mix_twohit_sr_b['acc_sr'].values[0]*100:.2f}")
 
 #SUPPLEMENTARY FIGURE 2
 #Bar plots showing docking success rate (SR) for All Surface scenario as a function of the TopN ranked structures.
-fig,axs = plt.subplots(1,3, figsize = (12, 6), width_ratios=[3, 3, 3])
+fig,axs = plt.subplots(1,4, figsize = (12, 6), width_ratios=[3, 3, 3, 3])
 all_surf_data = sr_data[sr_data["scenario"]=="surf"]
 # 
 barwidth = 0.7
@@ -343,21 +343,52 @@ for i in range(3):
     axs[i].set_xticks(bound_bars)
     axs[i].set_xticklabels(["T1", "T10", "T200"], size = 15)
 
+# now let's add alphafold results for top1 and top10
+# we add for all three plots the AFMultimer and AF3 results for top1 and top10
+barwidth = 0.4
+bars_af2 = [0.3, 1.3]
+bars_af3 = [0.7, 1.7]
+for i in range(3):
+    axs[3].set_xlim(0, 2)
+    axs[3].set_ylim(0, 100)
+    axs[3].set_yticks([])
+    if i != 2:
+        axs[3].set_xticks([])
+    else:
+        axs[3].set_xticks(bars_af2 + bars_af3)
+        axs[3].set_xticklabels(af3_xlabels, rotation = 45, ha = "right", size = 12)
+    axs[3].bar(bars_af2, [af_multimer_rank1_list[0], af_multimer_rank10_list[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
+    axs[3].bar(bars_af2, [af_multimer_rank1_list[1], af_multimer_rank10_list[1]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
+    axs[3].bar(bars_af2, [af_multimer_rank1_list[2], af_multimer_rank10_list[2]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
+
+    axs[3].bar(bars_af3, [af3_rank1_list[0], af3_rank10_list[0]], color = "lightblue", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Acceptable")
+    axs[3].bar(bars_af3, [af3_rank1_list[1], af3_rank10_list[1]], color = "lightgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF Medium")
+    axs[3].bar(bars_af3, [af3_rank1_list[2], af3_rank10_list[2]], color = "darkgreen", alpha = 1, edgecolor = "black", width=barwidth, label = "AF High")
+
+    #and we plot the sum above the bars
+    axs[3].text(0.3, af_multimer_rank1_list[0], f"{af_multimer_rank1_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = 12, horizontalalignment='center', verticalalignment='center')
+    axs[3].text(0.7, af3_rank1_list[0], f"{af3_rank1_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = 12, horizontalalignment='center', verticalalignment='center')
+    axs[3].text(1.3, af_multimer_rank10_list[0], f"{af_multimer_rank10_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = 12, horizontalalignment='center', verticalalignment='center')
+    axs[3].text(1.7, af3_rank10_list[0], f"{af3_rank10_list[0]:.1f}", ha = "center", va = "bottom", rotation = 0, fontsize = 12, horizontalalignment='center', verticalalignment='center')
+
 #we plot the name of the stages
 axs[0].set_title("Rigidbody stage", fontsize = 15)
 axs[1].set_title("Flexref stage", fontsize = 15)
 axs[2].set_title("Emref stage", fontsize = 15)
+axs[3].set_title("Alphafold\nend-to-end", fontsize = 15)
+
 axs[0].set_ylabel("SR (%)", size = 15)
 # empty y tick labels on axs[1] and axs[2]
 axs[1].set_yticks([])
 axs[2].set_yticks([])
+axs[3].set_yticks([])
 axs[0].set_yticks([0, 20, 40, 60, 80, 100])
 axs[0].set_yticklabels([0, 20, 40, 60, 80, 100], size = 12)
 
 handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
-plt.subplots_adjust(bottom=0.14)
-plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.57, -0.18))
+plt.subplots_adjust(bottom=0.16)
+plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-1.37, -0.2))
 plt.savefig(Path("figures", "SI_figure2.png"), dpi=400)
 
 # ##SUPPLEMENTARY FIGURE 3A
