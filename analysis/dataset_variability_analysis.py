@@ -5,10 +5,7 @@ import matplotlib.pyplot as plt
 
 cdr3_df = pd.read_csv(Path("..","data", "benchmark_dataset.tsv"), sep="\t")
 
-#we create a new column with the length of the CDR3 sequences
 cdr3_df["cdr3_length"] = cdr3_df["CDR3"].apply(len)
-
-#we create a histogram representing the distribution of CDR3 lengths
 
 plt.hist(cdr3_df["cdr3_length"], bins=range(0, 30, 1), edgecolor='black')
 plt.xlabel("CDR3 length (residues)", fontsize=12)
