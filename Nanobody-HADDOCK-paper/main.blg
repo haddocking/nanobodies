@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: ieeetr.bst
+Database file #1: main.bib
+You're missing a field name---line 627 of file main.bib
+ : 
+ : %volume = {0},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--can't use both volume and number fields in tamburini2024characterization
+Warning--empty year in martin2009profit
+Warning--empty year in giulini2025haddock3
+You've used 62 entries,
+            1876 wiz_defined-function locations,
+            847 strings with 18799 characters,
+and the built_in function-call counts, 22039 in all, are:
+= -- 2106
+> -- 1223
+< -- 0
++ -- 429
+- -- 367
+* -- 1710
+:= -- 3171
+add.period$ -- 62
+call.type$ -- 62
+change.case$ -- 63
+chr.to.int$ -- 0
+cite$ -- 65
+duplicate$ -- 1081
+empty$ -- 1702
+format.name$ -- 367
+if$ -- 5273
+int.to.chr$ -- 0
+int.to.str$ -- 62
+missing$ -- 61
+newline$ -- 189
+num.names$ -- 62
+pop$ -- 123
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 890
+stack$ -- 0
+substring$ -- 1480
+swap$ -- 582
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 196
+width$ -- 64
+write$ -- 645
+(There was 1 error message)
