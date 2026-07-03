@@ -37,6 +37,8 @@
 \citation{sircar2011analysis}
 \citation{yin2022benchmarking}
 \citation{wu2024fast}
+\citation{Harvey2026nanobodyinSilico}
+\citation{Sachdev2025nanobodyepitope}
 \citation{abramson2024accurate}
 \citation{ambrosetti2020modeling}
 \citation{giulini2024towards}
@@ -50,9 +52,10 @@
 \citation{abramson2024accurate}
 \citation{hitawala2024has}
 \citation{eshak2025advancements}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Achieved backbone mean RMSD (± standard deviation) of the different nanobody regions by the different prediction methods.} The machine learning based nanobody structure prediction methods AlphaFold2-Multimer (AF Multimer), AlphaFold2 (AF Monomer), ImmuneBuilder (IB), RaptorX-Single (RXS), NanoNet (NN) and AlphaFold3 (AF3) performances are shown. For methods generating several models, only the first ranked model was considered.\relax }}{3}{}\protected@file@percent }
+\citation{Xu2025foldbench}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Achieved backbone mean RMSD (± standard deviation) of the different nanobody regions by the different prediction methods.} The machine learning based nanobody structure prediction methods AlphaFold2-Multimer (AF Multimer), AlphaFold2 (AF Monomer), ImmuneBuilder (IB), RaptorX-Single (RXS), NanoNet (NN) and AlphaFold3 (AF3) performances are shown. For methods generating several models, only the first ranked model was considered.}}{3}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:new_rmsd}{{1}{3}}
+\newlabel{tab:new_rmsd}{{1}{3}{}{table.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Results}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}AlphaFold has moderate accuracy in nanobody-antigen complex prediction}{3}{}\protected@file@percent }
 \citation{wu2024fast}
@@ -68,40 +71,42 @@
 \citation{rodrigues2012clustering}
 \citation{rodrigues2012clustering}
 \citation{ambrosetti2020modeling}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Accuracy of the predicted unbound nanobody and antigen structure ensembles.} \textbf  {a)} Violin plot showing the distribution of the best backbone CDR3 RMSD in the ensembles coming from multiple prediction methods ImmuneBuilder (IB), AlphaFold2 (AF2), AlphaFold2-Multimer (AF2M) and AlphaFold3 (AF3); the combination of these ensembles (IBMo=IB+AF2, IBMu=IB+AF2M, IBMM=IB+AF2+AF2M); and the combined ensembles after clustering (IBMo-Cl, IBMu-Cl, IBMM-Cl). Medians are shown in the plot. The dashed line and the numbers above show the percentage of dataset entries for which no structure in each ensemble have CDR3 RMSD $\leq 3.5$Å \textbf  {b)} Distributions of the full antigen and epitope backbone RMSD for the best AlphaFold2-Multimer predicted unbound antigen dataset (blue) and for the dataset including PDB homologous structures (orange, see main text). Medians are shown in the plot, together with the highest antigen and epitope RMSD values (on top). The percentages of structures with antigen or epitope RMSD higher than 5 and 10Å are reported above the dashed lines.\relax }}{5}{}\protected@file@percent }
-\newlabel{fig:violins}{{1}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Accuracy of the predicted unbound nanobody and antigen structure ensembles.} \textbf  {a)} Violin plot showing the distribution of the best backbone CDR3 RMSD in the ensembles coming from multiple prediction methods ImmuneBuilder (IB), AlphaFold2 (AF2), AlphaFold2-Multimer (AF2M) and AlphaFold3 (AF3); the combination of these ensembles (IBMo=IB+AF2, IBMu=IB+AF2M, IBMM=IB+AF2+AF2M); and the combined ensembles after clustering (IBMo-Cl, IBMu-Cl, IBMM-Cl). Medians are shown in the plot. The dashed line and the numbers above show the percentage of dataset entries for which no structure in each ensemble have CDR3 RMSD $\leq 3.5$Å \textbf  {b)} Distributions of the full antigen and epitope backbone RMSD for the best AlphaFold2-Multimer predicted unbound antigen dataset (blue) and for the dataset including PDB homologous structures (orange, see main text). Medians are shown in the plot, together with the highest antigen and epitope RMSD values (on top). The percentages of structures with antigen or epitope RMSD higher than 5 and 10Å are reported above the dashed lines.}}{5}{}\protected@file@percent }
+\newlabel{fig:violins}{{1}{5}{}{figure.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Information-driven HADDOCK unbound docking}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {HADDOCK3 performance on nanobody-antigen docking.} HADDOCK success rates (SR) for nanobody-antigen docking models after Flexible Refinement stage for True, Loose, and Two-Hit Interface scenarios. Docking success is reported for the ensembles ImmuneBuilder (IB) and ImmuneBuilder + AlphaFold2-Multimer (IBMu), both for bound (B) and unbound antigens (U) and calculated for Top 1 (T1), Top 10 (T10) and Top 200 (T200) ranked models. For IBMu we report also the cluster-based success rate over T1, T2, T5 and T10 clusters. Clusters were defined based on Fraction of Common Contact (FCC) clustering \cite  {rodrigues2012clustering} of the models at the end of the workflow. Success is considered when at least one of the four first-ranked models in any of the TopN ranked clusters is classified as acceptable/medium/high quality. The AlphaFold2-Multimer (AF2M) and AlphaFold3 (AF3) SR are provided on the right. Light blue, light green, and dark green indicate acceptable, medium, and high-quality models, respectively, as defined by the CAPRI criteria. Acceptable SR (\%) are shown on top of the bars.\relax }}{6}{}\protected@file@percent }
-\newlabel{fig:main-figure}{{2}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {HADDOCK3 performance on nanobody-antigen docking.} HADDOCK success rates (SR) for nanobody-antigen docking models after Flexible Refinement stage for True, Loose, and Two-Hit Interface scenarios. Docking success is reported for the ensembles ImmuneBuilder (IB) and ImmuneBuilder + AlphaFold2-Multimer (IBMu), both for bound (B) and unbound antigens (U) and calculated for Top 1 (T1), Top 10 (T10) and Top 200 (T200) ranked models. For IBMu we report also the cluster-based success rate over T1, T2, T5 and T10 clusters. Clusters were defined based on Fraction of Common Contact (FCC) clustering \cite  {rodrigues2012clustering} of the models at the end of the workflow. Success is considered when at least one of the four first-ranked models in any of the TopN ranked clusters is classified as acceptable/medium/high quality. The AlphaFold2-Multimer (AF2M) and AlphaFold3 (AF3) SR are provided on the right. Light blue, light green, and dark green indicate acceptable, medium, and high-quality models, respectively, as defined by the CAPRI criteria. Acceptable SR (\%) are shown on top of the bars.}}{6}{}\protected@file@percent }
+\newlabel{fig:main-figure}{{2}{6}{}{figure.2}{}}
 \citation{evans2021protein}
 \citation{abramson2024accurate}
 \citation{rodrigues2012clustering}
 \citation{olechnovivc2023voroif}
 \citation{olechnovivc2023prediction}
 \citation{giulini2024towards}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {HADDOCK acceptable success rate (acc. SR) on cases that are difficult for AlphaFold.} Instances for which AlphaFold2-multimer and AlphaFold3 lack an acceptable model (according to CAPRI criteria) in the first 10 ranked models are displayed (AF2 Failed, AF3 Failed). Additionally, nanobody antigen complexes where AlphaFold's maximum ipTM $< 0.6$ are shown (AF2 Low ipTM, AF3 Low ipTM). HADDOCK acceptable SR are reported across the three scenarios, as calculated over the best ranked model of the IBMu ensemble run (see main text). Statistics calculated for the first ten models are provided between square brackets.\relax }}{8}{}\protected@file@percent }
-\newlabel{tab:af2_af3_stats}{{2}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Fraction of Native Contacts improves after Flexible Refinement}. The histograms show the distribution of changes in Fnat after flexible refinement ($\Delta F_{nat} = F_{nat}^{flex} - F_{nat}^{rigid}$) for all acceptable models (positive values indicate an improvement in the recovery of native contacts). Frequencies are shown for True, Loose and Two-Hit interface scenarios runs with bound and unbound antigen. The median $\Delta F_{nat}$ value is shown at the bottom of the histogram and maximum and minimum $\Delta F_{nat}$ are reported with black dashed lines. The number of models in the plotted distributions (n) is shown on each graph.\relax }}{8}{}\protected@file@percent }
-\newlabel{fig:refinement}{{3}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {HADDOCK acceptable success rate (acc. SR) on cases that are difficult for AlphaFold.} Instances for which AlphaFold2-multimer and AlphaFold3 lack an acceptable model (according to CAPRI criteria) in the first 10 ranked models are displayed (AF2 Failed, AF3 Failed). Additionally, nanobody antigen complexes where AlphaFold's maximum ipTM $< 0.6$ are shown (AF2 Low ipTM, AF3 Low ipTM). HADDOCK acceptable SR are reported across the three scenarios, as calculated over the best ranked model of the IBMu ensemble run (see main text). Statistics calculated for the first ten models are provided between square brackets.}}{8}{}\protected@file@percent }
+\newlabel{tab:af2_af3_stats}{{2}{8}{}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Fraction of Native Contacts improves after Flexible Refinement}. The histograms show the distribution of changes in Fnat after flexible refinement ($\Delta F_{nat} = F_{nat}^{flex} - F_{nat}^{rigid}$) for all acceptable models (positive values indicate an improvement in the recovery of native contacts). Frequencies are shown for True, Loose and Two-Hit interface scenarios runs with bound and unbound antigen. The median $\Delta F_{nat}$ value is shown at the bottom of the histogram and maximum and minimum $\Delta F_{nat}$ are reported with black dashed lines. The number of models in the plotted distributions (n) is shown on each graph.}}{8}{}\protected@file@percent }
+\newlabel{fig:refinement}{{3}{8}{}{figure.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5}CDR3 accuracy, CDR3 conformation, and paratope definition are critical features for docking success}{8}{}\protected@file@percent }
 \citation{bahrami2023vhh}
 \citation{bahrami2023vhh}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Nanobody structure quality and paratope definition are related to docking success.} \textbf  {a)} Scatter plot between the minimum CDR3 RMSD in the input models and the maximum DockQ achieved among the top10 models for each ensemble. Analysed models come from True Interface scenario and bound antigen. Pearson correlation coefficients for each ensemble are reported on the top right. The horizontal dashed line in each plot indicates a DockQ of 0.23, which is the cutoff used to define acceptable or better models. \textbf  {b)} Scatter plots showing the relationship between the fraction of paratope present in the restraints ($F_{para}$) and the maximum DockQ among the top 10 models for each ensemble. Data are shown for both Loose and Two-Hit Interface scenarios. Pearson correlation coefficients are plotted on the top left.\relax }}{9}{}\protected@file@percent }
-\newlabel{fig:dockq-features}{{4}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Nanobody structure quality and paratope definition are related to docking success.} \textbf  {a)} Scatter plot between the minimum CDR3 RMSD in the input models and the maximum DockQ achieved among the top10 models for each ensemble. Analysed models come from True Interface scenario and bound antigen. Pearson correlation coefficients for each ensemble are reported on the top right. The horizontal dashed line in each plot indicates a DockQ of 0.23, which is the cutoff used to define acceptable or better models. \textbf  {b)} Scatter plots showing the relationship between the fraction of paratope present in the restraints ($F_{para}$) and the maximum DockQ among the top 10 models for each ensemble. Data are shown for both Loose and Two-Hit Interface scenarios. Pearson correlation coefficients are plotted on the top left.}}{9}{}\protected@file@percent }
+\newlabel{fig:dockq-features}{{4}{9}{}{figure.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Framework-aware paratope description improves the modelling success}{9}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Paratope clusters}. \small  {Bar plot showing the frequency of each residue in two cluster’s paratopes obtained after hierarchical clustering based on Jaccard distances. The top plot shows the frequencies for cluster 1 (CDR) and the lower plot for cluster 2 (CDR+FR). The CDR regions are highlighted in grey. Residue numbers with a frequency above 0.15 (dashed line) are plotted on top of the corresponding frequency bars. Only residue numbers based on the Chothia numbering scheme are considered for the frequency calculation and representation (e.g. residues 100A and 100B account as 100). Conserved regions (R1, R2, etc.) in the CDR+FR representation are shown with horizontal purple lines. White stars indicate the residues that are defined as paratope restraints inside of each of these regions.}\relax }}{10}{}\protected@file@percent }
-\newlabel{fig:paratope}{{5}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Paratope clusters}. \small  {Bar plot showing the frequency of each residue in two cluster’s paratopes obtained after hierarchical clustering based on Jaccard distances. The top plot shows the frequencies for cluster 1 (CDR) and the lower plot for cluster 2 (CDR+FR). The CDR regions are highlighted in grey. Residue numbers with a frequency above 0.15 (dashed line) are plotted on top of the corresponding frequency bars. Only residue numbers based on the Chothia numbering scheme are considered for the frequency calculation and representation (e.g. residues 100A and 100B account as 100). Conserved regions (R1, R2, etc.) in the CDR+FR representation are shown with horizontal purple lines. White stars indicate the residues that are defined as paratope restraints inside of each of these regions.}}}{10}{}\protected@file@percent }
+\newlabel{fig:paratope}{{5}{10}{}{figure.5}{}}
 \citation{abramson2024accurate}
 \citation{desta2023cluspro}
+\citation{Xie2025grasp}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Discussion}{11}{}\protected@file@percent }
 \citation{li2024nanoberta}
+\citation{Xu2026deeprankab}
+\citation{Smorodina2026iptm}
 \citation{al1997standard}
 \citation{dunbar2014sabdab}
 \citation{schneider2022sabdab}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{12}{}\protected@file@percent }
 \citation{rodrigues2018pdb}
 \citation{gowers2019mdanalysis}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Methods}{12}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Benchmark dataset assembly}{12}{}\protected@file@percent }
 \citation{evans2021protein}
 \citation{mirdita2022colabfold}
 \citation{abramson2024accurate}
@@ -114,40 +119,42 @@
 \citation{mclachlan1982rapid}
 \citation{martin2009profit}
 \citation{pedregosa2011scikit}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Methods}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmark dataset assembly}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Nanobody-antigen complex structure modelling and accuracy assessment}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Single structure modelling and accuracy assessment}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Nanobody models clustering}{13}{}\protected@file@percent }
 \citation{giulini2025haddock3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Nanobody-antigen complex structure modelling and accuracy assessment}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Single structure modelling and accuracy assessment}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Nanobody models clustering}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Unbound antigen selection}{13}{}\protected@file@percent }
 \citation{giulini2025haddock3}
 \citation{dominguez2003haddock}
 \citation{ambrosetti2020modeling}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Unbound antigen selection}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Information scenarios and restraints generation}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}HADDOCK3 docking protocols}{14}{}\protected@file@percent }
 \citation{rodrigues2012clustering}
 \citation{fernandez2004identification}
 \citation{dominguez2003haddock}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Information scenarios and restraints generation}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}HADDOCK3 docking protocols}{14}{}\protected@file@percent }
 \citation{olechnovivc2023voroif}
 \citation{olechnovivc2023prediction}
 \citation{janin2003capri}
 \citation{mendez2003assessment}
 \citation{bahrami2023vhh}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Model quality assessment}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Paratope analysis and framework-aware restraints definition}{15}{}\protected@file@percent }
+\newlabel{methods:para}{{5.9}{15}{}{subsection.5.9}{}}
 \citation{virtanen2020scipy}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Model quality assessment}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Paratope analysis and framework-aware restraints definition}{15}{}\protected@file@percent }
-\newlabel{methods:para}{{4.9}{15}}
 \bibstyle{ieeetr}
 \bibdata{main}
 \bibcite{hamers1993naturally}{1}
 \bibcite{muyldermans2013nanobodies}{2}
 \bibcite{konning2017camelid}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Data and Software Availability Statement}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Acknowledgements}{16}{}\protected@file@percent }
 \bibcite{gonzalez2017single}{4}
 \bibcite{liu2021nanobody}{5}
 \bibcite{vanlandschoot2011nanobodies}{6}
 \bibcite{bao2021nanobody}{7}
 \bibcite{li2018natural}{8}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Data and Software Availability Statement}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Acknowledgements}{16}{}\protected@file@percent }
 \bibcite{de2004chemical}{9}
 \bibcite{gordon2023comparison}{10}
 \bibcite{kuroda2022structural}{11}
