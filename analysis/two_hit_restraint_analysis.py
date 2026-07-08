@@ -53,7 +53,7 @@ def extract_restrain_perc(pdb):
 
 #extract_restrain_perc("8en2D")
 
-analysis_filename = "two_hit_restraint_analysis.csv"
+analysis_filename = "../data/two_hit_restraint_analysis.csv"
 if Path(analysis_filename).exists():
     print(f"{analysis_filename} already exists. Skipping analysis.")
     df = pd.read_csv(analysis_filename)
@@ -67,7 +67,7 @@ else:
             data.append([el, dockq_b, dockq_u, max_b, max_u, perc])
 
     df = pd.DataFrame(data, columns=["pdb", "avg_dockq_bound", "avg_dockq_unbound", "max_dockq_bound", "max_dockq_unbound", "perc_restrained"])
-    df.to_csv("two_hit_restraint_analysis.csv", index=False)
+    df.to_csv("../data/two_hit_restraint_analysis.csv", index=False)
 
 # make a 2x2 plot with dock values against percentage of restrained residues
 import matplotlib.pyplot as plt
@@ -86,4 +86,4 @@ axs[1, 1].set_xlabel("Percentage of true epitope residues in two-hit restraints"
 axs[1, 1].set_ylabel("Max DockQ (T10 unbound)")
 # color the point
 plt.tight_layout()
-plt.savefig("two_hit_restraint_analysis.png")
+plt.savefig("figures/two_hit_restraint_analysis.png")

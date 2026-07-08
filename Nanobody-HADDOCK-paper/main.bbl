@@ -169,6 +169,19 @@ F.~Wu, Y.~Zhao, J.~Wu, B.~Jiang, B.~He, L.~Huang, C.~Qin, F.~Yang, N.~Huang,
   Y.~Xiao, {\em et~al.}, ``Fast and accurate modeling and design of
   antibody-antigen complex using tfold,'' {\em bioRxiv}, pp.~2024--02, 2024.
 
+\bibitem{Harvey2026nanobodyinSilico}
+E.~P. Harvey, J.~S. Smith, J.~D. Hurley, A.~J. Granados, E.~W. Schmid, J.~G.
+  Liang-Lin, H.~Zhang, E.~M. Meara, E.~K. Wren, S.~Paul, M.~P. Ferguson, V.~G.
+  Calvillo-Miranda, M.~A. Alcantar, D.~S. Marks, J.~C. Walter, A.~C. Kruse, and
+  K.~J. Susa, ``In silico discovery of nanobody binders to a g-protein coupled
+  receptor using alphafold-multimer,'' {\em Nature Communications}, 4 2026.
+
+\bibitem{Sachdev2025nanobodyepitope}
+S.~Sachdev, S.~Roy, S.~J. Saha, G.~Zhao, R.~Kumariya, B.~A. Creemer, R.~Yin,
+  B.~G. Pierce, C.~A. Bewley, and R.~W. Cheloha, ``Evaluation of alphafold
+  modeling for elucidation of nanobody–peptide epitope interactions,'' {\em
+  Journal of Biological Chemistry}, vol.~301, p.~110268, 7 2025.
+
 \bibitem{abramson2024accurate}
 J.~Abramson, J.~Adler, J.~Dunger, R.~Evans, T.~Green, A.~Pritzel,
   O.~Ronneberger, L.~Willmore, A.~J. Ballard, J.~Bambrick, {\em et~al.},
@@ -217,6 +230,11 @@ F.~N. Hitawala and J.~J. Gray, ``What has alphafold3 learned about antibody and
 F.~Eshak and A.~Goupil-Lamy, ``Advancements in nanobody epitope prediction: A
   comparative study of alphafold2multimer vs alphafold3,'' {\em Journal of
   Chemical Information and Modeling}, 2025.
+
+\bibitem{Xu2025foldbench}
+S.~Xu, Q.~Feng, L.~Qiao, H.~Wu, T.~Shen, Y.~Cheng, S.~Zheng, and S.~Sun,
+  ``Benchmarking all-atom biomolecular structure prediction with foldbench,''
+  {\em Nature Communications}, vol.~17, p.~442, 12 2025.
 
 \bibitem{valdes2023structural}
 M.~S. Vald{\'e}s-Tresanco, M.~E. Vald{\'e}s-Tresanco, D.~E.
@@ -267,10 +285,27 @@ I.~T. Desta, S.~Kotelnikov, G.~Jones, U.~Ghani, M.~Abyzov, Y.~Kholodov, D.~M.
   server for the prediction of antibody epitopes,'' {\em Nature protocols},
   vol.~18, no.~6, pp.~1814--1840, 2023.
 
+\bibitem{Xie2025grasp}
+Y.~Xie, C.~Zhang, S.~Li, X.~Du, Y.~Lu, M.~Wang, Y.~Hu, Z.~Chen, S.~Liu, and
+  Y.~Q. Gao, ``Integrating diverse experimental information to assist protein
+  complex structure prediction by grasp,'' {\em Nature Methods}, vol.~22,
+  pp.~2362--2374, 11 2025.
+
 \bibitem{li2024nanoberta}
 S.~Li, X.~Meng, R.~Li, B.~Huang, and X.~Wang, ``Nanoberta-asp: predicting
   nanobody paratope based on a pretrained roberta model,'' {\em BMC
   bioinformatics}, vol.~25, no.~1, p.~122, 2024.
+
+\bibitem{Xu2026deeprankab}
+X.~Xu, I.~Coratella, V.~Reys, and A.~M. Bonvin, ``Deeprank-ab: a scoring
+  function for antibody-antigen complexes based on geometric deep learning,''
+  {\em Communications Biology}, 6 2026.
+
+\bibitem{Smorodina2026iptm}
+E.~Smorodina, M.~Ali, K.~K. Brumat, L.~Salicari, S.~Miklavc, A.~Kappassov,
+  C.~Fu, P.~Sormanni, A.~de~Marco, and V.~Greiff, ``Structural plausibility
+  without binding specificity: Limits of ai-based antibody-antigen structure
+  prediction confidence scores,'' 3 2026.
 
 \bibitem{al1997standard}
 B.~Al-Lazikani, A.~M. Lesk, and C.~Chothia, ``Standard conformations for the
@@ -313,7 +348,7 @@ A.~D. McLachlan, ``Rapid comparison of protein structures,'' {\em Acta
 \bibitem{martin2009profit}
 A.~C. Martin and C.~T. Porter, ``Profit version 3.3,'' {\em London: University
   College London. Available online at: http://www. bioinf. org.
-  uk/software/profit/index. html}.
+  uk/software/profit/index. html}, 2009.
 
 \bibitem{pedregosa2011scikit}
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,

@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2021)
+This is BibTeX, Version 0.99e (TeX Live 2026)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: ieeetr.bst
@@ -9,47 +9,46 @@ You're missing a field name---line 627 of file main.bib
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--can't use both volume and number fields in tamburini2024characterization
-Warning--empty year in martin2009profit
 Warning--empty year in giulini2025haddock3
-You've used 62 entries,
+You've used 68 entries,
             1876 wiz_defined-function locations,
-            847 strings with 18799 characters,
-and the built_in function-call counts, 22039 in all, are:
-= -- 2106
-> -- 1223
+            879 strings with 20725 characters,
+and the built_in function-call counts, 23944 in all, are:
+= -- 2236
+> -- 1412
 < -- 0
-+ -- 429
-- -- 367
-* -- 1710
-:= -- 3171
-add.period$ -- 62
-call.type$ -- 62
-change.case$ -- 63
++ -- 494
+- -- 426
+* -- 1892
+:= -- 3494
+add.period$ -- 68
+call.type$ -- 68
+change.case$ -- 69
 chr.to.int$ -- 0
-cite$ -- 65
-duplicate$ -- 1081
-empty$ -- 1702
-format.name$ -- 367
-if$ -- 5273
+cite$ -- 70
+duplicate$ -- 1153
+empty$ -- 1822
+format.name$ -- 426
+if$ -- 5691
 int.to.chr$ -- 0
-int.to.str$ -- 62
-missing$ -- 61
-newline$ -- 189
-num.names$ -- 62
-pop$ -- 123
+int.to.str$ -- 68
+missing$ -- 66
+newline$ -- 207
+num.names$ -- 68
+pop$ -- 140
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 890
+skip$ -- 947
 stack$ -- 0
-substring$ -- 1480
-swap$ -- 582
+substring$ -- 1534
+swap$ -- 615
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
-while$ -- 196
-width$ -- 64
-write$ -- 645
+warning$ -- 2
+while$ -- 206
+width$ -- 70
+write$ -- 699
 (There was 1 error message)
