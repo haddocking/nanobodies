@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
-##FIGURE 5A
+##FIGURE 4A
 ##Scatter plot showing the relation between the minimum CDR3 RMSD in the input models and the maximum DockQ achieved among the top10 models for each ensemble
 cdr3rmsd_dockq = pd.read_csv(Path("..", "data/cdr3_rmsd_dockq.tsv"), sep="\t")
 cdr3rmsd_dockq_filtered = cdr3rmsd_dockq[(cdr3rmsd_dockq["scenario"] == "real")&(cdr3rmsd_dockq["struct"] == "b")]
@@ -19,10 +19,10 @@ cdr3rmsd_dockq_ib_monom_multim = cdr3rmsd_dockq_filtered[cdr3rmsd_dockq_filtered
 
 fig, axs = plt.subplots(1, 4, figsize=(16.8,5))
 gs = gridspec.GridSpec(4, 1, height_ratios=[1, 1, 1, 1])
-axs[0].scatter(cdr3rmsd_dockq_ib["min_cdr3_rmsd"], cdr3rmsd_dockq_ib["max_dockq"], color="purple", label="IB", marker="o", alpha=0.5, edgecolors="black")
-axs[0].scatter(cdr3rmsd_dockq_ib_monom["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom["max_dockq"], color="purple", label="IBMo", marker="^", alpha=0.5, edgecolors="black")
-axs[0].scatter(cdr3rmsd_dockq_ib_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_multim["max_dockq"], color="purple", label="IBMu", marker="s", alpha=0.5, edgecolors="black")
-axs[0].scatter(cdr3rmsd_dockq_ib_monom_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom_multim["max_dockq"], color="purple", label="IBMM", marker="x", alpha=0.5)
+axs[0].scatter(cdr3rmsd_dockq_ib["min_cdr3_rmsd"], cdr3rmsd_dockq_ib["max_dockq"], color=plt.cm.tab10.colors[0], label="IB", marker="o", alpha=0.5, edgecolors="black")
+axs[0].scatter(cdr3rmsd_dockq_ib_monom["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom["max_dockq"], color=plt.cm.tab10.colors[3], label="IBMo", marker="^", alpha=0.5, edgecolors="black")
+axs[0].scatter(cdr3rmsd_dockq_ib_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_multim["max_dockq"], color=plt.cm.tab10.colors[4], label="IBMu", marker="s", alpha=0.5, edgecolors="black")
+axs[0].scatter(cdr3rmsd_dockq_ib_monom_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom_multim["max_dockq"], color=plt.cm.tab10.colors[5], label="IBMM", marker="x", alpha=0.5)
 
 axs[0].set_xlabel("Min CDR3 RMSD", size = 18)
 axs[0].set_ylabel("Max DockQ in top10 models", size = 18)
@@ -53,10 +53,10 @@ cdr3rmsd_dockq_ib_monom = cdr3rmsd_dockq_filtered[cdr3rmsd_dockq_filtered["ensem
 cdr3rmsd_dockq_ib_multim = cdr3rmsd_dockq_filtered[cdr3rmsd_dockq_filtered["ensemble"] == "IBMu"]
 cdr3rmsd_dockq_ib_monom_multim = cdr3rmsd_dockq_filtered[cdr3rmsd_dockq_filtered["ensemble"] == "IBMoMu"]
 
-axs[1].scatter(cdr3rmsd_dockq_ib["min_cdr3_rmsd"], cdr3rmsd_dockq_ib["max_dockq"], color="purple", label="IB", marker="o", alpha=0.5, edgecolors="black")
-axs[1].scatter(cdr3rmsd_dockq_ib_monom["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom["max_dockq"], color="purple", label="IBMo", marker="^", alpha=0.5, edgecolors="black")
-axs[1].scatter(cdr3rmsd_dockq_ib_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_multim["max_dockq"], color="purple", label="IBMu", marker="s", alpha=0.5, edgecolors="black")
-axs[1].scatter(cdr3rmsd_dockq_ib_monom_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom_multim["max_dockq"], color="purple", label="IBMM", marker="x", alpha=0.5)
+axs[1].scatter(cdr3rmsd_dockq_ib["min_cdr3_rmsd"], cdr3rmsd_dockq_ib["max_dockq"], color=plt.cm.tab10.colors[0], label="IB", marker="o", alpha=0.5, edgecolors="black")
+axs[1].scatter(cdr3rmsd_dockq_ib_monom["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom["max_dockq"], color=plt.cm.tab10.colors[3], label="IBMo", marker="^", alpha=0.5, edgecolors="black")
+axs[1].scatter(cdr3rmsd_dockq_ib_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_multim["max_dockq"], color=plt.cm.tab10.colors[4], label="IBMu", marker="s", alpha=0.5, edgecolors="black")
+axs[1].scatter(cdr3rmsd_dockq_ib_monom_multim["min_cdr3_rmsd"], cdr3rmsd_dockq_ib_monom_multim["max_dockq"], color=plt.cm.tab10.colors[5], label="IBMM", marker="x", alpha=0.5)
 axs[1].set_xlabel("Min CDR3 RMSD", size = 18)
 
 # correlations
@@ -72,7 +72,7 @@ axs[1].set_title(f"Loose Interface", size = 18)
 
 plt.savefig(Path("figures", "dockq_analysis", "dockq_cdr3_rmsd_correlation_top10_loose.png"),dpi=400)
 
-##FIGURE 5B
+##FIGURE 4B
 ##Scatter plots showing the relation between the % of paratope represented in the restraints and the maximum DockQ among the top10 models for each ensemble after final refinement
 
 repr_df = pd.read_csv(Path("..", "data/paratope_epitope_repr.tsv"), sep="\t")
@@ -86,10 +86,10 @@ two_hit_dockq = two_hit_dockq.sort_values(by="pdb")
 repr_df = repr_df.sort_values(by="pdb")
 
 #Loose Interface
-axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IB"]["max_dockq"], color="blue", label="IB", marker="o", alpha=0.5, edgecolors="black")
-axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMo"]["max_dockq"], color="blue", label="IBMo", marker="^", alpha=0.5, edgecolors="black")
-axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMu"]["max_dockq"], color="blue", label="IBMu", marker="s", alpha=0.5, edgecolors="black")
-axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMoMu"]["max_dockq"], color="blue", label="IBMM", marker="x", alpha=0.5)
+axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IB"]["max_dockq"], color=plt.cm.tab10.colors[0], label="IB", marker="o", alpha=0.5, edgecolors="black")
+axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMo"]["max_dockq"], color=plt.cm.tab10.colors[3], label="IBMo", marker="^", alpha=0.5, edgecolors="black")
+axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMu"]["max_dockq"], color=plt.cm.tab10.colors[4], label="IBMu", marker="s", alpha=0.5, edgecolors="black")
+axs[2].scatter(repr_df["paratope_represented"], loose_dockq[loose_dockq["ensemble"] == "IBMoMu"]["max_dockq"], color=plt.cm.tab10.colors[5], label="IBMM", marker="x", alpha=0.5)
 axs[2].set_title(f"Loose Interface", size = 18)
 axs[2].set_xlabel("$F_{para}$", size = 18)
 axs[2].set_ylabel("Max DockQ in top10 models", size = 18)
@@ -114,10 +114,10 @@ axs[2].axhline(y=0.23, color="black", linestyle="--", alpha=0.5)
 
 #Two-Hit Interface
 print(f'shape repr_df: {repr_df.shape} shape two_hit_dockq: {two_hit_dockq[two_hit_dockq["ensemble"] == "IB"].shape}')
-axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IB"]["max_dockq"], color="blue", label="IB", marker="o", alpha=0.5, edgecolors="black")
-axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IBMo"]["max_dockq"], color="blue", label="IBMo", marker="^", alpha=0.5, edgecolors="black")
-axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IBMu"]["max_dockq"], color="blue", label="IBMu", marker="s", alpha=0.5, edgecolors="black")
-axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IBMoMu"]["max_dockq"], color="blue", label="IBMM", marker="x", alpha=0.5)
+axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IB"]["max_dockq"], color=plt.cm.tab10.colors[0], label="IB", marker="o", alpha=0.5, edgecolors="black")
+axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IBMo"]["max_dockq"], color=plt.cm.tab10.colors[3], label="IBMo", marker="^", alpha=0.5, edgecolors="black")
+axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IBMu"]["max_dockq"], color=plt.cm.tab10.colors[4], label="IBMu", marker="s", alpha=0.5, edgecolors="black")
+axs[3].scatter(repr_df["paratope_represented"], two_hit_dockq[two_hit_dockq["ensemble"] == "IBMoMu"]["max_dockq"], color=plt.cm.tab10.colors[5], label="IBMM", marker="x", alpha=0.5)
 axs[3].set_xlabel("$F_{para}$", size = 18)
 axs[3].set_title("Two-Hit Interface", size = 18)
 
@@ -149,7 +149,7 @@ pos4 = axs[3].get_position()
 axs[1].set_position([pos2.x0 - (pos2.x0 - pos1.x1), pos2.y0, pos2.width, pos2.height])
 axs[3].set_position([pos4.x0 - (pos4.x0 - pos3.x1), pos4.y0, pos4.width, pos4.height])
 
-plt.savefig(Path("figures", "figure4.png"), dpi=400)
+plt.savefig(Path("figures", "figure4_trial.png"), dpi=400)
 plt.close()
 
 #SUPPLEMENTARY FIGURE 4
