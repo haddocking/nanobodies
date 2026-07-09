@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.24)  8 JUL 2026 20:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.24)  8 JUL 2026 22:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -346,10 +346,10 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4657 strings out of 467525
- 77139 string characters out of 5418982
- 499223 words of memory out of 5000000
- 33536 multiletter control sequences out of 15000+600000
+ 4656 strings out of 467525
+ 77111 string characters out of 5418982
+ 499219 words of memory out of 5000000
+ 33535 multiletter control sequences out of 15000+600000
  637017 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  67i,10n,77p,1723b,397s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -367,7 +367,7 @@ l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local
 /texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/
 texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/te
 xlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (21 pages, 2824602 bytes).
+Output written on main.pdf (21 pages, 2824324 bytes).
 PDF statistics:
  154 PDF objects out of 1000 (max. 8388607)
  92 compressed objects within 1 object stream
