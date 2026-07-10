@@ -239,11 +239,11 @@ def plot_heatmap(tm_df, out_path="tmscore_heatmap.png"):
             plt.Rectangle((c, r), 1, 1, fill=False, edgecolor=color, lw=3)
         )
  
-    subtitle = (
-        f"min = {min_val:.3f} ({min_pair[0]} vs {min_pair[1]}, red)   "
-        f"max = {max_val:.3f} ({max_pair[0]} vs {max_pair[1]}, green)"
-    )
-    ax.set_title(f"Pairwise epitope TM-score\n{subtitle}", fontsize=10)
+    # subtitle = (
+    #     f"min = {min_val:.3f} ({min_pair[0]} vs {min_pair[1]}, red)   "
+    #     f"max = {max_val:.3f} ({max_pair[0]} vs {max_pair[1]}, green)"
+    # )
+    #ax.set_title(f"Pairwise epitope TM-score\n{subtitle}", fontsize=10)
 
     ax.text(-0.15, 1.02, "c)", fontsize=20, va="bottom", transform = ax.transAxes)
  
@@ -252,6 +252,7 @@ def plot_heatmap(tm_df, out_path="tmscore_heatmap.png"):
     print(f"Saved heatmap to {out_path}")
     print(f"Min TM-score: {min_val:.3f} ({min_pair[0]} vs {min_pair[1]})")
     print(f"Max TM-score: {max_val:.3f} ({max_pair[0]} vs {max_pair[1]})")
+    print(f"Mean TM-score: {upper_vals.mean().mean():.3f}")
 
  
 

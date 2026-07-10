@@ -3,52 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: ieeetr.bst
 Database file #1: main.bib
-You're missing a field name---line 627 of file main.bib
- : 
- : %volume = {0},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--can't use both volume and number fields in tamburini2024characterization
-Warning--empty year in giulini2025haddock3
 You've used 67 entries,
             1876 wiz_defined-function locations,
-            873 strings with 20386 characters,
-and the built_in function-call counts, 23555 in all, are:
-= -- 2204
-> -- 1380
+            874 strings with 20547 characters,
+and the built_in function-call counts, 23606 in all, are:
+= -- 2190
+> -- 1416
 < -- 0
-+ -- 483
-- -- 416
-* -- 1860
-:= -- 3435
++ -- 495
+- -- 428
+* -- 1888
+:= -- 3465
 add.period$ -- 67
 call.type$ -- 67
 change.case$ -- 68
 chr.to.int$ -- 0
-cite$ -- 69
-duplicate$ -- 1133
-empty$ -- 1800
-format.name$ -- 416
-if$ -- 5600
+cite$ -- 68
+duplicate$ -- 1126
+empty$ -- 1786
+format.name$ -- 428
+if$ -- 5597
 int.to.chr$ -- 0
 int.to.str$ -- 67
 missing$ -- 65
 newline$ -- 204
 num.names$ -- 67
-pop$ -- 138
+pop$ -- 132
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 927
+skip$ -- 923
 stack$ -- 0
-substring$ -- 1522
-swap$ -- 602
+substring$ -- 1496
+swap$ -- 598
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 2
-while$ -- 204
+warning$ -- 1
+while$ -- 201
 width$ -- 69
-write$ -- 689
-(There was 1 error message)
+write$ -- 693
+(There was 1 warning)

@@ -118,7 +118,7 @@ P.~Tamburini, D.~V. Pedersen, D.~Devore, J.~Cone, R.~Patel, T.~Hunter, F.~Sun,
 J.~Jumper, R.~Evans, A.~Pritzel, T.~Green, M.~Figurnov, O.~Ronneberger,
   K.~Tunyasuvunakool, R.~Bates, A.~{\v{Z}}{\'\i}dek, A.~Potapenko, {\em
   et~al.}, ``Highly accurate protein structure prediction with alphafold,''
-  {\em nature}, vol.~596, no.~7873, pp.~583--589, 2021.
+  {\em Nature}, vol.~596, no.~7873, pp.~583--589, 2021.
 
 \bibitem{evans2021protein}
 R.~Evans, M.~O’Neill, A.~Pritzel, N.~Antropova, A.~Senior, T.~Green,
@@ -165,9 +165,11 @@ A.~Sircar, K.~A. Sanni, J.~Shi, and J.~J. Gray, ``Analysis and modeling of the
   Immunology}, vol.~186, no.~11, pp.~6357--6367, 2011.
 
 \bibitem{wu2024fast}
-F.~Wu, Y.~Zhao, J.~Wu, B.~Jiang, B.~He, L.~Huang, C.~Qin, F.~Yang, N.~Huang,
-  Y.~Xiao, {\em et~al.}, ``Fast and accurate modeling and design of
-  antibody-antigen complex using tfold,'' {\em bioRxiv}, pp.~2024--02, 2024.
+F.~Wu, Y.~Zhao, J.~Wu, B.~Jiang, B.~He, L.~Huang, C.~Qin, Y.~Xiao, F.~Yang,
+  R.~Wang, N.~Huang, H.~Jia, Y.~Liu, H.~Lai, T.~Xu, F.~Wang, Z.~Wu, Y.~Song,
+  S.~Li, W.~Liu, Y.~Rong, P.~Zhao, and J.~Yao, ``De novo design of
+  epitope-specific antibodies via a structure-driven computational workflow,''
+  {\em Nature Communications}, vol.~17, p.~625, 12 2025.
 
 \bibitem{Harvey2026nanobodyinSilico}
 E.~P. Harvey, J.~S. Smith, J.~D. Hurley, A.~J. Granados, E.~W. Schmid, J.~G.
@@ -216,9 +218,8 @@ S.~Basu and B.~Wallner, ``Dockq: a quality measure for protein-protein docking
   models,'' {\em PloS one}, vol.~11, no.~8, p.~e0161879, 2016.
 
 \bibitem{hitawala2024has}
-F.~N. Hitawala and J.~J. Gray, ``What has alphafold3 learned about antibody and
-  nanobody docking, and what remains unsolved?,'' {\em bioRxiv}, pp.~2024--09,
-  2024.
+F.~N. Hitawala and J.~J. Gray, ``What does alphafold3 learn about antibody and
+  nanobody docking, and what remains unsolved?,'' {\em mAbs}, vol.~17, 12 2025.
 
 \bibitem{eshak2025advancements}
 F.~Eshak and A.~Goupil-Lamy, ``Advancements in nanobody epitope prediction: A
@@ -351,11 +352,11 @@ F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
   Learning research}, vol.~12, pp.~2825--2830, 2011.
 
 \bibitem{giulini2025haddock3}
-M.~Giulini, V.~Reys, J.~M.~C. Teixeira, B.~Jim{\'e}nez-García, R.~V.~Honorato,
+M.~Giulini, V.~Reys, J.~M.~C. Teixeira, B.~Jiménez-García, R.~V. Honorato,
   A.~Kravchenko, X.~Xu, R.~Versini, A.~Engel, S.~Verhoeven, and A.~M. J.~J.
-  Bonvin, ``{HADDOCK3}: A modular and versatile platform for integrative
-  modeling of biomolecular complexes,'' {\em Journal of Chemical Information
-  and Modeling}.
+  Bonvin, ``Haddock3: A modular and versatile platform for integrative modeling
+  of biomolecular complexes,'' {\em Journal of Chemical Information and
+  Modeling}, vol.~65, pp.~7315--7324, 7 2025.
 
 \bibitem{fernandez2004identification}
 J.~Fernandez-Recio, M.~Totrov, and R.~Abagyan, ``Identification of
