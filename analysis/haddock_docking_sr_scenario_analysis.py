@@ -478,7 +478,8 @@ for j, sr in enumerate(["acc_sr", "med_sr", "high_sr"]):
 # we set the x ticks and labels
 for i in range(2):
     axs[i].set_ylim(0, 100)
-    axs[i].set_xticks([el for el in bound_bars] + [el + 0.4 for el in bound_bars])
+    #axs[i].set_xticks([el for el in bound_bars] + [el + 0.4 for el in bound_bars])
+    axs[i].set_xticks(bars_b + bars_u)
     axs[i].set_xticklabels(["B T1", "B T10", "B T200", "U T1", "U T10", "U T200" ], rotation = 45, ha = "right", size = 12)
 #we plot the name of the stages
 axs[0].set_title("Mix-loose scenario", fontsize = 15)
