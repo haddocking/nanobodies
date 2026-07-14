@@ -280,6 +280,18 @@ I.~T. Desta, S.~Kotelnikov, G.~Jones, U.~Ghani, M.~Abyzov, Y.~Kholodov, D.~M.
   server for the prediction of antibody epitopes,'' {\em Nature protocols},
   vol.~18, no.~6, pp.~1814--1840, 2023.
 
+\bibitem{Stahl2023alphalink}
+K.~Stahl, A.~Graziadei, T.~Dau, O.~Brock, and J.~Rappsilber, ``Protein
+  structure prediction with in-cell photo-crosslinking mass spectrometry and
+  deep learning,'' {\em Nature Biotechnology}, vol.~41, pp.~1810--1819, 12
+  2023.
+
+\bibitem{Feng2024colabdock}
+S.~Feng, Z.~Chen, C.~Zhang, Y.~Xie, S.~Ovchinnikov, Y.~Q. Gao, and S.~Liu,
+  ``Integrated structure prediction of protein–protein docking with
+  experimental restraints using colabdock,'' {\em Nature Machine Intelligence},
+  vol.~6, pp.~924--935, 8 2024.
+
 \bibitem{Xie2025grasp}
 Y.~Xie, C.~Zhang, S.~Li, X.~Du, Y.~Lu, M.~Wang, Y.~Hu, Z.~Chen, S.~Liu, and
   Y.~Q. Gao, ``Integrating diverse experimental information to assist protein

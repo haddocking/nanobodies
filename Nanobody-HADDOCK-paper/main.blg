@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: ieeetr.bst
 Database file #1: main.bib
 Warning--can't use both volume and number fields in tamburini2024characterization
-You've used 67 entries,
+You've used 69 entries,
             1876 wiz_defined-function locations,
-            874 strings with 20547 characters,
-and the built_in function-call counts, 23606 in all, are:
-= -- 2190
-> -- 1416
+            887 strings with 21080 characters,
+and the built_in function-call counts, 24376 in all, are:
+= -- 2263
+> -- 1456
 < -- 0
-+ -- 495
-- -- 428
-* -- 1888
-:= -- 3465
-add.period$ -- 67
-call.type$ -- 67
-change.case$ -- 68
++ -- 509
+- -- 440
+* -- 1952
+:= -- 3574
+add.period$ -- 69
+call.type$ -- 69
+change.case$ -- 70
 chr.to.int$ -- 0
-cite$ -- 68
-duplicate$ -- 1126
-empty$ -- 1786
-format.name$ -- 428
-if$ -- 5597
+cite$ -- 70
+duplicate$ -- 1160
+empty$ -- 1845
+format.name$ -- 440
+if$ -- 5783
 int.to.chr$ -- 0
-int.to.str$ -- 67
-missing$ -- 65
-newline$ -- 204
-num.names$ -- 67
-pop$ -- 132
+int.to.str$ -- 69
+missing$ -- 67
+newline$ -- 210
+num.names$ -- 69
+pop$ -- 134
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 923
+skip$ -- 956
 stack$ -- 0
-substring$ -- 1496
-swap$ -- 598
+substring$ -- 1560
+swap$ -- 618
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 201
-width$ -- 69
-write$ -- 693
+while$ -- 207
+width$ -- 71
+write$ -- 713
 (There was 1 warning)
