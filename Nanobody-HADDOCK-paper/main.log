@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.24)  15 JUL 2026 21:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.24)  16 JUL 2026 17:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -301,66 +301,70 @@ Overfull \hbox (0.42894pt too wide) in paragraph at lines 68--69
 fer-ent bind-ing mode to anti-gens be-tween nanobod-
  []
 
+<figures/figure1.png, id=11, 1284.8pt x 714.67pt>
+File: figures/figure1.png Graphic file (type png)
+<use figures/figure1.png>
+Package pdftex.def Info: figures/figure1.png  used on input line 79.
+(pdftex.def)             Requested size: 483.69684pt x 269.05836pt.
 
-Overfull \hbox (7.8878pt too wide) in paragraph at lines 82--83
+Overfull \hbox (7.8878pt too wide) in paragraph at lines 88--89
 \OT1/cmr/m/n/10.95 AI-predicted monomers. Our mod-elling pipeline com-bines nan
 obody mod-els gen-er-ated with AlphaFold2-
  []
 
-[2] [3{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1
-.enc}]
-<figures/figure1.png, id=21, 1084.05pt x 361.35pt>
-File: figures/figure1.png Graphic file (type png)
-<use figures/figure1.png>
-Package pdftex.def Info: figures/figure1.png  used on input line 139.
-(pdftex.def)             Requested size: 483.69684pt x 161.23306pt.
- [4]
-<figures/figure2.png, id=28, 867.24pt x 867.24pt>
+[2] [3 <./figures/figure1.png>] [4{/usr/local/texlive/2026/texmf-dist/fonts/enc
+/dvips/cm-super/cm-super-ts1.enc}]
+<figures/figure2.png, id=27, 1084.05pt x 361.35pt>
 File: figures/figure2.png Graphic file (type png)
 <use figures/figure2.png>
-Package pdftex.def Info: figures/figure2.png  used on input line 151.
-(pdftex.def)             Requested size: 483.69684pt x 483.70584pt.
- [5 <./figures/figure1.png>] [6 <./figures/figure2.png>]
-<figures/figure3.png, id=38, 1084.05pt x 578.16pt>
+Package pdftex.def Info: figures/figure2.png  used on input line 145.
+(pdftex.def)             Requested size: 483.69684pt x 161.23306pt.
+ [5 <./figures/figure2.png>]
+<figures/figure3.png, id=35, 867.24pt x 867.24pt>
 File: figures/figure3.png Graphic file (type png)
 <use figures/figure3.png>
-Package pdftex.def Info: figures/figure3.png  used on input line 190.
+Package pdftex.def Info: figures/figure3.png  used on input line 157.
+(pdftex.def)             Requested size: 483.69684pt x 483.70584pt.
+ [6] [7 <./figures/figure3.png>]
+<figures/figure4.png, id=44, 1084.05pt x 578.16pt>
+File: figures/figure4.png Graphic file (type png)
+<use figures/figure4.png>
+Package pdftex.def Info: figures/figure4.png  used on input line 196.
 (pdftex.def)             Requested size: 483.69684pt x 257.97292pt.
- [7]
-<figures/figure4_trial.png, id=44, 1214.136pt x 361.35pt>
-File: figures/figure4_trial.png Graphic file (type png)
-<use figures/figure4_trial.png>
-Package pdftex.def Info: figures/figure4_trial.png  used on input line 200.
-(pdftex.def)             Requested size: 483.69684pt x 143.95297pt.
- [8 <./figures/figure3.png>]
-<figures/figure5.png, id=49, 1445.4pt x 722.7pt>
+<figures/figure5.png, id=45, 1214.136pt x 361.35pt>
 File: figures/figure5.png Graphic file (type png)
 <use figures/figure5.png>
-Package pdftex.def Info: figures/figure5.png  used on input line 216.
+Package pdftex.def Info: figures/figure5.png  used on input line 206.
+(pdftex.def)             Requested size: 483.69684pt x 143.95297pt.
+ [8]
+<figures/figure6.png, id=50, 1445.4pt x 722.7pt>
+File: figures/figure6.png Graphic file (type png)
+<use figures/figure6.png>
+Package pdftex.def Info: figures/figure6.png  used on input line 222.
 (pdftex.def)             Requested size: 483.69684pt x 241.84409pt.
- [9 <./figures/figure4_trial.png>] [10 <./figures/figure5.png>] [11] [12] [13] 
-[14] [15] [16] (./main.bbl [17] [18] [19] [20]) [21]
-<figures/graphical-abstract.png, id=94, 833.1125pt x 463.7325pt>
+ [9 <./figures/figure4.png>] [10 <./figures/figure5.png> <./figures/figure6.png
+>] [11] [12] [13] [14] [15] [16] (./main.bbl [17] [18]
+[19] [20]) [21]
+<figures/graphical-abstract.png, id=96, 833.1125pt x 463.7325pt>
 File: figures/graphical-abstract.png Graphic file (type png)
 <use figures/graphical-abstract.png>
-Package pdftex.def Info: figures/graphical-abstract.png  used on input line 377
+Package pdftex.def Info: figures/graphical-abstract.png  used on input line 383
 .
 (pdftex.def)             Requested size: 483.69684pt x 269.241pt.
-
-[22 <./figures/graphical-abstract.png>] (./main.aux)
+ [22 <./figures/graphical-abstract.png>] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4666 strings out of 467525
- 77427 string characters out of 5418982
- 498231 words of memory out of 5000000
- 33545 multiletter control sequences out of 15000+600000
+ 4674 strings out of 467525
+ 77580 string characters out of 5418982
+ 498254 words of memory out of 5000000
+ 33553 multiletter control sequences out of 15000+600000
  637017 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,10n,77p,1948b,397s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 67i,10n,77p,1906b,396s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
@@ -375,10 +379,10 @@ l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local
 /texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/
 texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/te
 xlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (22 pages, 4385665 bytes).
+Output written on main.pdf (22 pages, 4708820 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
+ 161 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
