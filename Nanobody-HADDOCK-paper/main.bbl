@@ -123,7 +123,7 @@ J.~Jumper, R.~Evans, A.~Pritzel, T.~Green, M.~Figurnov, O.~Ronneberger,
 \bibitem{evans2021protein}
 R.~Evans, M.~O’Neill, A.~Pritzel, N.~Antropova, A.~Senior, T.~Green,
   A.~{\v{Z}}{\'\i}dek, R.~Bates, S.~Blackwell, J.~Yim, {\em et~al.}, ``Protein
-  complex prediction with alphafold-multimer,'' {\em biorxiv}, pp.~2021--10,
+  complex prediction with alphafold-multimer,'' {\em bioRxiv}, pp.~2021--10,
   2021.
 
 \bibitem{ahdritz2024openfold}
@@ -298,6 +298,11 @@ Y.~Xie, C.~Zhang, S.~Li, X.~Du, Y.~Lu, M.~Wang, Y.~Hu, Z.~Chen, S.~Liu, and
   complex structure prediction by grasp,'' {\em Nature Methods}, vol.~22,
   pp.~2362--2374, 11 2025.
 
+\bibitem{Zhang2026protenix}
+Y.~Zhang, C.~Gong, H.~Zhang, W.~Ma, Z.~Liu, X.~Chen, J.~Guan, L.~Wang, Y.~Yang,
+  Y.~Xia, and W.~Xiao, ``Protenix-v1: Toward high-accuracy open-source
+  biomolecular structure prediction,'' {\em bioRxiv}, 2 2026.
+
 \bibitem{li2024nanoberta}
 S.~Li, X.~Meng, R.~Li, B.~Huang, and X.~Wang, ``Nanoberta-asp: predicting
   nanobody paratope based on a pretrained roberta model,'' {\em BMC
@@ -312,7 +317,7 @@ X.~Xu, I.~Coratella, V.~Reys, and A.~M. Bonvin, ``Deeprank-ab: a scoring
 E.~Smorodina, M.~Ali, K.~K. Brumat, L.~Salicari, S.~Miklavc, A.~Kappassov,
   C.~Fu, P.~Sormanni, A.~de~Marco, and V.~Greiff, ``Structural plausibility
   without binding specificity: Limits of ai-based antibody-antigen structure
-  prediction confidence scores,'' 3 2026.
+  prediction confidence scores,'' {\em bioRxiv}, 3 2026.
 
 \bibitem{al1997standard}
 B.~Al-Lazikani, A.~M. Lesk, and C.~Chothia, ``Standard conformations for the

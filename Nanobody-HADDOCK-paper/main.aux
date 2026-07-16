@@ -85,27 +85,28 @@
 \newlabel{tab:af2_af3_stats}{{2}{8}{}{table.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Fraction of Native Contacts improves after Flexible Refinement}. The histograms show the distribution of changes in Fnat after flexible refinement ($\Delta F_{nat} = F_{nat}^{flex} - F_{nat}^{rigid}$) for all acceptable models (positive values indicate an improvement in the recovery of native contacts). Frequencies are shown for True, Loose and Two-Hit interface scenarios runs with bound and unbound antigen. The median $\Delta F_{nat}$ value is shown at the bottom of the histogram and maximum and minimum $\Delta F_{nat}$ are reported with black dashed lines. The number of models in the plotted distributions (n) is shown on each graph.}}{8}{}\protected@file@percent }
 \newlabel{fig:refinement}{{3}{8}{}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}CDR3 accuracy, CDR3 conformation, and paratope definition are critical features for docking success}{8}{}\protected@file@percent }
 \citation{bahrami2023vhh}
 \citation{bahrami2023vhh}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Nanobody structural quality and paratope definition are related to docking success.} \textbf  {a)} Scatter plot between the minimum CDR3 RMSD in the input models and the maximum DockQ achieved among the top10 models for each ensemble. Analysed models come from True Interface scenario and bound antigen. Pearson correlation coefficients for each ensemble are reported on the top right. The horizontal dashed line in each plot indicates a DockQ of 0.23, which is the cutoff used to define acceptable or better models. \textbf  {b)} Scatter plots showing the relationship between the fraction of paratope present in the restraints ($F_{para}$) and the maximum DockQ among the top 10 models for each ensemble. Data are shown for both Loose and Two-Hit Interface scenarios. Pearson correlation coefficients are plotted on the top left.}}{9}{}\protected@file@percent }
 \newlabel{fig:dockq-features}{{4}{9}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}CDR3 accuracy, CDR3 conformation, and paratope definition are critical features for docking success}{9}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Framework-aware paratope description improves the modelling success}{9}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Paratope clusters}. \small  {Bar plot showing the frequency of each residue in two cluster’s paratopes obtained after hierarchical clustering based on Jaccard distances. The top plot shows the frequencies for cluster 1 (CDR) and the lower plot for cluster 2 (CDR+FR). The CDR regions are highlighted in grey. Residue numbers with a frequency above 0.15 (dashed line) are plotted on top of the corresponding frequency bars. Only residue numbers based on the Chothia numbering scheme are considered for the frequency calculation and representation (e.g. residues 100A and 100B account as 100). Conserved regions (R1, R2, etc.) in the CDR+FR representation are shown with horizontal purple lines. White stars indicate the residues that are defined as paratope restraints inside of each of these regions.}}}{10}{}\protected@file@percent }
 \newlabel{fig:paratope}{{5}{10}{}{figure.5}{}}
 \citation{abramson2024accurate}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Discussion}{11}{}\protected@file@percent }
 \citation{desta2023cluspro}
 \citation{Stahl2023alphalink}
 \citation{Feng2024colabdock}
 \citation{Xie2025grasp}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Discussion}{11}{}\protected@file@percent }
+\citation{Zhang2026protenix}
 \citation{li2024nanoberta}
 \citation{Xu2026deeprankab}
 \citation{Smorodina2026iptm}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{12}{}\protected@file@percent }
 \citation{al1997standard}
 \citation{dunbar2014sabdab}
 \citation{schneider2022sabdab}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{12}{}\protected@file@percent }
 \citation{rodrigues2018pdb}
 \citation{gowers2019mdanalysis}
 \citation{evans2021protein}
@@ -124,14 +125,13 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmark dataset assembly}{13}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Nanobody-antigen complex structure modelling and accuracy assessment}{13}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Single structure modelling and accuracy assessment}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Nanobody models clustering}{13}{}\protected@file@percent }
 \citation{giulini2025haddock3}
 \citation{giulini2025haddock3}
 \citation{dominguez2003haddock}
-\citation{ambrosetti2020modeling}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Nanobody models clustering}{14}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Unbound antigen selection}{14}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Information scenarios and restraints generation}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}HADDOCK3 docking protocols}{14}{}\protected@file@percent }
+\citation{ambrosetti2020modeling}
 \citation{rodrigues2012clustering}
 \citation{fernandez2004identification}
 \citation{dominguez2003haddock}
@@ -139,18 +139,19 @@
 \citation{olechnovivc2023prediction}
 \citation{janin2003capri}
 \citation{mendez2003assessment}
-\citation{bahrami2023vhh}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}HADDOCK3 docking protocols}{15}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Model quality assessment}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Paratope analysis and framework-aware restraints definition}{15}{}\protected@file@percent }
-\newlabel{methods:para}{{5.9}{15}{}{subsection.5.9}{}}
+\citation{bahrami2023vhh}
 \citation{virtanen2020scipy}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Paratope analysis and framework-aware restraints definition}{16}{}\protected@file@percent }
+\newlabel{methods:para}{{5.9}{16}{}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Data and Software Availability Statement}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Supporting information}{16}{}\protected@file@percent }
 \bibstyle{ieeetr}
 \bibdata{main}
 \bibcite{hamers1993naturally}{1}
 \bibcite{muyldermans2013nanobodies}{2}
 \bibcite{konning2017camelid}{3}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Data and Software Availability Statement}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Acknowledgements}{16}{}\protected@file@percent }
 \bibcite{gonzalez2017single}{4}
 \bibcite{liu2021nanobody}{5}
 \bibcite{vanlandschoot2011nanobodies}{6}
@@ -163,6 +164,7 @@
 \bibcite{conrath2003emergence}{13}
 \bibcite{li2016comparative}{14}
 \bibcite{kinoshita2022molecular}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Acknowledgements}{17}{}\protected@file@percent }
 \bibcite{zavrtanik2018structural}{16}
 \bibcite{mitchell2018comparative}{17}
 \bibcite{zhang2017structural}{18}
@@ -202,19 +204,21 @@
 \bibcite{Stahl2023alphalink}{52}
 \bibcite{Feng2024colabdock}{53}
 \bibcite{Xie2025grasp}{54}
-\bibcite{li2024nanoberta}{55}
-\bibcite{Xu2026deeprankab}{56}
-\bibcite{Smorodina2026iptm}{57}
-\bibcite{al1997standard}{58}
-\bibcite{dunbar2014sabdab}{59}
-\bibcite{schneider2022sabdab}{60}
-\bibcite{rodrigues2018pdb}{61}
-\bibcite{gowers2019mdanalysis}{62}
-\bibcite{mirdita2022colabfold}{63}
-\bibcite{mclachlan1982rapid}{64}
-\bibcite{martin2009profit}{65}
-\bibcite{pedregosa2011scikit}{66}
-\bibcite{giulini2025haddock3}{67}
-\bibcite{fernandez2004identification}{68}
-\bibcite{virtanen2020scipy}{69}
-\gdef \@abspage@last{21}
+\bibcite{Zhang2026protenix}{55}
+\bibcite{li2024nanoberta}{56}
+\bibcite{Xu2026deeprankab}{57}
+\bibcite{Smorodina2026iptm}{58}
+\bibcite{al1997standard}{59}
+\bibcite{dunbar2014sabdab}{60}
+\bibcite{schneider2022sabdab}{61}
+\bibcite{rodrigues2018pdb}{62}
+\bibcite{gowers2019mdanalysis}{63}
+\bibcite{mirdita2022colabfold}{64}
+\bibcite{mclachlan1982rapid}{65}
+\bibcite{martin2009profit}{66}
+\bibcite{pedregosa2011scikit}{67}
+\bibcite{giulini2025haddock3}{68}
+\bibcite{fernandez2004identification}{69}
+\bibcite{virtanen2020scipy}{70}
+\@writefile{toc}{\contentsline {section}{\numberline {9}TOC graphic}{22}{}\protected@file@percent }
+\gdef \@abspage@last{22}

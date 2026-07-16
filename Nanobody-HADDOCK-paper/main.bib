@@ -43,7 +43,7 @@
 @article{evans2021protein,
   title={Protein complex prediction with AlphaFold-Multimer},
   author={Evans, Richard and O’Neill, Michael and Pritzel, Alexander and Antropova, Natasha and Senior, Andrew and Green, Tim and {\v{Z}}{\'\i}dek, Augustin and Bates, Russ and Blackwell, Sam and Yim, Jason and others},
-  journal={biorxiv},
+  journal={bioRxiv},
   pages={2021--10},
   year={2021},
   publisher={Cold Spring Harbor Laboratory}
@@ -688,11 +688,11 @@
    year = {2026}
 }
 
-@misc{Smorodina2026iptm,
+@article{Smorodina2026iptm,
    abstract = {<p>Antibody-antigen binding prediction remains a central challenge for AI-driven therapeutic discovery, particularly in discriminating cognate interactions from structurally plausible but incorrect pairings. We present a controlled, AI-method- and antibody-format-agnostic evaluation framework that measures binding specificity under realistic conditions. Using 106 experimentally determined single-chain antibody (nanobody)-antigen complexes and 11,342 shuffled non-cognate pairings, we benchmarked publicly-available state-of-the-art structure prediction methods (AlphaFold3, Boltz-2, Chai-1). Although the methods tested often generated geometrically plausible complexes, internal confidence metrics (ipTM) frequently failed to discriminate correct from incorrect pairings. Increased sampling improved structural refinement but not pairing discrimination, indicating that computational resources are better allocated across independent seeds and explicit negative controls. We conclude that internal confidence scores are not inherently calibrated to binding specificity and require validation against realistic decoys. To enable community benchmarking and method development, we release ∼1.8 million AI-generated complex structures and guidance for the benchmarks ahead.</p>},
    author = {Eva Smorodina and Montader Ali and Klara Kropivšek Brumat and Leonardo Salicari and Samo Miklavc and Aibek Kappassov and Chengcheng Fu and Pietro Sormanni and Ario de Marco and Victor Greiff},
    doi = {10.64898/2026.03.02.709004},
-   journal={biorxiv},
+   journal={bioRxiv},
    month = {3},
    title = {Structural Plausibility Without Binding Specificity: Limits of AI-Based Antibody-Antigen Structure Prediction Confidence Scores},
    year = {2026}
@@ -734,4 +734,14 @@
    title = {Integrated structure prediction of protein–protein docking with experimental restraints using ColabDock},
    volume = {6},
    year = {2024}
+}
+
+@article{Zhang2026protenix,
+   abstract = {<p>We introduce Protenix-v1 (PX-v1), the first fully open-source structure prediction model to attain superior performance to AlphaFold3 while strictly adhering to the same training data cutoff, model size, and inference budget. Beyond standard evaluations, we highlight the effectiveness of inference-time scaling behavior of Protenix-v1, demonstrating that increasing the sampling budget yields consistent improvements in prediction quality—a behavior previously observed in AlphaFold3 and largely absent from prior open-source models. In addition to improved accuracy, Protenix-v1 incorporates key capabilities including protein template integration and RNA MSA support. Furthermore, to better support real-world applications such as drug discovery, we additionally release Protenix-v1-20250630, a variant trained on a larger dataset (cutoff: June 30, 2025), delivering further improved prediction accuracy. Finally, we identify limitations in existing benchmarking practices and provide updated evaluation tools and year-stratified benchmarks to support more reliable and transparent assessment. Collectively, these contributions provide a robust foundation for the Protenix series and the broader field.</p>},
+   author = {Yuxuan Zhang and Chengyue Gong and Hanyu Zhang and Wenzhi Ma and Zhenyu Liu and Xinshi Chen and Jiaqi Guan and Lan Wang and Yanping Yang and Yu Xia and Wenzhi Xiao},
+   doi = {10.64898/2026.02.05.703733},
+   journal={bioRxiv},
+   month = {2},
+   title = {Protenix-v1: Toward High-Accuracy Open-Source Biomolecular Structure Prediction},
+   year = {2026}
 }
