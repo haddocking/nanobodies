@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.24)  16 JUL 2026 17:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.24)  17 JUL 2026 13:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -301,13 +301,13 @@ Overfull \hbox (0.42894pt too wide) in paragraph at lines 68--69
 fer-ent bind-ing mode to anti-gens be-tween nanobod-
  []
 
-<figures/figure1.png, id=11, 1284.8pt x 714.67pt>
+<figures/figure1.png, id=11, 855.195pt x 451.578pt>
 File: figures/figure1.png Graphic file (type png)
 <use figures/figure1.png>
-Package pdftex.def Info: figures/figure1.png  used on input line 79.
-(pdftex.def)             Requested size: 483.69684pt x 269.05836pt.
+Package pdftex.def Info: figures/figure1.png  used on input line 80.
+(pdftex.def)             Requested size: 483.69684pt x 255.41077pt.
 
-Overfull \hbox (7.8878pt too wide) in paragraph at lines 88--89
+Overfull \hbox (7.8878pt too wide) in paragraph at lines 89--90
 \OT1/cmr/m/n/10.95 AI-predicted monomers. Our mod-elling pipeline com-bines nan
 obody mod-els gen-er-ated with AlphaFold2-
  []
@@ -317,38 +317,38 @@ obody mod-els gen-er-ated with AlphaFold2-
 <figures/figure2.png, id=27, 1084.05pt x 361.35pt>
 File: figures/figure2.png Graphic file (type png)
 <use figures/figure2.png>
-Package pdftex.def Info: figures/figure2.png  used on input line 145.
+Package pdftex.def Info: figures/figure2.png  used on input line 146.
 (pdftex.def)             Requested size: 483.69684pt x 161.23306pt.
  [5 <./figures/figure2.png>]
-<figures/figure3.png, id=35, 867.24pt x 867.24pt>
+<figures/figure3.png, id=34, 867.24pt x 867.24pt>
 File: figures/figure3.png Graphic file (type png)
 <use figures/figure3.png>
-Package pdftex.def Info: figures/figure3.png  used on input line 157.
+Package pdftex.def Info: figures/figure3.png  used on input line 158.
 (pdftex.def)             Requested size: 483.69684pt x 483.70584pt.
  [6] [7 <./figures/figure3.png>]
-<figures/figure4.png, id=44, 1084.05pt x 578.16pt>
+<figures/figure4.png, id=43, 1084.05pt x 578.16pt>
 File: figures/figure4.png Graphic file (type png)
 <use figures/figure4.png>
-Package pdftex.def Info: figures/figure4.png  used on input line 196.
+Package pdftex.def Info: figures/figure4.png  used on input line 197.
 (pdftex.def)             Requested size: 483.69684pt x 257.97292pt.
-<figures/figure5.png, id=45, 1214.136pt x 361.35pt>
+<figures/figure5.png, id=44, 1214.136pt x 361.35pt>
 File: figures/figure5.png Graphic file (type png)
 <use figures/figure5.png>
-Package pdftex.def Info: figures/figure5.png  used on input line 206.
+Package pdftex.def Info: figures/figure5.png  used on input line 207.
 (pdftex.def)             Requested size: 483.69684pt x 143.95297pt.
  [8]
-<figures/figure6.png, id=50, 1445.4pt x 722.7pt>
+<figures/figure6.png, id=49, 1445.4pt x 722.7pt>
 File: figures/figure6.png Graphic file (type png)
 <use figures/figure6.png>
-Package pdftex.def Info: figures/figure6.png  used on input line 222.
+Package pdftex.def Info: figures/figure6.png  used on input line 223.
 (pdftex.def)             Requested size: 483.69684pt x 241.84409pt.
  [9 <./figures/figure4.png>] [10 <./figures/figure5.png> <./figures/figure6.png
 >] [11] [12] [13] [14] [15] [16] (./main.bbl [17] [18]
 [19] [20]) [21]
-<figures/graphical-abstract.png, id=96, 833.1125pt x 463.7325pt>
+<figures/graphical-abstract.png, id=95, 833.1125pt x 463.7325pt>
 File: figures/graphical-abstract.png Graphic file (type png)
 <use figures/graphical-abstract.png>
-Package pdftex.def Info: figures/graphical-abstract.png  used on input line 383
+Package pdftex.def Info: figures/graphical-abstract.png  used on input line 384
 .
 (pdftex.def)             Requested size: 483.69684pt x 269.241pt.
  [22 <./figures/graphical-abstract.png>] (./main.aux)
@@ -358,31 +358,30 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4674 strings out of 467525
- 77580 string characters out of 5418982
- 498254 words of memory out of 5000000
- 33553 multiletter control sequences out of 15000+600000
- 637017 words of font info for 72 fonts, out of 8000000 for 9000
+ 4673 strings out of 467525
+ 77568 string characters out of 5418982
+ 499255 words of memory out of 5000000
+ 33552 multiletter control sequences out of 15000+600000
+ 636714 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,10n,77p,1906b,396s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 67i,10n,77p,1906b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local
-/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/
-texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/te
-xlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (22 pages, 4708820 bytes).
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
+cal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
+al/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
+l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local
+/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/t
+exlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on main.pdf (22 pages, 6201234 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
+ 156 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
