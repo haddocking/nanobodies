@@ -267,5 +267,5 @@ tm_df.to_csv("figures/tmscore_matrix.tsv", sep="\t")
 #rmsd_df.to_csv("figures/rmsd_matrix.tsv", sep="\t")
 print("Saved tmscore_matrix.tsv")
 
-plot_heatmap(tm_df, out_path="figures/tmscore_heatmap.png")
+plot_heatmap(tm_df, out_path="figures/SI_figure1c.png")
 

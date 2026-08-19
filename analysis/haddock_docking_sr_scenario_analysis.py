@@ -291,7 +291,7 @@ for i, scen in enumerate(scenarios):
 plt.tight_layout(h_pad=0.5, w_pad=-1.5)
 plt.subplots_adjust(bottom=0.12)
 plt.legend(handles[:3], labels[:3], loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-2.2, -0.425))
-plt.savefig(Path("figures", "figure2.png"), dpi=400)
+plt.savefig(Path("figures", "figure3.png"), dpi=400)
 
 # given sr_data, extract the top10 SR for the mix-loose scenario
 mix_loose_sr_u = sr_data_flex[(sr_data_flex["scenario"]=="mix-loose")&(sr_data_flex["struct"]=="u")&(sr_data_flex["rank"]==10)]
@@ -389,7 +389,7 @@ handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.16)
 plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-1.37, -0.2))
-plt.savefig(Path("figures", "SI_figure2.png"), dpi=400)
+plt.savefig(Path("figures", "SI_figure3.png"), dpi=400)
 
 # ##SUPPLEMENTARY FIGURE 3A
 # ##Bar plot comparing model docking success rates (SRs) for TopN structures after HADDOCK scoring (HS) and Voronoi scoring (VS) for different information scenarios.
@@ -432,7 +432,7 @@ handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.20)
 plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.57, -0.28)) 
-plt.savefig(Path("figures", "SI_figure3.png"), dpi=400)
+plt.savefig(Path("figures", "SI_figure5.png"), dpi=400)
 
 # same as figure2 but with mix-loose and mix-twohit scenarios
 fig,axs = plt.subplots(1,2, figsize = (12, 6), width_ratios=[3, 3])
@@ -493,7 +493,7 @@ handles, labels = axs[0].get_legend_handles_labels()
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.18)
 plt.legend(handles, labels, loc = "lower center", fontsize = 15, ncol = 3, bbox_to_anchor=(-0.0, -0.25))
-plt.savefig(Path("figures", "SI_figure6.png"), dpi=400)
+plt.savefig(Path("figures", "SI_figure9.png"), dpi=400)
 
 sr_data_emref = sr_data[sr_data["stage"]=="emref"]
 sr_data_emref_mix_loose = sr_data_emref[sr_data_emref["scenario"]=="mix-loose"]

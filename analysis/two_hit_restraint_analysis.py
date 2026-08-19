@@ -86,4 +86,4 @@ axs[1, 1].set_xlabel("Percentage of true epitope residues in two-hit restraints"
 axs[1, 1].set_ylabel("Max DockQ (T10 unbound)")
 # color the point
 plt.tight_layout()
-plt.savefig("figures/two_hit_restraint_analysis.png")
+plt.savefig("figures/SI_figure4.png")

@@ -91,4 +91,4 @@ plt.subplots_adjust(#top=0.9,
 # do not have space between the subplots
 plt.subplots_adjust(hspace=0, wspace=0)
 plt.tight_layout()
-plt.savefig(Path("figures", "figure3.png"), dpi=400)
+plt.savefig(Path("figures", "figure4.png"), dpi=400)

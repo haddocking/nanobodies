@@ -27,83 +27,83 @@ for dataset in [af_multimer, af_monomer, immunebuilder, raptorx, nanonet]:
     assert len(pdbs) == 40
     prev_pdbs = sorted(list(pdbs))
 
-# ##TABLE 1
-# ##Backbone mean RMSD (± standard deviation) of the different Nb regions by the different prediction methods
+##TABLE 1
+##Backbone mean RMSD (± standard deviation) of the different Nb regions by the different prediction methods
 
-# ##We get the top1 ranked for all but RaptorX-Single and NanoNet
-# af_multimer_top1 = af_multimer[af_multimer['rank']==1]
-# af_monomer_top1 = af_monomer[af_monomer['rank']==1]
-# immunebuilder_top1 = immunebuilder[immunebuilder['rank']==1]
-# af3_top1 = af3[af3['rank']==1]
+##We get the top1 ranked for all but RaptorX-Single and NanoNet
+af_multimer_top1 = af_multimer[af_multimer['rank']==1]
+af_monomer_top1 = af_monomer[af_monomer['rank']==1]
+immunebuilder_top1 = immunebuilder[immunebuilder['rank']==1]
+af3_top1 = af3[af3['rank']==1]
 
-# ##We create a .csv with all 6 methods (top1 for AlphaFold2, AlphaFold2-Multimer and ImmuneBuilder)
-# ##Columns are FR_RMS mean, FR_RMS std, FR_RMS median, CDR1_RMS mean, CDR1_RMS std, CDR1_RMS median, CDR2_RMS mean, CDR2_RMS std, CDR2_RMS median, CDR3_RMS mean, CDR3_RMS std, CDR3_RMS median
-# rms_csv = []
-# methods = [af_multimer_top1, af_monomer_top1, immunebuilder_top1, raptorx, nanonet, af3_top1]
-# methods_strings = ["af_multimer", "af_monomer", "immunebuilder", "raptorx", "nanonet", "af3"]
-# for i, method in enumerate(methods):
+##We create a .csv with all 6 methods (top1 for AlphaFold2, AlphaFold2-Multimer and ImmuneBuilder)
+##Columns are FR_RMS mean, FR_RMS std, FR_RMS median, CDR1_RMS mean, CDR1_RMS std, CDR1_RMS median, CDR2_RMS mean, CDR2_RMS std, CDR2_RMS median, CDR3_RMS mean, CDR3_RMS std, CDR3_RMS median
+rms_csv = []
+methods = [af_multimer_top1, af_monomer_top1, immunebuilder_top1, raptorx, nanonet, af3_top1]
+methods_strings = ["af_multimer", "af_monomer", "immunebuilder", "raptorx", "nanonet", "af3"]
+for i, method in enumerate(methods):
 
-#     FR_mean = round(method['FR_RMS'].mean(), 2)
-#     FR_std = round(method['FR_RMS'].std(), 2)
-#     FR_median = round(method['FR_RMS'].median(), 2)
-#     CDR1_mean = round(method['CDR1_RMS'].mean(), 2)
-#     CDR1_std = round(method['CDR1_RMS'].std(), 2)
-#     CDR1_median = round(method['CDR1_RMS'].median(), 2)
-#     CDR2_mean = round(method['CDR2_RMS'].mean(), 2)
-#     CDR2_std = round(method['CDR2_RMS'].std(), 2)
-#     CDR2_median = round(method['CDR2_RMS'].median(), 2)
-#     CDR3_mean = round(method['CDR3_RMS'].mean(), 2)
-#     CDR3_std = round(method['CDR3_RMS'].std(), 2)
-#     CDR3_median = round(method['CDR3_RMS'].median(), 2)
-#     print(f"method {methods_strings[i]} FR RMSD mean {FR_mean} std {FR_std} median {FR_median}")
-#     print(f"method {methods_strings[i]} CDR1 RMSD mean {CDR1_mean} std {CDR1_std} median {CDR1_median}")
-#     print(f"method {methods_strings[i]} CDR2 RMSD mean {CDR2_mean} std {CDR2_std} median {CDR2_median}")
-#     print(f"method {methods_strings[i]} CDR3 RMSD mean {CDR3_mean} std {CDR3_std} median {CDR3_median}")
-#     rms_csv.append([FR_mean, FR_std, FR_median, CDR1_mean, CDR1_std, CDR1_median, CDR2_mean, CDR2_std, CDR2_median, CDR3_mean, CDR3_std, CDR3_median])
+    FR_mean = round(method['FR_RMS'].mean(), 2)
+    FR_std = round(method['FR_RMS'].std(), 2)
+    FR_median = round(method['FR_RMS'].median(), 2)
+    CDR1_mean = round(method['CDR1_RMS'].mean(), 2)
+    CDR1_std = round(method['CDR1_RMS'].std(), 2)
+    CDR1_median = round(method['CDR1_RMS'].median(), 2)
+    CDR2_mean = round(method['CDR2_RMS'].mean(), 2)
+    CDR2_std = round(method['CDR2_RMS'].std(), 2)
+    CDR2_median = round(method['CDR2_RMS'].median(), 2)
+    CDR3_mean = round(method['CDR3_RMS'].mean(), 2)
+    CDR3_std = round(method['CDR3_RMS'].std(), 2)
+    CDR3_median = round(method['CDR3_RMS'].median(), 2)
+    print(f"method {methods_strings[i]} FR RMSD mean {FR_mean} std {FR_std} median {FR_median}")
+    print(f"method {methods_strings[i]} CDR1 RMSD mean {CDR1_mean} std {CDR1_std} median {CDR1_median}")
+    print(f"method {methods_strings[i]} CDR2 RMSD mean {CDR2_mean} std {CDR2_std} median {CDR2_median}")
+    print(f"method {methods_strings[i]} CDR3 RMSD mean {CDR3_mean} std {CDR3_std} median {CDR3_median}")
+    rms_csv.append([FR_mean, FR_std, FR_median, CDR1_mean, CDR1_std, CDR1_median, CDR2_mean, CDR2_std, CDR2_median, CDR3_mean, CDR3_std, CDR3_median])
 
-# rms_df = pd.DataFrame(rms_csv, columns=['FR_RMS mean', 'FR_RMS std', 'FR_RMS median', 'CDR1_RMS mean', 'CDR1_RMS std', 'CDR1_RMS median', 'CDR2_RMS mean', 'CDR2_RMS std', 'CDR2_RMS median', 'CDR3_RMS mean', 'CDR3_RMS std', 'CDR3_RMS median'],
-#                       index=['af_multimer top1', 'af_monomer top1', 'immunebuilder top1', 'raptorx', 'nanonet', 'af3'])
+rms_df = pd.DataFrame(rms_csv, columns=['FR_RMS mean', 'FR_RMS std', 'FR_RMS median', 'CDR1_RMS mean', 'CDR1_RMS std', 'CDR1_RMS median', 'CDR2_RMS mean', 'CDR2_RMS std', 'CDR2_RMS median', 'CDR3_RMS mean', 'CDR3_RMS std', 'CDR3_RMS median'],
+                      index=['af_multimer top1', 'af_monomer top1', 'immunebuilder top1', 'raptorx', 'nanonet', 'af3'])
 
-# rms_df.to_csv(Path(".", "figures", "nanobody_rmsd_summary.tsv"), sep="\t")
+rms_df.to_csv(Path(".", "figures", "nanobody_rmsd_summary.tsv"), sep="\t")
 
-# ##SUPPLEMENTARY FIGURE 1
-# ##Violin plot showing the distribution of the backbone CDR3 RMSD from the best ranked nanobody prediction for the different methods.
+##SUPPLEMENTARY FIGURE 2
+##Violin plot showing the distribution of the backbone CDR3 RMSD from the best ranked nanobody prediction for the different methods.
 
-# fig, ax = plt.subplots(figsize=(10, 5))
+fig, ax = plt.subplots(figsize=(10, 5))
 
-# violin = plt.violinplot([immunebuilder_top1['CDR3_RMS'], af_monomer_top1['CDR3_RMS'],
-#                          af_multimer_top1['CDR3_RMS'], raptorx['CDR3_RMS'],
-#                          nanonet['CDR3_RMS'], af3_top1['CDR3_RMS']],
-#                         showmeans=False, showmedians=True, showextrema=False)
+violin = plt.violinplot([immunebuilder_top1['CDR3_RMS'], af_monomer_top1['CDR3_RMS'],
+                         af_multimer_top1['CDR3_RMS'], raptorx['CDR3_RMS'],
+                         nanonet['CDR3_RMS'], af3_top1['CDR3_RMS']],
+                        showmeans=False, showmedians=True, showextrema=False)
 
-# violin['cmedians'].set_colors("black")
+violin['cmedians'].set_colors("black")
 
-# #we set a different color for each method
-# colors = plt.cm.tab10.colors
-# for i in range(len(violin['bodies'])):
-#     violin['bodies'][i].set_facecolor(colors[i])
-#     violin['bodies'][i].set_edgecolor('black')
-#     violin['bodies'][i].set_linewidth(1)
+#we set a different color for each method
+colors = plt.cm.tab10.colors
+for i in range(len(violin['bodies'])):
+    violin['bodies'][i].set_facecolor(colors[i])
+    violin['bodies'][i].set_edgecolor('black')
+    violin['bodies'][i].set_linewidth(1)
 
-# # color the AF3 violin plot differently
-# violin['bodies'][-1].set_facecolor(plt.cm.tab10.colors[-1])
+# color the AF3 violin plot differently
+violin['bodies'][-1].set_facecolor(plt.cm.tab10.colors[-1])
 
-# #we plot the median value
-# ax.text(1, immunebuilder_top1['CDR3_RMS'].median() + 0.1, str(round(immunebuilder_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
-# ax.text(2, af_monomer_top1['CDR3_RMS'].median() + 0.1, str(round(af_monomer_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
-# ax.text(3, af_multimer_top1['CDR3_RMS'].median() + 0.1, str(round(af_multimer_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
-# ax.text(4, raptorx['CDR3_RMS'].median() + 0.1, str(round(raptorx['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
-# ax.text(5, nanonet['CDR3_RMS'].median() + 0.1, str(round(nanonet['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
-# ax.text(6, af3_top1['CDR3_RMS'].median() + 0.1, str(round(af3_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
+#we plot the median value
+ax.text(1, immunebuilder_top1['CDR3_RMS'].median() + 0.1, str(round(immunebuilder_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
+ax.text(2, af_monomer_top1['CDR3_RMS'].median() + 0.1, str(round(af_monomer_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
+ax.text(3, af_multimer_top1['CDR3_RMS'].median() + 0.1, str(round(af_multimer_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
+ax.text(4, raptorx['CDR3_RMS'].median() + 0.1, str(round(raptorx['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
+ax.text(5, nanonet['CDR3_RMS'].median() + 0.1, str(round(nanonet['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
+ax.text(6, af3_top1['CDR3_RMS'].median() + 0.1, str(round(af3_top1['CDR3_RMS'].median(), 2)), color='black', ha='center', size=12)
 
-# # plt.xticks([1, 2, 3, 4, 5, 6], ['IB\n(Top1 models)', 'AF Monomer\n(Top1 models)', 'AF Multimer\n(Top1 models)', 'RXS', 'NN', 'AF3\n(Top1 models)'], size=12)
-# plt.xticks([1, 2, 3, 4, 5, 6], ['IB', 'AF', 'AF2M', 'RXS', 'NN', 'AF3'], size=12)
-# plt.ylabel('CDR3 RMSD (Å)', fontsize=15)
-# plt.title('Top ranked model accuracy', fontsize=15)
-# plt.tight_layout()
-# plt.savefig(Path(".", "figures", "SI_figure1.png"), dpi=400)
+# plt.xticks([1, 2, 3, 4, 5, 6], ['IB\n(Top1 models)', 'AF Monomer\n(Top1 models)', 'AF Multimer\n(Top1 models)', 'RXS', 'NN', 'AF3\n(Top1 models)'], size=12)
+plt.xticks([1, 2, 3, 4, 5, 6], ['IB', 'AF', 'AF2M', 'RXS', 'NN', 'AF3'], size=12)
+plt.ylabel('CDR3 RMSD (Å)', fontsize=15)
+plt.title('Top ranked model accuracy', fontsize=15)
+plt.tight_layout()
+plt.savefig(Path(".", "figures", "SI_figure2.png"), dpi=400)
 
-#FIGURE 1
+#FIGURE 2
 #Violin plot showing the distribution of the best backbone CDR3 RMSD in the ensembles.
 
 #we get the best available prediction for each pdb in the ensembles
@@ -282,7 +282,7 @@ leg.legend_handles[0].set_alpha(0.5)
 leg.legend_handles[1].set_alpha(0.5)
 
 plt.tight_layout()
-plt.savefig(Path(".", "figures", "figure1.png"), dpi=400)
+plt.savefig(Path(".", "figures", "figure2.png"), dpi=400)
 plt.close()
 
 # # now we do only the violinplot and only for the following entries best_ib, best_afm, best_afmm, ib_mu_df, ib_mu_clustered

@@ -149,7 +149,7 @@ pos4 = axs[3].get_position()
 axs[1].set_position([pos2.x0 - (pos2.x0 - pos1.x1), pos2.y0, pos2.width, pos2.height])
 axs[3].set_position([pos4.x0 - (pos4.x0 - pos3.x1), pos4.y0, pos4.width, pos4.height])
 
-plt.savefig(Path("figures", "figure4_trial.png"), dpi=400)
+plt.savefig(Path("figures", "figure5.png"), dpi=400)
 plt.close()
 
 #SUPPLEMENTARY FIGURE 4
@@ -188,6 +188,6 @@ corr_ib_monom_multim = np.corrcoef(epitope_rmsd_data["af_multimer_pdb_epitope_rm
 ax.legend(["IB " + r"$\rho$ = " + str(round(corr_ib,4)), "IBMo " + r"$\rho$ = " + str(round(corr_ib_monom,4)), "IBMu " + r"$\rho$ = " + str(round(corr_ib_multim,4)), "IBMM " + r"$\rho$ = " + str(round(corr_ib_monom_multim,4))],
     loc="upper right", fontsize=10)
 
-plt.savefig(Path( "figures", "SI_figure4.png"), dpi=400)
+plt.savefig(Path( "figures", "SI_figure6.png"), dpi=400)
 plt.close()
 
